@@ -5,6 +5,10 @@ import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Calendar;
 
 public class CheckAddFrame extends AFrame {
@@ -16,6 +20,7 @@ public class CheckAddFrame extends AFrame {
 	private String strampm = null;
 	private int hour = now.get(Calendar.HOUR);
 	private int minute = now.get(Calendar.MINUTE);
+	AddFrame af = new AddFrame();
 
 	public void start() {
 		f = new Frame("CheckOut");
@@ -48,6 +53,8 @@ public class CheckAddFrame extends AFrame {
 				f.dispose();
 				CompleteAddFrame caf = new CompleteAddFrame();
 				caf.start();
+				
+				addDAO();
 			}
 		});
 		b2.addActionListener(new ActionListener() {
@@ -58,7 +65,6 @@ public class CheckAddFrame extends AFrame {
 
 		f.add(b1);
 		f.add(b2);
-//			f.add(l1);
 		f.add(l2);
 		f.setVisible(true);
 
@@ -70,5 +76,47 @@ public class CheckAddFrame extends AFrame {
 
 	public void actionPerformed(ActionEvent e) {
 
+	}
+
+	public void addDAO() {
+		
+		String driver = "oracle.jdbc.driver.OracleDriver";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "c##ezen";
+		String password = "ezen1234";
+//      String user = "c##february";
+//      String password = "wl887087wl";
+		String sql;
+		
+		 String NAME = af.getName();
+		 String PW = af.getPw();
+		 String TEL = af.getTel();
+		 String ROLE = af.getRole();
+		System.out.println("name" + NAME);
+		System.out.println("name" + PW);
+		System.out.println("name" + TEL);
+		System.out.println("name" + ROLE);
+		try {
+			
+			Class.forName(driver);
+			System.out.println("jdbc driver loading success.");
+			Connection conn = DriverManager.getConnection(url, user, password);
+			System.out.println("oracle connection sucess.\n");
+			Statement stmt = conn.createStatement();
+			
+			sql = "insert into PARTTIMERS VALUES ('" + NAME + "','" + PW + "','" + TEL + "' , '" + ROLE + "')";
+			
+			boolean b = stmt.execute(sql);
+			if (!b) {
+				System.out.println("INSERT SUCCSESS.\n");
+			} else {
+				System.out.println("INSERT FAIL.\n");
+			}
+		}
+		catch (ClassNotFoundException e) {
+			System.out.println(e);
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
 	}
 }

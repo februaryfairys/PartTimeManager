@@ -154,18 +154,22 @@ public class AddFrame extends AFrame {
 			if (c != true) {
 				frame2();
 			} else {
+				name = tf1.getText();
+				name = tf1.getText();
+				pw = tf2.getText();
+				tel = tf4.getText();
+				role = r.getSelectedItem();
+				setName(name);
+				setPw(pw);
+				setTel(tel);
+				setRole(role);
 				chaf.start();
 				f.dispose();
-				setName(tf1.getText());
-				setPw(tf2.getText());
-				setTel(tf4.getText());
-				setRole(r.getSelectedItem());
 				System.out.println(getName());
 				System.out.println(getPw());
 				System.out.println(getTel());
 				System.out.println(getRole());
 			}
-
 		}
 	}
 

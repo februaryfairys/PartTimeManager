@@ -17,12 +17,20 @@ public class PartTimerJoinDAO {
 	private Statement stmt;
 	private ResultSet rs;
 
+	public String getQuery() {
+		return query;
+	}
+
+	public void setQuery(String query) {
+		this.query = query;
+	}
+
 	public ArrayList<PartTimerVo> list(String pname) {
 		ArrayList<PartTimerVo> list = new ArrayList<PartTimerVo>();
 
 		try {
 			connDB();
-
+			
 			query = "SELECT * FROM PARTTIMERS";
 			if (pname != null) {
 				query += " WHERE name = '" + pname + "'";
@@ -58,11 +66,11 @@ public class PartTimerJoinDAO {
 	public void connDB() {
 		try {
 			Class.forName(driver);
-			System.out.println("jdbc driver loading success.");
+//			System.out.println("jdbc driver loading success.");
 			con = DriverManager.getConnection(url, user, password);
-			System.out.println("oracle connection success.");
+//			System.out.println("oracle connection success.");
 			stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-			System.out.println("statement create success.");
+//			System.out.println("statement create success.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
