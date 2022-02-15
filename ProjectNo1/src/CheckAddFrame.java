@@ -20,7 +20,7 @@ public class CheckAddFrame extends AFrame {
 	private String strampm = null;
 	private int hour = now.get(Calendar.HOUR);
 	private int minute = now.get(Calendar.MINUTE);
-	AddFrame af = new AddFrame();
+	
 
 	public void start() {
 		f = new Frame("CheckOut");
@@ -87,15 +87,15 @@ public class CheckAddFrame extends AFrame {
 //      String user = "c##february";
 //      String password = "wl887087wl";
 		String sql;
-		
-		 String NAME = af.getName();
-		 String PW = af.getPw();
-		 String TEL = af.getTel();
-		 String ROLE = af.getRole();
+		AddFrame af = new AddFrame();
+		String NAME = af.getName();
+		String PW = af.getPw();
+		String TEL = af.getTel();
+		String ROLE = af.getRole();
 		System.out.println("name" + NAME);
-		System.out.println("name" + PW);
-		System.out.println("name" + TEL);
-		System.out.println("name" + ROLE);
+		System.out.println("PW" + PW);
+		System.out.println("TEL" + TEL);
+		System.out.println("ROLE" + ROLE);
 		try {
 			
 			Class.forName(driver);

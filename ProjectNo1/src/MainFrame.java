@@ -2,6 +2,7 @@ import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Label;
+import java.awt.MenuBar;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
@@ -14,7 +15,7 @@ public class MainFrame extends AFrame {
 	Dimension screenSize = tk.getScreenSize();
 	private Button b1, b2, b3;
 	private Label l1;
-
+	private MenuBar mb;
 
 	public void start() {
 		Date now = new Date();
@@ -23,7 +24,8 @@ public class MainFrame extends AFrame {
 		f.setSize(450, 400);
 		f.setLayout(null);
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
-
+		mb = new MenuBar();
+		
 		b1 = new Button("출근체크");
 		b2 = new Button("퇴근하기");
 		b3 = new Button("직원관리");

@@ -17,10 +17,10 @@ public class AddFrame extends AFrame {
 //	private Toolkit tk = Toolkit.getDefaultToolkit();
 //	Dimension screenSize = tk.getScreenSize();
 	private boolean c = false;
-	private String name;
-	private String pw;
-	private String tel;
-	private String role;
+	private String name = " ";
+	private String pw = " ";
+	private String tel = " ";
+	private String role = " ";
 
 	CheckAddFrame chaf = new CheckAddFrame();
 	InputYourName iyn = new InputYourName();
@@ -165,10 +165,6 @@ public class AddFrame extends AFrame {
 				setRole(role);
 				chaf.start();
 				f.dispose();
-				System.out.println(getName());
-				System.out.println(getPw());
-				System.out.println(getTel());
-				System.out.println(getRole());
 			}
 		}
 	}
