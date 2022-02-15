@@ -2,7 +2,9 @@ import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Label;
+import java.awt.Menu;
 import java.awt.MenuBar;
+import java.awt.MenuItem;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
@@ -25,6 +27,10 @@ public class MainFrame extends AFrame {
 		f.setLayout(null);
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 		mb = new MenuBar();
+		Menu mParttimer = new Menu("직원");
+		MenuItem miJoin = new MenuItem("출근");
+		MenuItem miOut = new MenuItem("퇴근");
+		Menu mManage = new Menu("관리");
 		
 		b1 = new Button("출근체크");
 		b2 = new Button("퇴근하기");
