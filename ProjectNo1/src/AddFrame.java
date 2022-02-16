@@ -8,8 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 
 public class AddFrame extends AFrame {
-	private Frame f;
-	private Frame f2 = new Frame("Error");
+	private Frame f,f2,f3;
 	private TextField tf1, tf2, tf3, tf4;
 	private Button b1, b2, b3;
 	private Label lid, lpw, lpw2, ltel, lchpw, l2;
@@ -28,7 +27,7 @@ public class AddFrame extends AFrame {
 	InputYourTel iyt = new InputYourTel();
 
 	public void start() {
-		
+
 		f = new Frame("등록");
 		f.setSize(250, 420);
 		f.setLayout(null);
@@ -112,12 +111,13 @@ public class AddFrame extends AFrame {
 
 	public void frame2() {
 
-		l2 = new Label("비밀번호 일치 확인을 해주세요.", Label.CENTER);
+		f2 = new Frame("Error");
 		f2.setSize(250, 150);
 		f2.setLayout(null);
 		f2.addWindowListener(this);
 		f2.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
+		l2 = new Label("비밀번호 일치 확인을 해주세요.", Label.CENTER);
 		l2.setSize(250, 20);
 		l2.setLocation(0, 55);
 		b3 = new Button("확인");
@@ -134,10 +134,11 @@ public class AddFrame extends AFrame {
 		f2.add(l2);
 		f2.setVisible(true);
 	}
-
+	public void checkAddFrame(){}
+	
 	public void windowClosing(WindowEvent E) {
 		f.dispose();
-	
+
 	}
 
 	public void actionPerformed(ActionEvent e) {

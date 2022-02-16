@@ -21,20 +21,20 @@ public class CheckAddFrame extends AFrame {
 	private int hour = now.get(Calendar.HOUR);
 	private int minute = now.get(Calendar.MINUTE);
 	
-
+	
 	public void start() {
 		f = new Frame("CheckOut");
 		f.setSize(250, 160);
 		f.setLayout(null);
 		f.addWindowListener(this);
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
-
+		
 		if (ampm == Calendar.AM) {
 			strampm = "오전 ";
 		} else {
 			strampm = "오후 ";
 		}
-
+		
 		l1 = new Label("현재 시간은 " + strampm + hour + " 시 " + minute + "분 " + "입니다.", Label.CENTER);
 		l2 = new Label("새로운 직원을 등록할까요?", Label.CENTER);
 		l1.setSize(250, 20);
@@ -82,10 +82,10 @@ public class CheckAddFrame extends AFrame {
 		
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "c##ezen";
-		String password = "ezen1234";
-//      String user = "c##february";
-//      String password = "wl887087wl";
+//		String user = "c##ezen";
+//		String password = "ezen1234";
+      String user = "c##february";
+      String password = "wl887087wl";
 		String sql;
 		AddFrame af = new AddFrame();
 		String NAME = af.getName();

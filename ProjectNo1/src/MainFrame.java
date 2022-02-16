@@ -22,7 +22,7 @@ public class MainFrame extends AFrame {
 	JoinFrame jf = new JoinFrame();
 	OutFrame of = new OutFrame();
 	ManagingFrame mngf = new ManagingFrame();
-	AddFrame af = new AddFrame();
+	AddFrame2 af = new AddFrame2();
 
 	public void start() {
 		Date now = new Date();
