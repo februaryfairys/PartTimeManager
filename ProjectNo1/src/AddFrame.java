@@ -178,6 +178,7 @@ public class AddFrame extends AFrame {
 		this.name = name;
 	}
 
+	
 	public String getPw() {
 		return pw;
 	}

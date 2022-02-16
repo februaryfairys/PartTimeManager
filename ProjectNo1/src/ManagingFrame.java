@@ -8,7 +8,8 @@ public class ManagingFrame extends AFrame {
 
 	private Frame f;
 	private Button b1, b2, b3;
-
+	AddFrame2 af = new AddFrame2();
+	
 	public void start() {
 		f = new Frame("Management");
 		f.setSize(250, 300);
@@ -28,7 +29,6 @@ public class ManagingFrame extends AFrame {
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				f.dispose();
-				AddFrame af = new AddFrame();
 				af.start();
 			}
 		});
