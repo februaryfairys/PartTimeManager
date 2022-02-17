@@ -17,8 +17,10 @@ public class AddFrame2 extends AFrame {
 	private Frame f, f2, f3;
 	private TextField tf1, tf2, tf3, tf4;
 	private Button b1, b2, b3, chafB1, chafB2;
-	private Label lid, lpw, lpw2, ltel, lchpw, lError, chafL1, chafL2;
+	private Label lid, lid2, lpw, lpw2, ltel, ltel2, lchpw, lError, chafL1, chafL2;
 	private Choice r;
+	private boolean a = false;
+	private boolean b = false;
 	private boolean c = false;
 	private String NAME;
 	private String PW;
@@ -42,21 +44,27 @@ public class AddFrame2 extends AFrame {
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		lid = new Label("성명");
+		lid2 = new Label("");
 		lpw = new Label("비밀번호");
 		lpw2 = new Label("비밀번호 확인");
 		ltel = new Label("연락처");
+		ltel2 = new Label("");
 		lchpw = new Label("비밀번호를 입력하세요.");
-		lid.setSize(55, 20);
+		lid.setSize(30, 20);
+		lid2.setSize(150, 20);
 		lpw.setSize(55, 20);
 		lpw2.setSize(80, 20);
 		lchpw.setSize(200, 20);
 		ltel.setSize(55, 20);
+		ltel.setSize(150, 20);
 
 		lid.setLocation(30, 40);
+		lid2.setLocation(70, 40);
 		lpw.setLocation(30, 100);
 		lpw2.setLocation(30, 160);
 		lchpw.setLocation(30, 210);
 		ltel.setLocation(30, 240);
+		ltel2.setLocation(70, 240);
 
 		tf1 = new TextField();
 		tf2 = new TextField();
@@ -77,32 +85,35 @@ public class AddFrame2 extends AFrame {
 		b2.setSize(60, 25);
 		b1.setLocation(25, 340);
 		b2.setLocation(115, 155);
-		b1.addActionListener((ActionListener)new ActionListener() {
+		b1.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tf1.getText().equals("")) {
-
 					iyi.name();
 				} else if (tf2.getText().equals("")) {
-
 					iyi.password();
+
 				} else if (tf3.getText().equals("")) {
-
 					iyi.password();
-				} else if (tf4.getText().equals("")) {
 
+				} else if (tf4.getText().equals("")) {
 					iyi.tel();
+
 				} else {
-					if (c != true) {
+					if (b != true) {
 						frame2();
-					} else {
+						b = false;
+					} else if ( b == true&& tf2.getText().equals(tf3.getText())) {
 						setNAME(tf1.getText());
 						setPW(tf2.getText());
 						setTEL(tf4.getText());
 						setROLE(r.getSelectedItem());
-						System.out.println(NAME);
-						System.out.println(getNAME());
 						checkAddFrame();
 						f.dispose();
+						b = false;
+					} else {
+						frame2();
+						b = false;
+
 					}
 				}
 			}
@@ -110,12 +121,12 @@ public class AddFrame2 extends AFrame {
 		b2.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tf2.getText().equals(tf3.getText()) && tf2.getText() != null) {
-					c = true;
+					b = true;
 				} else {
-					c = false;
+					b = false;
 				}
 
-				if (c == true) {
+				if (b == true) {
 					lchpw.setText("비밀번호가 일치합니다.");
 				} else {
 					lchpw.setText("비밀번호가 일치하지 않습니다.");
@@ -130,9 +141,11 @@ public class AddFrame2 extends AFrame {
 		r.setLocation(25, 300);
 
 		f.add(lid);
+		f.add(lid2);
 		f.add(lpw);
 		f.add(lpw2);
 		f.add(ltel);
+		f.add(ltel2);
 		f.add(lchpw);
 		f.add(tf1);
 		f.add(tf2);
@@ -243,7 +256,8 @@ public class AddFrame2 extends AFrame {
 			System.out.println("oracle connection sucess.\n");
 			Statement stmt = conn.createStatement();
 
-			sql = "insert into PARTTIMERS VALUES ('" + getNAME() + "','" + getPW() + "','" + getTEL() + "' , '" + getROLE() + "')";
+			sql = "insert into PARTTIMERS VALUES ('" + getNAME() + "','" + getPW() + "','" + getTEL() + "' , '"
+					+ getROLE() + "')";
 
 			boolean b = stmt.execute(sql);
 			if (!b) {

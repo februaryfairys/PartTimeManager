@@ -1,5 +1,6 @@
 import java.awt.Button;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Label;
 import java.awt.Menu;
@@ -33,6 +34,7 @@ public class MainFrame extends AFrame {
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		mb = new MenuBar();
+//		mb.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN,12));
 		Menu mParttimer = new Menu("Á÷¿ø");
 		MenuItem miJoin = new MenuItem("Ãâ±Ù");
 		MenuItem miOut = new MenuItem("Åð±Ù");
