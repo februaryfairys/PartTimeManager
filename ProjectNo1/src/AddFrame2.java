@@ -19,8 +19,6 @@ public class AddFrame2 extends AFrame {
 	private Button b1, b2, b3, chafB1, chafB2;
 	private Label lid, lid2, lpw, lpw2, ltel, ltel2, lchpw, lError, chafL1, chafL2;
 	private Choice r;
-	private boolean a = false;
-	private boolean b = false;
 	private boolean c = false;
 	private String NAME;
 	private String PW;
@@ -55,16 +53,16 @@ public class AddFrame2 extends AFrame {
 		lpw.setSize(55, 20);
 		lpw2.setSize(80, 20);
 		lchpw.setSize(200, 20);
-		ltel.setSize(55, 20);
-		ltel.setSize(150, 20);
+		ltel.setSize(30, 20);
+		ltel2.setSize(150, 20);
 
 		lid.setLocation(30, 40);
-		lid2.setLocation(70, 40);
+		lid2.setLocation(55, 40);
 		lpw.setLocation(30, 100);
 		lpw2.setLocation(30, 160);
 		lchpw.setLocation(30, 210);
 		ltel.setLocation(30, 240);
-		ltel2.setLocation(70, 240);
+		ltel2.setLocation(55, 240);
 
 		tf1 = new TextField();
 		tf2 = new TextField();
@@ -91,47 +89,56 @@ public class AddFrame2 extends AFrame {
 					iyi.name();
 				} else if (tf2.getText().equals("")) {
 					iyi.password();
-
 				} else if (tf3.getText().equals("")) {
 					iyi.password();
-
 				} else if (tf4.getText().equals("")) {
 					iyi.tel();
-
 				} else {
-					if (b != true) {
-						frame2();
-						b = false;
-					} else if ( b == true&& tf2.getText().equals(tf3.getText())) {
+					if (tf1.getText().length() >= 2 && tf2.getText().equals(tf3.getText()) && c == true
+							&& tf4.getText().length() >= 10) {
 						setNAME(tf1.getText());
 						setPW(tf2.getText());
 						setTEL(tf4.getText());
 						setROLE(r.getSelectedItem());
 						checkAddFrame();
 						f.dispose();
-						b = false;
-					} else {
+						c = false;
+					} else if (c != true) {
 						frame2();
-						b = false;
-
+					}
+					if (!(tf1.getText().length() >= 2)) {
+						lid2.setText("두 글자 이상 입력하세요.");
+					} else {
+						lid2.setText("");
+					}
+					if (!(tf2.getText().equals(tf3.getText()))) {
+						frame2();
+						c = false;
+					}
+					if (!(tf4.getText().length() >= 10)) {
+						ltel2.setText("올바른 연락처를 입력하세요.");
+					} else {
+						ltel2.setText("");
 					}
 				}
 			}
 		});
 		b2.addActionListener((ActionListener) new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
 				if (tf2.getText().equals(tf3.getText()) && tf2.getText() != null) {
-					b = true;
+					c = true;
 				} else {
-					b = false;
+					c = false;
 				}
 
-				if (b == true) {
+				if (c == true) {
 					lchpw.setText("비밀번호가 일치합니다.");
 				} else {
 					lchpw.setText("비밀번호가 일치하지 않습니다.");
 				}
 			}
+
 		});
 
 		r = new Choice();
