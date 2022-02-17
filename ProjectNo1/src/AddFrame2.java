@@ -31,9 +31,7 @@ public class AddFrame2 extends AFrame {
 	private int minute = now.get(Calendar.MINUTE);
 
 	CompleteAddFrame caf = new CompleteAddFrame();
-	InputYourName iyn = new InputYourName();
-	InputYourPassword iyp = new InputYourPassword();
-	InputYourTel iyt = new InputYourTel();
+	InputYourInfo iyi = new InputYourInfo();
 
 	public void start() {
 
@@ -82,13 +80,17 @@ public class AddFrame2 extends AFrame {
 		b1.addActionListener((ActionListener)new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tf1.getText().equals("")) {
-					iyn.start();
+
+					iyi.name();
 				} else if (tf2.getText().equals("")) {
-					iyp.start();
+
+					iyi.password();
 				} else if (tf3.getText().equals("")) {
-					iyp.start();
+
+					iyi.password();
 				} else if (tf4.getText().equals("")) {
-					iyt.start();
+
+					iyi.tel();
 				} else {
 					if (c != true) {
 						frame2();

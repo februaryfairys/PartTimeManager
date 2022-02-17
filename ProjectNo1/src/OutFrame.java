@@ -64,13 +64,12 @@ public class OutFrame extends AFrame {
 	public void actionPerformed(ActionEvent e) {
 
 		CheckOutFrame chof = new CheckOutFrame();
-		InputYourName iyn = new InputYourName();
-		InputYourPassword iyp = new InputYourPassword();
+		InputYourInfo iyi = new InputYourInfo();
 		CheckNameOrPassword cnp = new CheckNameOrPassword();
 		if (tf1.getText().equals("")) {
-			iyn.start();
+			iyi.name();
 		} else if (tf2.getText().equals("")) {
-			iyp.start();
+			iyi.password();
 		} else {
 			ArrayList<PartTimerVo> list = dao.list(tf1.getText());
 			if (list.size() == 0) {
