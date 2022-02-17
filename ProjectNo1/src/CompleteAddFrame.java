@@ -35,8 +35,6 @@ public class CompleteAddFrame extends AFrame {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		AddFrame af = new AddFrame();
-		
 		f.dispose();
 		
 		

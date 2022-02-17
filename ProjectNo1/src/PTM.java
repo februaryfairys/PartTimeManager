@@ -15,7 +15,7 @@ public class PTM {
 		InputNameErrorFrame inef = new InputNameErrorFrame();
 		InputPasswordErrorFrame ipef = new InputPasswordErrorFrame();
 		ManagingFrame mngf = new ManagingFrame();
-		AddFrame af = new AddFrame();
+		AddFrame2 af = new AddFrame2();
 		SetPasswordFrame spf = new SetPasswordFrame();
 		mf.start();
 //		jf.start();
