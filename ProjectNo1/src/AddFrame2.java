@@ -6,7 +6,6 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -138,7 +137,6 @@ public class AddFrame2 extends AFrame {
 					lchpw.setText("비밀번호가 일치하지 않습니다.");
 				}
 			}
-
 		});
 
 		r = new Choice();
@@ -182,10 +180,8 @@ public class AddFrame2 extends AFrame {
 		b3.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				f2.dispose();
-
 			}
 		});
-
 		f2.add(b3);
 		f2.add(lError);
 		f2.setVisible(true);
@@ -238,10 +234,6 @@ public class AddFrame2 extends AFrame {
 
 	public void windowClosing(WindowEvent E) {
 		f.dispose();
-
-	}
-
-	public void actionPerformed(ActionEvent e) {
 
 	}
 

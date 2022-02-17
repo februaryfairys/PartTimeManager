@@ -9,7 +9,6 @@ public class PTM {
 		CompleteAddFrame caf = new CompleteAddFrame();
 		CompleteJoinFrame cjf = new CompleteJoinFrame();
 		CompleteOutFrame cof = new CompleteOutFrame();
-		CheckJoinFrame chjf = new CheckJoinFrame();
 		CheckOutFrame chof = new CheckOutFrame();
 		InputPasswordFrame ipf = new InputPasswordFrame();
 		InputNameErrorFrame inef = new InputNameErrorFrame();
@@ -17,19 +16,18 @@ public class PTM {
 		ManagingFrame mngf = new ManagingFrame();
 		AddFrame2 af = new AddFrame2();
 		SetPasswordFrame spf = new SetPasswordFrame();
-//		mf.start();
-		jf.start();
+		mf.start();
+//		jf.start();
 //		of.start();
 //		caf.start();
 //		cjf.start();
 //		cof.start();
-//		chjf.start();
 //		chof.start();
 //		ipf.start();
 //		inef.start();
 //		ipef.start();
 //		mngf.start();
-		af.start();
-		System.out.println();
+//		af.start();
+
 	}
 }
