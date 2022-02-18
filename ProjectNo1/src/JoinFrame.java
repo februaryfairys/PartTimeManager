@@ -78,7 +78,6 @@ public class JoinFrame extends AFrame {
 							setName(tf1.getText());
 							CheckJoinFrame();
 							f.dispose();
-							System.out.print(getName());
 						} else {
 							cnp.start();
 						}

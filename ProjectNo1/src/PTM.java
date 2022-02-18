@@ -1,8 +1,6 @@
 public class PTM {
 
 	public static void main(String[] args) {
-		SetPasswordClass spc = new SetPasswordClass();
-	
 		MainFrame mf = new MainFrame();
 		JoinFrame jf = new JoinFrame();
 		OutFrame of = new OutFrame();
@@ -16,7 +14,8 @@ public class PTM {
 		ManagingFrame mngf = new ManagingFrame();
 		AddFrame2 af = new AddFrame2();
 		SetPasswordFrame spf = new SetPasswordFrame();
-		mf.start();
+
+//		mf.start();
 //		jf.start();
 //		of.start();
 //		caf.start();
@@ -28,6 +27,7 @@ public class PTM {
 //		ipef.start();
 //		mngf.start();
 //		af.start();
+		spf.start();
 
 	}
 }

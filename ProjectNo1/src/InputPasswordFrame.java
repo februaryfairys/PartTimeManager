@@ -40,9 +40,7 @@ public class InputPasswordFrame extends AFrame {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		ManagingFrame mngf = new ManagingFrame();
-		SetPasswordClass sp = new SetPasswordClass();
-		InputPasswordErrorFrame ipef = new InputPasswordErrorFrame();
+		
 
 
 	}
