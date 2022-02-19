@@ -43,8 +43,8 @@ public class InputPasswordFrame extends AFrame {
 		tf1.setSize(150, 20);
 		tf1.setLocation(75, 80);
 
-		b1 = new Button("Ok");
-		b1.setSize(150, 50);
+		b1 = new Button("확인");
+		b1.setSize(150, 40);
 		b1.setLocation(75, 120);
 		b1.addActionListener(this);
 		lpw = new Label("비밀번호를 입력하세요.");
