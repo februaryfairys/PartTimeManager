@@ -106,7 +106,6 @@ public class MainFrame extends AFrame {
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jf.start();
-
 			}
 		});
 		b2.addActionListener(new ActionListener() {
@@ -131,12 +130,11 @@ public class MainFrame extends AFrame {
 		f.add(b3);
 		f.add(l1);
 		f.setVisible(true);
-		
+
 	}
 
-
-
 	public void windowClosing(WindowEvent E) {
-		System.exit(0);
+		InputPasswordFrame ipf = new InputPasswordFrame();
+		ipf.start();
 	}
 }

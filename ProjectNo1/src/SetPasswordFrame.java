@@ -21,6 +21,7 @@ public class SetPasswordFrame extends AFrame {
 	private Button b1, b2, ccpfB1, ccpfB2;
 	private String PASSWORD;
 	InputYourInfo iyi = new InputYourInfo();
+	InputPasswordErrorFrame ipef = new InputPasswordErrorFrame();
 
 	public void start() {
 		f = new Frame("비밀번호 재설정");
@@ -42,9 +43,9 @@ public class SetPasswordFrame extends AFrame {
 		l3.setSize(250, 20);
 		l4.setSize(250, 20);
 		l1.setLocation(0, 40);
-		l2.setLocation(0, 100);
-		l3.setLocation(0, 160);
-		l4.setLocation(0, 220);
+		l2.setLocation(0, 70);
+		l3.setLocation(0, 130);
+		l4.setLocation(0, 190);
 
 		tf1 = new TextField();
 		tf2 = new TextField();
@@ -52,9 +53,9 @@ public class SetPasswordFrame extends AFrame {
 		tf1.setSize(200, 20);
 		tf2.setSize(200, 20);
 		tf3.setSize(200, 20);
-		tf1.setLocation(25, 70);
-		tf2.setLocation(25, 130);
-		tf3.setLocation(25, 190);
+		tf1.setLocation(25, 100);
+		tf2.setLocation(25, 160);
+		tf3.setLocation(25, 220);
 
 		b1 = new Button("확인");
 		b2 = new Button("취소");
@@ -73,7 +74,9 @@ public class SetPasswordFrame extends AFrame {
 						joinDAO();
 						CheckChangePasswordFrame();
 						f.dispose();
+					} else if (!(tf2.getText().equals(tf3.getText()))) {
 					}
+					ipef.start();
 				}
 			}
 		});
