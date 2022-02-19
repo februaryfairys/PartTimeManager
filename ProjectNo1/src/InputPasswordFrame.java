@@ -11,7 +11,8 @@ public class InputPasswordFrame extends AFrame {
 	private TextField tf1;
 	private Button b1;
 	private Label lpw;
-
+	CheckExitFrame chef = new CheckExitFrame();
+	
 	public void start() {
 		f = new Frame("Input Password");
 		f.setSize(300, 180);
@@ -41,6 +42,7 @@ public class InputPasswordFrame extends AFrame {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		chef.start();
 		f.dispose();
 	}
 }
