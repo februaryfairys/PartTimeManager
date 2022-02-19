@@ -57,7 +57,7 @@ public class AddFrame2 extends AFrame {
 		lpw.setSize(55, 20);
 		lpw2.setSize(80, 20);
 		lchpw.setSize(200, 20);
-		ltel.setSize(30, 20);
+		ltel.setSize(35, 20);
 		ltel2.setSize(150, 20);
 
 		lid.setLocation(30, 40);

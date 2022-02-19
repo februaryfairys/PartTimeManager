@@ -25,6 +25,8 @@ public class MainFrame extends AFrame {
 	ManagingFrame mngf = new ManagingFrame();
 	AddFrame2 af = new AddFrame2();
 	SetPasswordFrame spf = new SetPasswordFrame();
+	InputPasswordFrame ipf = new InputPasswordFrame();
+	
 
 	public void start() {
 		Date now = new Date();
@@ -54,6 +56,7 @@ public class MainFrame extends AFrame {
 		mb.add(mParttimer);
 		mb.add(mManage);
 		mb.add(mSetting);
+		
 		miJoin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jf.start();
@@ -84,9 +87,12 @@ public class MainFrame extends AFrame {
 
 			}
 		});
+		
 		miExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				ipf.start();
+				
+				//				System.exit(0);
 
 			}
 		});
@@ -134,7 +140,7 @@ public class MainFrame extends AFrame {
 	}
 
 	public void windowClosing(WindowEvent E) {
-		InputPasswordFrame ipf = new InputPasswordFrame();
+//		InputPasswordFrame ipf = new InputPasswordFrame();
 		ipf.start();
 	}
 }
