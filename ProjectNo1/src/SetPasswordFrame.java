@@ -74,9 +74,10 @@ public class SetPasswordFrame extends AFrame {
 						joinDAO();
 						CheckChangePasswordFrame();
 						f.dispose();
-					} else if (!(tf2.getText().equals(tf3.getText()))) {
+					} else if (tf2.getText() != tf3.getText()) {
+						ipef.start();
 					}
-					ipef.start();
+
 				}
 			}
 		});
@@ -143,10 +144,10 @@ public class SetPasswordFrame extends AFrame {
 	public void joinDAO() {
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521/xe";
-		String user = "c##february";
-		String password = "wl887087wl";
-//		String user = "c##ezen";
-//		String password = "ezen1234";
+//		String user = "c##february";
+//		String password = "wl887087wl";
+		String user = "c##ezen";
+		String password = "ezen1234";
 		String sql = "SELECT * FROM PASSWORD WHERE PW = ('" + tf1.getText() + "')";
 
 		try {
@@ -166,6 +167,7 @@ public class SetPasswordFrame extends AFrame {
 			} else {
 				System.out.println(rs.getRow() + " rows selected.....");
 				rs.previous();
+				PASSWORD = rs.getString("PW");
 			}
 		} catch (ClassNotFoundException e) {
 			System.out.println(e);
@@ -178,10 +180,10 @@ public class SetPasswordFrame extends AFrame {
 
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-//		String user = "c##ezen";
-//		String password = "ezen1234";
-		String user = "c##february";
-		String password = "wl887087wl";
+		String user = "c##ezen";
+		String password = "ezen1234";
+//		String user = "c##february";
+//		String password = "wl887087wl";
 		String sql;
 
 		try {
@@ -209,5 +211,13 @@ public class SetPasswordFrame extends AFrame {
 
 	public void windowClosing(WindowEvent E) {
 		f.dispose();
+	}
+
+	public String getPASSWORD() {
+		return PASSWORD;
+	}
+
+	public void setPASSWORD(String PASSWORD) {
+		this.PASSWORD = PASSWORD;
 	}
 }
