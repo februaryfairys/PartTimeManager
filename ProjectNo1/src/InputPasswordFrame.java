@@ -18,7 +18,7 @@ public class InputPasswordFrame extends AFrame {
 	private TextField tf1;
 	private Button b1, cefB1, cefB2;
 	private Label lpw, cefL1, cefL2;
-	private String PASSWORD;
+	private String PASSWORD = "0";
 
 	private Calendar now = Calendar.getInstance();
 	private int ampm = now.get(Calendar.AM_PM);
@@ -88,9 +88,18 @@ public class InputPasswordFrame extends AFrame {
 		cefB2.setLocation(125, 120);
 		cefB1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+//				if (tf1.getText().equals("")) {
+//					
+//				}
 				if (PASSWORD.equals(tf1.getText())) {
 					System.exit(0);
 				}
+
+				if (PASSWORD == "0") {
+					CheckPasswordFrame chpf = new CheckPasswordFrame();
+					chpf.start();
+				}
+
 			}
 		});
 		cefB2.addActionListener(new ActionListener() {
@@ -129,7 +138,7 @@ public class InputPasswordFrame extends AFrame {
 
 			if (rs.getRow() == 0) {
 				System.out.println("0 row selected.....");
-
+				System.out.println(PASSWORD);
 			} else {
 				System.out.println(rs.getRow() + " rows selected.....");
 				rs.previous();
