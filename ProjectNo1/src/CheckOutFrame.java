@@ -3,6 +3,7 @@ import java.awt.Frame;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -25,7 +26,11 @@ public class CheckOutFrame extends AFrame {
 		f = new Frame("CheckOut");
 		f.setSize(250, 160);
 		f.setLayout(null);
-		f.addWindowListener(this);
+		f.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent E) {
+				f.dispose();
+			}
+		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		if (ampm == Calendar.AM) {
@@ -98,15 +103,5 @@ public class CheckOutFrame extends AFrame {
 		} catch (SQLException e) {
 			System.out.println(e);
 		}
-	}
-
-	
-
-	public void windowClosing(WindowEvent E) {
-		f.dispose();
-	}
-
-	public void actionPerformed(ActionEvent e) {
-
 	}
 }

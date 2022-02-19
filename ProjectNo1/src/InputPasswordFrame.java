@@ -3,6 +3,7 @@ import java.awt.Frame;
 import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class InputPasswordFrame extends AFrame {
@@ -15,7 +16,11 @@ public class InputPasswordFrame extends AFrame {
 		f = new Frame("Input Password");
 		f.setSize(300, 180);
 		f.setLayout(null);
-		f.addWindowListener(this);
+		f.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent E) {
+				f.dispose();
+			}
+		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		tf1 = new TextField("");
@@ -35,13 +40,7 @@ public class InputPasswordFrame extends AFrame {
 		f.setVisible(true);
 	}
 
-	public void windowClosing(WindowEvent E) {
-		f.dispose();
-	}
-
 	public void actionPerformed(ActionEvent e) {
-		
-
-
+		f.dispose();
 	}
 }

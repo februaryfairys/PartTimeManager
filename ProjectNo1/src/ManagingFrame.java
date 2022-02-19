@@ -2,6 +2,7 @@ import java.awt.Button;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class ManagingFrame extends AFrame {
@@ -14,7 +15,11 @@ public class ManagingFrame extends AFrame {
 		f = new Frame("Management");
 		f.setSize(250, 300);
 		f.setLayout(null);
-		f.addWindowListener(this);
+		f.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent E) {
+				f.dispose();
+			}
+		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		b1 = new Button("직원등록");
@@ -49,9 +54,7 @@ public class ManagingFrame extends AFrame {
 
 	}
 
-	public void windowClosing(WindowEvent E) {
-		f.dispose();
-	}
+
 
 	public void actionPerformed(ActionEvent e) {
 

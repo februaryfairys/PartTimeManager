@@ -24,6 +24,7 @@ public class MainFrame extends AFrame {
 	OutFrame of = new OutFrame();
 	ManagingFrame mngf = new ManagingFrame();
 	AddFrame2 af = new AddFrame2();
+	SetPasswordFrame spf = new SetPasswordFrame();
 
 	public void start() {
 		Date now = new Date();
@@ -31,10 +32,10 @@ public class MainFrame extends AFrame {
 		f = new Frame("Part time Manager+");
 		f.setSize(450, 400);
 		f.setLayout(null);
+		f.addWindowListener(this);
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		mb = new MenuBar();
-//		mb.setFont(new Font("맑은 고딕", Font.PLAIN,12));
 		Menu mParttimer = new Menu("직원");
 		MenuItem miJoin = new MenuItem("출근");
 		MenuItem miOut = new MenuItem("퇴근");
@@ -79,7 +80,7 @@ public class MainFrame extends AFrame {
 		});
 		miPw.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				jf.start();
+				spf.start();
 
 			}
 		});
@@ -120,11 +121,6 @@ public class MainFrame extends AFrame {
 
 			}
 		});
-//		b4.addActionListener(this);
-
-//	
-//		l1 = new Label(year + "년 " + month + "월 " + date + "일 " + strampm + hour + "시 " + minute + "분" + "입니다."+day,
-//				Label.LEFT);
 
 		l1 = new Label(sdf.format(now), Label.CENTER);
 		l1.setSize(450, 20);
@@ -133,22 +129,14 @@ public class MainFrame extends AFrame {
 		f.add(b1);
 		f.add(b2);
 		f.add(b3);
-//		f.add(b4);
 		f.add(l1);
-
 		f.setVisible(true);
-		f.addWindowListener(this);
+		
 	}
 
-	public void mb() {
 
-	}
 
 	public void windowClosing(WindowEvent E) {
 		System.exit(0);
-	}
-
-	public void actionPerformed(ActionEvent e) {
-
 	}
 }

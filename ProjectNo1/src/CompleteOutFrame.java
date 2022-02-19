@@ -2,6 +2,7 @@ import java.awt.Button;
 import java.awt.Frame;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class CompleteOutFrame extends AFrame {
@@ -13,7 +14,11 @@ public class CompleteOutFrame extends AFrame {
 		f = new Frame("Checked Out");
 		f.setSize(250, 150);
 		f.setLayout(null);
-		f.addWindowListener(this);
+		f.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent E) {
+				f.dispose();
+			}
+		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		l1 = new Label("퇴근했습니다.", Label.CENTER);
@@ -38,9 +43,4 @@ public class CompleteOutFrame extends AFrame {
 		f.dispose();
 
 	}
-
-	public void windowClosing(WindowEvent E) {
-		f.dispose();
-	}
-
 }

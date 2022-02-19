@@ -2,6 +2,8 @@ import java.awt.Button;
 import java.awt.Frame;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class InputNameErrorFrame extends AFrame {
 	private Frame f;
@@ -12,7 +14,11 @@ public class InputNameErrorFrame extends AFrame {
 		f = new Frame("Error");
 		f.setSize(250, 150);
 		f.setLayout(null);
-		f.addWindowListener(this);
+		f.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent E) {
+				f.dispose();
+			}
+		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 		
 		l = new Label("이름을 입력하세요", Label.CENTER);

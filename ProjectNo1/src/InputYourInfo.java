@@ -3,6 +3,8 @@ import java.awt.Frame;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class InputYourInfo extends AFrame {
 	private Frame nF, pF, tF;
@@ -13,9 +15,13 @@ public class InputYourInfo extends AFrame {
 		nF = new Frame("Error");
 		nF.setSize(250, 150);
 		nF.setLayout(null);
-		nF.addWindowListener(this);
+		nF.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent E) {
+				nF.dispose();
+			}
+		});
 		nF.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
-
+		
 		nL = new Label("성명을 입력하세요.", Label.CENTER);
 		nL.setSize(250, 50);
 		nL.setLocation(0, 45);
@@ -38,7 +44,11 @@ public class InputYourInfo extends AFrame {
 		pF = new Frame("Error");
 		pF.setSize(250, 150);
 		pF.setLayout(null);
-		pF.addWindowListener(this);
+		pF.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent E) {
+				pF.dispose();
+			}
+		});
 		pF.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		pL = new Label("비밀번호를 입력하세요.", Label.CENTER);
@@ -62,7 +72,11 @@ public class InputYourInfo extends AFrame {
 		tF = new Frame("Error");
 		tF.setSize(250, 150);
 		tF.setLayout(null);
-		tF.addWindowListener(this);
+		tF.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent E) {
+				tF.dispose();
+			}
+		});
 		tF.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		tL = new Label("연락처를 입력하세요.", Label.CENTER);

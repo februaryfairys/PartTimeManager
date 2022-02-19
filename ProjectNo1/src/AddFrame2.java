@@ -5,6 +5,7 @@ import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -37,7 +38,11 @@ public class AddFrame2 extends AFrame {
 		f = new Frame("등록");
 		f.setSize(250, 420);
 		f.setLayout(null);
-		f.addWindowListener(this);
+		f.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent E) {
+				f.dispose();
+			}
+		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		lid = new Label("성명");
@@ -103,7 +108,7 @@ public class AddFrame2 extends AFrame {
 						f.dispose();
 						c = false;
 					} else if (c != true) {
-						frame2();
+						checkPasswordcheckFrame();
 					}
 					if (!(tf1.getText().length() >= 2)) {
 						lid2.setText("두 글자 이상 입력하세요.");
@@ -111,7 +116,7 @@ public class AddFrame2 extends AFrame {
 						lid2.setText("");
 					}
 					if (!(tf2.getText().equals(tf3.getText()))) {
-						frame2();
+						checkPasswordcheckFrame();
 						c = false;
 					}
 					if (!(tf4.getText().length() >= 10)) {
@@ -163,12 +168,16 @@ public class AddFrame2 extends AFrame {
 
 	}
 
-	public void frame2() {
+	public void checkPasswordcheckFrame() {
 
 		f2 = new Frame("Error");
 		f2.setSize(250, 150);
 		f2.setLayout(null);
-		f2.addWindowListener(this);
+		f2.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent E) {
+				f2.dispose();
+			}
+		});
 		f2.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		lError = new Label("비밀번호 일치 확인을 해주세요.", Label.CENTER);
@@ -197,7 +206,11 @@ public class AddFrame2 extends AFrame {
 		f3 = new Frame("CheckOut");
 		f3.setSize(250, 160);
 		f3.setLayout(null);
-		f3.addWindowListener(this);
+		f3.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent E) {
+				f3.dispose();
+			}
+		});
 		f3.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		chafL1 = new Label("현재 시간은 " + strampm + hour + " 시 " + minute + "분 " + "입니다.", Label.CENTER);
@@ -230,11 +243,6 @@ public class AddFrame2 extends AFrame {
 		f3.add(chafB2);
 		f3.add(chafL2);
 		f3.setVisible(true);
-	}
-
-	public void windowClosing(WindowEvent E) {
-		f.dispose();
-
 	}
 
 	public void addDAO() {

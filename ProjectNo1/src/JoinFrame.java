@@ -4,6 +4,7 @@ import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -38,7 +39,11 @@ public class JoinFrame extends AFrame {
 		f = new Frame("출근하기");
 		f.setSize(250, 240);
 		f.setLayout(null);
-		f.addWindowListener(this);
+		f.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent E) {
+				f.dispose();
+			}
+		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		lid = new Label("성명");
@@ -98,8 +103,12 @@ public class JoinFrame extends AFrame {
 		f2 = new Frame("CheckJoin");
 		f2.setSize(250, 160);
 		f2.setLayout(null);
+		f2.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent E) {
+				f2.dispose();
+			}
+		});
 		f2.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
-		f2.addWindowListener(this);
 
 		if (ampm == Calendar.AM) {
 			strampm = "오전 ";
@@ -141,10 +150,6 @@ public class JoinFrame extends AFrame {
 		f2.add(l2);
 		f2.setVisible(true);
 
-	}
-
-	public void windowClosing(WindowEvent E) {
-		f.dispose();
 	}
 
 	public void joinDAO() {

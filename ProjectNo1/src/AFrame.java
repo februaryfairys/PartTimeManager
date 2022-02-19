@@ -12,7 +12,7 @@ public class AFrame extends WindowAdapter implements ActionListener {
 	Dimension screenSize = tk.getScreenSize();
 
 	public void windowClosing(WindowEvent E) {
-		f.dispose();
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {

@@ -4,7 +4,9 @@ import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -25,8 +27,12 @@ public class SetPasswordFrame extends AFrame {
 		f.setSize(250, 300);
 		f.setLayout(null);
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
-		f.addWindowListener(this);
-		
+		f.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent E) {
+				f.dispose();
+			}
+		});
+
 		l1 = new Label("<초기 비밀번호는 0000입니다.>", Label.CENTER);
 		l2 = new Label("현재 비밀번호를 입력해주세요.", Label.CENTER);
 		l3 = new Label("새로운 비밀번호를 입력해주세요.", Label.CENTER);
@@ -66,7 +72,8 @@ public class SetPasswordFrame extends AFrame {
 					if (tf2.getText().equals(tf3.getText())) {
 						joinDAO();
 						CheckChangePasswordFrame();
-					} 
+						f.dispose();
+					}
 				}
 			}
 		});
@@ -93,9 +100,12 @@ public class SetPasswordFrame extends AFrame {
 		f2 = new Frame("재설정 확인");
 		f2.setSize(250, 160);
 		f2.setLayout(null);
-		f2.addWindowListener(this);
 		f2.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
-
+		f2.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent E) {
+				f2.dispose();
+			}
+		});
 		ccpfL1 = new Label("변경할 비밀번호는 " + tf2.getText() + "입니다.", Label.CENTER);
 		ccpfL2 = new Label("비밀번호를 변경할까요?", Label.CENTER);
 		ccpfL1.setSize(250, 20);
@@ -112,7 +122,7 @@ public class SetPasswordFrame extends AFrame {
 		ccpfB1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changePasswordDAO();
-				f.dispose();
+				f2.dispose();
 			}
 		});
 		ccpfB2.addActionListener(new ActionListener() {
@@ -125,10 +135,6 @@ public class SetPasswordFrame extends AFrame {
 		f2.add(ccpfB1);
 		f2.add(ccpfB2);
 		f2.setVisible(true);
-	}
-
-	public void windowClosing(WindowEvent E) {
-		f.dispose();
 	}
 
 	public void joinDAO() {
@@ -153,7 +159,7 @@ public class SetPasswordFrame extends AFrame {
 
 			if (rs.getRow() == 0) {
 				System.out.println("0 row selected.....");
-				
+
 			} else {
 				System.out.println(rs.getRow() + " rows selected.....");
 				rs.previous();
@@ -183,7 +189,7 @@ public class SetPasswordFrame extends AFrame {
 			System.out.println("oracle connection sucess.\n");
 			Statement stmt = conn.createStatement();
 
-			sql = "UPDATE PASSWORD SET PW = '" + tf2.getText() + "'WHERE PW = '" + tf1.getText() + "'"  ;
+			sql = "UPDATE PASSWORD SET PW = '" + tf2.getText() + "'WHERE PW = '" + tf1.getText() + "'";
 
 			boolean b = stmt.execute(sql);
 			if (!b) {
@@ -196,5 +202,9 @@ public class SetPasswordFrame extends AFrame {
 		} catch (SQLException e) {
 			System.out.println(e);
 		}
+	}
+
+	public void windowClosing(WindowEvent E) {
+		f.dispose();
 	}
 }

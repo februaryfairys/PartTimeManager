@@ -15,7 +15,7 @@ public class PTM {
 		AddFrame2 af = new AddFrame2();
 		SetPasswordFrame spf = new SetPasswordFrame();
 
-//		mf.start();
+		mf.start();
 //		jf.start();
 //		of.start();
 //		caf.start();
@@ -27,7 +27,7 @@ public class PTM {
 //		ipef.start();
 //		mngf.start();
 //		af.start();
-		spf.start();
+//		spf.start();
 
 	}
 }

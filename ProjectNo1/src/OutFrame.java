@@ -3,6 +3,7 @@ import java.awt.Frame;
 import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
@@ -26,7 +27,11 @@ public class OutFrame extends AFrame {
 		f = new Frame("퇴근하기");
 		f.setSize(250, 240);
 		f.setLayout(null);
-		f.addWindowListener(this);
+		f.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent E) {
+				f.dispose();
+			}
+		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		lid = new Label("성명");
@@ -55,10 +60,6 @@ public class OutFrame extends AFrame {
 		f.add(lpw);
 		f.setVisible(true);
 
-	}
-
-	public void windowClosing(WindowEvent E) {
-		f.dispose();
 	}
 
 	public void actionPerformed(ActionEvent e) {
