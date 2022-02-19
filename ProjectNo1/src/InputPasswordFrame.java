@@ -88,7 +88,6 @@ public class InputPasswordFrame extends AFrame {
 		cefB2.setLocation(125, 120);
 		cefB1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(PASSWORD + " " + tf1.getText());
 				if (PASSWORD.equals(tf1.getText())) {
 					System.exit(0);
 				}
