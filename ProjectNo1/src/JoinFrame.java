@@ -8,6 +8,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class JoinFrame extends AFrame {
 	private Button b1, b2, b3;
 	private Label lid, lpw, l1, l2;
 	private PartTimerJoinDAO dao = new PartTimerJoinDAO();
+	private AlreadyJoinedFrame ajf = new AlreadyJoinedFrame();
 	private String name;
 
 	private Calendar now = Calendar.getInstance();
@@ -131,7 +133,8 @@ public class JoinFrame extends AFrame {
 		b3.setLocation(125, 120);
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				joinDAO();
+//				joinDAO();
+				checkDAO();
 				f2.dispose();
 				CompleteJoinFrame cjf = new CompleteJoinFrame();
 				cjf.set();
@@ -151,6 +154,43 @@ public class JoinFrame extends AFrame {
 		f2.add(l2);
 		f2.setVisible(true);
 
+	}
+
+	public void checkDAO() {
+		String driver = "oracle.jdbc.driver.OracleDriver";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+//		String user = "c##ezen";
+//		String password = "ezen1234";
+		String user = "c##february";
+		String password = "wl887087wl";
+		String sql;
+
+		try {
+
+			Class.forName(driver);
+			System.out.println("jdbc driver loading success.");
+			Connection conn = DriverManager.getConnection(url, user, password);
+			System.out.println("oracle connection sucess.\n");
+			Statement stmt = conn.createStatement();
+
+			sql = "SELECT * FROM PARTTIMERS VALUES ('" + tf1.getText() + "','" + tf2.getText() + "')";
+			ResultSet rs = stmt.executeQuery(sql);
+			rs.first();
+			if (rs.getRow() == 0) {
+				System.out.println("0 row selected.....");
+				joinDAO();
+			} else {
+				System.out.println(rs.getRow() + " rows selected.....");
+				rs.previous();
+				ajf.start();
+			}
+		} catch (ClassNotFoundException e) {
+			System.out.println(e);
+			System.out.println("f");
+		} catch (SQLException e) {
+			System.out.println(e);
+
+		}
 	}
 
 	public void joinDAO() {
@@ -183,7 +223,7 @@ public class JoinFrame extends AFrame {
 			System.out.println("f");
 		} catch (SQLException e) {
 			System.out.println(e);
-			
+
 		}
 	}
 }
