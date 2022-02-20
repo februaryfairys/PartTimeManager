@@ -16,16 +16,17 @@ import java.sql.Statement;
 public class SetPasswordFrame extends AFrame {
 
 	private Frame f, f2;
-	private Label l1, l2, l3, l4, ccpfL1, ccpfL2;
+	private Label l1, l2, l3, l4, l5, ccpfL1, ccpfL2;
 	private TextField tf1, tf2, tf3;
 	private Button b1, b2, ccpfB1, ccpfB2;
-	private String PASSWORD;
+	private String PASSWORD = "0";
 	InputYourInfo iyi = new InputYourInfo();
 	InputPasswordErrorFrame ipef = new InputPasswordErrorFrame();
+	CompletePasswordChangeFrame cpcf = new CompletePasswordChangeFrame();
 
 	public void start() {
 		f = new Frame("비밀번호 재설정");
-		f.setSize(250, 300);
+		f.setSize(250, 330);
 		f.setLayout(null);
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 		f.addWindowListener(new WindowAdapter() {
@@ -38,14 +39,17 @@ public class SetPasswordFrame extends AFrame {
 		l2 = new Label("현재 비밀번호를 입력해주세요.", Label.CENTER);
 		l3 = new Label("새로운 비밀번호를 입력해주세요.", Label.CENTER);
 		l4 = new Label("새로운 비밀번호를 다시 입력해주세요.", Label.CENTER);
+		l5 = new Label("", Label.CENTER);
 		l1.setSize(250, 20);
 		l2.setSize(250, 20);
 		l3.setSize(250, 20);
 		l4.setSize(250, 20);
+		l5.setSize(250, 20);
 		l1.setLocation(0, 40);
 		l2.setLocation(0, 70);
 		l3.setLocation(0, 130);
 		l4.setLocation(0, 190);
+		l5.setLocation(0, 250);
 
 		tf1 = new TextField();
 		tf2 = new TextField();
@@ -61,21 +65,24 @@ public class SetPasswordFrame extends AFrame {
 		b2 = new Button("취소");
 		b1.setSize(50, 30);
 		b2.setSize(50, 30);
-		b1.setLocation(65, 250);
-		b2.setLocation(135, 250);
+		b1.setLocation(65, 280);
+		b2.setLocation(135, 280);
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tf1.getText().equals("")) {
 					iyi.password();
 				} else if (tf2.getText().equals("") || tf3.getText().equals("")) {
 					iyi.password();
+				} else if (tf2.getText().length() != 4 || tf3.getText().length() != 4) {
+					ipef.start();
+					l5.setText("<비밀번호는 4자리로 설정해주세요.>");
 				} else {
 					if (tf2.getText().equals(tf3.getText())) {
 						joinDAO();
 						CheckChangePasswordFrame();
-						f.dispose();
 					} else if (tf2.getText() != tf3.getText()) {
 						ipef.start();
+						l5.setText("<새로운 비밀번호가 일치하지 않습니다.>");
 					}
 
 				}
@@ -91,6 +98,7 @@ public class SetPasswordFrame extends AFrame {
 		f.add(l2);
 		f.add(l3);
 		f.add(l4);
+		f.add(l5);
 		f.add(tf1);
 		f.add(tf2);
 		f.add(tf3);
@@ -125,8 +133,15 @@ public class SetPasswordFrame extends AFrame {
 		ccpfB2.setLocation(125, 120);
 		ccpfB1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				changePasswordDAO();
-				f2.dispose();
+				if (PASSWORD.equals(tf1.getText())) {
+					changePasswordDAO();
+					f.dispose();
+					f2.dispose();
+					cpcf.start();
+				} else {
+					ipef.start();
+					l5.setText("<현재 비밀번호가 일치하지 않습니다.>");
+				}
 			}
 		});
 		ccpfB2.addActionListener(new ActionListener() {
@@ -144,10 +159,10 @@ public class SetPasswordFrame extends AFrame {
 	public void joinDAO() {
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521/xe";
-//		String user = "c##february";
-//		String password = "wl887087wl";
-		String user = "c##ezen";
-		String password = "ezen1234";
+		String user = "c##february";
+		String password = "wl887087wl";
+//		String user = "c##ezen";
+//		String password = "ezen1234";
 		String sql = "SELECT * FROM PASSWORD WHERE PW = ('" + tf1.getText() + "')";
 
 		try {
@@ -167,7 +182,9 @@ public class SetPasswordFrame extends AFrame {
 			} else {
 				System.out.println(rs.getRow() + " rows selected.....");
 				rs.previous();
-				PASSWORD = rs.getString("PW");
+				while (rs.next()) {
+					PASSWORD = rs.getString("PW");
+				}
 			}
 		} catch (ClassNotFoundException e) {
 			System.out.println(e);
@@ -180,10 +197,10 @@ public class SetPasswordFrame extends AFrame {
 
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "c##ezen";
-		String password = "ezen1234";
-//		String user = "c##february";
-//		String password = "wl887087wl";
+//		String user = "c##ezen";
+//		String password = "ezen1234";
+		String user = "c##february";
+		String password = "wl887087wl";
 		String sql;
 
 		try {

@@ -134,6 +134,7 @@ public class JoinFrame extends AFrame {
 				joinDAO();
 				f2.dispose();
 				CompleteJoinFrame cjf = new CompleteJoinFrame();
+				cjf.set();
 				cjf.start();
 
 			}
@@ -179,8 +180,10 @@ public class JoinFrame extends AFrame {
 			}
 		} catch (ClassNotFoundException e) {
 			System.out.println(e);
+			System.out.println("f");
 		} catch (SQLException e) {
 			System.out.println(e);
+			
 		}
 	}
 }

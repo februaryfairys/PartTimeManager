@@ -22,7 +22,7 @@ public class CompletePasswordChangeFrame extends AFrame {
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		l1 = new Label("비밀번호가 변경되었습니다.", Label.CENTER);
-		l2 = new Label("새로운 비밀번호는 ", Label.CENTER);
+		l2 = new Label("비밀번호가 변경되었습니다.", Label.CENTER);
 		l1.setSize(250, 20);
 		l1.setLocation(0, 40);
 		l2.setSize(250, 20);
@@ -32,8 +32,8 @@ public class CompletePasswordChangeFrame extends AFrame {
 		b.setSize(60, 30);
 		b.setLocation(95, 100);
 		b.addActionListener(this);
-		f.add(l1);
-//		f.add(l2);
+//		f.add(l1);
+		f.add(l2);
 		f.add(b);
 		f.setVisible(true);
 

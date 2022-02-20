@@ -9,6 +9,7 @@ public class CompleteJoinFrame extends AFrame {
 	private Frame f;
 	private Button b;
 	private Label l1, l2;
+	private String Name;
 	JoinFrame jf = new JoinFrame();
 
 	public void start() {
@@ -23,7 +24,7 @@ public class CompleteJoinFrame extends AFrame {
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		l1 = new Label("√‚±Ÿ«ﬂΩ¿¥œ¥Ÿ.");
-		l2 = new Label(jf.getName() + "¥‘ π›∞©Ω¿¥œ¥Ÿ.", Label.CENTER);
+		l2 = new Label(Name + "¥‘ π›∞©Ω¿¥œ¥Ÿ.", Label.CENTER);
 		l1.setSize(250, 50);
 		l2.setSize(250, 50);
 		l1.setLocation(0, 40);
@@ -38,6 +39,10 @@ public class CompleteJoinFrame extends AFrame {
 		f.add(b);
 		f.setVisible(true);
 
+	}
+
+	public void set() {
+		Name = jf.getName();
 	}
 
 	public void actionPerformed(ActionEvent e) {

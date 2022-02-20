@@ -10,7 +10,8 @@ public class ManagingFrame extends AFrame {
 	private Frame f;
 	private Button b1, b2, b3;
 	AddFrame2 af = new AddFrame2();
-	
+	ExitFrame ef = new ExitFrame();
+
 	public void start() {
 		f = new Frame("Management");
 		f.setSize(250, 300);
@@ -44,17 +45,15 @@ public class ManagingFrame extends AFrame {
 		});
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				ef.start();
 			}
 		});
 		f.add(b1);
 		f.add(b2);
-		f.add(b3);
+//		f.add(b3);
 		f.setVisible(true);
 
 	}
-
-
 
 	public void actionPerformed(ActionEvent e) {
 

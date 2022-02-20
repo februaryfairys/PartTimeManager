@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Calendar;
 
-public class InputPasswordFrame extends AFrame {
+public class ExitFrame extends AFrame {
 	private Frame f, cefF;
 	private TextField tf1;
 	private Button b1, cefB1, cefB2;
@@ -119,10 +119,10 @@ public class InputPasswordFrame extends AFrame {
 	public void joinDAO() {
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521/xe";
-//		String user = "c##february";
-//		String password = "wl887087wl";
-		String user = "c##ezen";
-		String password = "ezen1234";
+		String user = "c##february";
+		String password = "wl887087wl";
+//		String user = "c##ezen";
+//		String password = "ezen1234";
 		String sql = "SELECT * FROM PASSWORD WHERE PW = ('" + tf1.getText() + "')";
 
 		try {

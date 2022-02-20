@@ -8,7 +8,7 @@ public class PTM {
 		CompleteJoinFrame cjf = new CompleteJoinFrame();
 		CompleteOutFrame cof = new CompleteOutFrame();
 		CheckOutFrame chof = new CheckOutFrame();
-		InputPasswordFrame ipf = new InputPasswordFrame();
+		ExitFrame ipf = new ExitFrame();
 		InputNameErrorFrame inef = new InputNameErrorFrame();
 		InputPasswordErrorFrame ipef = new InputPasswordErrorFrame();
 		ManagingFrame mngf = new ManagingFrame();
