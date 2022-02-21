@@ -68,7 +68,6 @@ public class OutFrame extends AFrame {
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-			
 				InputYourInfo iyi = new InputYourInfo();
 				CheckNameOrPassword cnp = new CheckNameOrPassword();
 				if (tf1.getText().equals("")) {
