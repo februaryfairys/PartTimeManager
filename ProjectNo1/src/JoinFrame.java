@@ -170,8 +170,8 @@ public class JoinFrame extends AFrame {
 			System.out.println("oracle connection sucess.\n");
 			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-			sql = "SELECT * FROM WORKINGPARTTIMERS WHERE NAME = '" + tf1.getText() + "'" + "AND PW = " + "'"
-					+ tf2.getText() + "'";
+			sql = "SELECT * FROM WORKINGPARTTIMERS WHERE NAME = '" + tf1.getText() + "' AND PW = '" + tf2.getText()
+					+ "'";
 			ResultSet rs = stmt.executeQuery(sql);
 			rs.first();
 			if (rs.getRow() == 0) {

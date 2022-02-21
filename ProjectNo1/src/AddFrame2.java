@@ -14,7 +14,7 @@ import java.sql.Statement;
 import java.util.Calendar;
 
 public class AddFrame2 extends AFrame {
-	private Frame f, f2, chaf, cif;
+	private Frame f, f2, chaf;
 	private TextField tf1, tf2, tf3, tf4;
 	private Button b1, b2, bRd, b3, chafB1, chafB2;
 	private Label lid, lid2, lpw, lpw2, ltel, ltel2, lchpw, lError, chafL1, chafL2;
@@ -205,34 +205,6 @@ public class AddFrame2 extends AFrame {
 		f2.add(lError);
 		f2.setVisible(true);
 	}
-
-//	public void checkInfoFrame() {
-//
-//		cif = new Frame("Error");
-//		cif.setSize(250, 150);
-//		cif.setLayout(null);
-//		cif.addWindowListener(new WindowAdapter() {
-//			public void windowClosing(WindowEvent E) {
-//				cif.dispose();
-//			}
-//		});
-//		cif.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
-//
-//		lError = new Label("입력하신 정보가 올바른지 확인해주세요.", Label.CENTER);
-//		lError.setSize(250, 20);
-//		lError.setLocation(0, 55);
-//		b3 = new Button("확인");
-//		b3.setSize(60, 30);
-//		b3.setLocation(95, 100);
-//		b3.addActionListener((ActionListener) new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				cif.dispose();
-//			}
-//		});
-//		cif.add(b3);
-//		cif.add(lError);
-//		cif.setVisible(true);
-//	}
 
 	public void checkAddFrame() {
 		if (ampm == Calendar.AM) {

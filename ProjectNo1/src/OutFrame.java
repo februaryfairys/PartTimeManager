@@ -8,6 +8,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class OutFrame extends AFrame {
 	private Button b1, b2, b3;
 	private Label lid, lpw, l1, l2;
 	private PartTimerJoinDAO dao = new PartTimerJoinDAO();
+	private AlreadyOutFrame aof = new AlreadyOutFrame();
 	private String name;
 
 	private Calendar now = Calendar.getInstance();
@@ -66,7 +68,7 @@ public class OutFrame extends AFrame {
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				CheckOutFrame chof = new CheckOutFrame();
+			
 				InputYourInfo iyi = new InputYourInfo();
 				CheckNameOrPassword cnp = new CheckNameOrPassword();
 				if (tf1.getText().equals("")) {
@@ -81,7 +83,7 @@ public class OutFrame extends AFrame {
 						PartTimerVo data = (PartTimerVo) list.get(0);
 						String pswd = data.getPw();
 						if (tf2.getText().equals(pswd)) {
-							chof.start();
+							checkOutFrame();
 							setName(tf1.getText());
 							f.dispose();
 						} else {
@@ -101,7 +103,7 @@ public class OutFrame extends AFrame {
 
 	}
 
-	public void CheckOutFrame() {
+	public void checkOutFrame() {
 		f2 = new Frame("CheckOut");
 		f2.setSize(250, 160);
 		f2.setLayout(null);
@@ -125,7 +127,7 @@ public class OutFrame extends AFrame {
 		l1.setLocation(0, 50);
 		l2.setLocation(0, 80);
 
-		b2 = new Button("네~");
+		b2 = new Button("네");
 		b3 = new Button("아니요");
 		b2.setSize(50, 30);
 		b3.setSize(50, 30);
@@ -134,8 +136,7 @@ public class OutFrame extends AFrame {
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				f2.dispose();
-				CompleteOutFrame cof = new CompleteOutFrame();
-				cof.start();
+				checkDAO();
 			}
 		});
 		b3.addActionListener(new ActionListener() {
@@ -149,6 +150,44 @@ public class OutFrame extends AFrame {
 		f2.add(l1);
 		f2.add(l2);
 		f2.setVisible(true);
+	}
+
+	public void checkDAO() {
+		String driver = "oracle.jdbc.driver.OracleDriver";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+//		String user = "c##ezen";
+//		String password = "ezen1234";
+		String user = "c##february";
+		String password = "wl887087wl";
+		String sql;
+
+		try {
+
+			Class.forName(driver);
+			System.out.println("jdbc driver loading success.");
+			Connection conn = DriverManager.getConnection(url, user, password);
+			System.out.println("oracle connection sucess.\n");
+			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+			sql = "SELECT * FROM WORKINGPARTTIMERS WHERE NAME = '" + tf1.getText() + "'" + "AND PW = " + "'"
+					+ tf2.getText() + "'";
+			ResultSet rs = stmt.executeQuery(sql);
+			rs.first();
+			if (rs.getRow() == 0) {
+				System.out.println("0 row selected.....");
+				aof.start();
+			} else {
+				System.out.println(rs.getRow() + " rows selected.....");
+				rs.previous();
+				outDAO();
+			}
+		} catch (ClassNotFoundException e) {
+			System.out.println(e);
+			System.out.println("f");
+		} catch (SQLException e) {
+			System.out.println(e);
+
+		}
 	}
 
 	public void outDAO() {
@@ -168,11 +207,13 @@ public class OutFrame extends AFrame {
 			System.out.println("oracle connection sucess.\n");
 			Statement stmt = conn.createStatement();
 
-			sql = "delete from WORKINGPARTTIMERS where name = '" + tf1.getText() + "','" + "123" + "')";
+			sql = "delete from WORKINGPARTTIMERS where name = '" + tf1.getText() + "' AND PW = '" + tf2.getText() + "'";
 
 			boolean b = stmt.execute(sql);
 			if (!b) {
 				System.out.println("OUT SUCCSESS.\n");
+				CompleteOutFrame cof = new CompleteOutFrame();
+				cof.start();
 			} else {
 				System.out.println("OUT FAIL.\n");
 			}

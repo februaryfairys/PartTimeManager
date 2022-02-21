@@ -9,6 +9,7 @@ public class CompleteAddFrame extends AFrame {
 	private Frame f;
 	private Button b;
 	private Label fL1, l2;
+	ValuesClass vc = new ValuesClass();
 
 	public void start() {
 		f = new Frame("등록완료");
@@ -22,7 +23,7 @@ public class CompleteAddFrame extends AFrame {
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		fL1 = new Label("등록되었습니다.", Label.CENTER);
-		l2 = new Label("님 환영합니다.", Label.CENTER);
+		l2 = new Label(vc.getName() + "님 환영합니다.", Label.CENTER);
 		fL1.setSize(250, 20);
 		fL1.setLocation(0, 40);
 		l2.setSize(250, 20);
