@@ -136,9 +136,6 @@ public class JoinFrame extends AFrame {
 //				joinDAO();
 				checkDAO();
 				f2.dispose();
-				CompleteJoinFrame cjf = new CompleteJoinFrame();
-				cjf.set();
-				cjf.start();
 
 			}
 		});
@@ -171,9 +168,10 @@ public class JoinFrame extends AFrame {
 			System.out.println("jdbc driver loading success.");
 			Connection conn = DriverManager.getConnection(url, user, password);
 			System.out.println("oracle connection sucess.\n");
-			Statement stmt = conn.createStatement();
+			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-			sql = "SELECT * FROM PARTTIMERS VALUES ('" + tf1.getText() + "','" + tf2.getText() + "')";
+			sql = "SELECT * FROM WORKINGPARTTIMERS WHERE NAME = '" + tf1.getText() + "'" + "AND PW = " + "'"
+					+ tf2.getText() + "'";
 			ResultSet rs = stmt.executeQuery(sql);
 			rs.first();
 			if (rs.getRow() == 0) {
@@ -215,6 +213,9 @@ public class JoinFrame extends AFrame {
 			boolean b = stmt.execute(sql);
 			if (!b) {
 				System.out.println("JOIN SUCCSESS.\n");
+				CompleteJoinFrame cjf = new CompleteJoinFrame();
+				cjf.set();
+				cjf.start();
 			} else {
 				System.out.println("JOIN FAIL.\n");
 			}

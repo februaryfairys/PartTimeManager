@@ -22,7 +22,7 @@ public class AlreadyJoinedFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		l = new Label("해당 직원은 이미 퇴근했습니다.", Label.CENTER);
+		l = new Label("해당 직원은 이미 출근했습니다.", Label.CENTER);
 		l.setSize(250, 50);
 		l.setLocation(0, 45);
 
