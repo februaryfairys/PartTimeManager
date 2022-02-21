@@ -89,11 +89,9 @@ public class MainFrame extends AFrame {
 		miExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ef.start();
-				// System.exit(0);
 			}
 		});
 
-		
 		b1 = new Button("출근체크");
 		b2 = new Button("퇴근체크");
 		b3 = new Button("직원관리");
