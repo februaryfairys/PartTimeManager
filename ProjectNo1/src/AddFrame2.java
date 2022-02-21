@@ -9,15 +9,16 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Calendar;
 
 public class AddFrame2 extends AFrame {
-	private Frame f, f2, chaf;
+	private Frame f, f2, chaf, cafF;
 	private TextField tf1, tf2, tf3, tf4;
-	private Button b1, b2, bRd, b3, chafB1, chafB2;
-	private Label lid, lid2, lpw, lpw2, ltel, ltel2, lchpw, lError, chafL1, chafL2;
+	private Button b1, b2, bRd, b3, chafB1, chafB2, cafB;
+	private Label lid, lid2, lpw, lpw2, ltel, ltel2, lchpw, lError, chafL1, chafL2, cafL1, cafL2;
 	private Choice r;
 	private boolean c = false;
 	private String NAME;
@@ -30,7 +31,6 @@ public class AddFrame2 extends AFrame {
 	private int hour = now.get(Calendar.HOUR);
 	private int minute = now.get(Calendar.MINUTE);
 
-	CompleteAddFrame caf = new CompleteAddFrame();
 	InputYourInfo iyi = new InputYourInfo();
 
 	public void start() {
@@ -91,7 +91,7 @@ public class AddFrame2 extends AFrame {
 		b1.setLocation(25, 385);
 		b2.setLocation(115, 175);
 		bRd.setLocation(115, 115);
-		b1.addActionListener((ActionListener) new ActionListener() {
+		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tf1.getText().equals("")) {
 					iyi.name();
@@ -122,7 +122,7 @@ public class AddFrame2 extends AFrame {
 				}
 			}
 		});
-		b2.addActionListener((ActionListener) new ActionListener() {
+		b2.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				if (tf2.getText().equals(tf3.getText()) && tf2.getText() != null) {
@@ -138,7 +138,7 @@ public class AddFrame2 extends AFrame {
 				}
 			}
 		});
-		bRd.addActionListener((ActionListener) new ActionListener() {
+		bRd.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				int[] rd = new int[4];
@@ -195,7 +195,7 @@ public class AddFrame2 extends AFrame {
 		b3 = new Button("확인");
 		b3.setSize(60, 30);
 		b3.setLocation(95, 100);
-		b3.addActionListener((ActionListener) new ActionListener() {
+		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				f2.dispose();
 				lError.setText("직원번호 일치 확인을 해주세요.");
@@ -241,7 +241,7 @@ public class AddFrame2 extends AFrame {
 				chaf.dispose();
 				f.dispose();
 				addDAO();
-				caf.start();
+				completeAddFrame();
 			}
 		});
 		chafB2.addActionListener(new ActionListener() {
@@ -256,6 +256,39 @@ public class AddFrame2 extends AFrame {
 		chaf.setVisible(true);
 	}
 
+	public void completeAddFrame() {
+		cafF = new Frame("등록완료");
+		cafF.setSize(250, 150);
+		cafF.setLayout(null);
+		cafF.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent E) {
+				cafF.dispose();
+			}
+		});
+		cafF.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
+
+		cafL1 = new Label("등록되었습니다.", Label.CENTER);
+		cafL2 = new Label(getNAME() + "님 환영합니다.", Label.CENTER);
+		cafL1.setSize(250, 20);
+		cafL1.setLocation(0, 40);
+		cafL2.setSize(250, 20);
+		cafL2.setLocation(0, 70);
+
+		cafB = new Button("확인");
+		cafB.setSize(60, 30);
+		cafB.setLocation(95, 100);
+		cafB.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				cafF.dispose();
+			}
+		});
+		cafF.add(cafL1);
+		cafF.add(cafL2);
+		cafF.add(cafB);
+		cafF.setVisible(true);
+	}
+
 	public void addDAO() {
 
 		String driver = "oracle.jdbc.driver.OracleDriver";
@@ -264,7 +297,7 @@ public class AddFrame2 extends AFrame {
 //		String password = "ezen1234";
 		String user = "c##february";
 		String password = "wl887087wl";
-		String sql;
+		String sql, sql2, str;
 
 		try {
 
@@ -273,16 +306,29 @@ public class AddFrame2 extends AFrame {
 			Connection conn = DriverManager.getConnection(url, user, password);
 			System.out.println("oracle connection sucess.\n");
 			Statement stmt = conn.createStatement();
+			str = "PARTTIMER";
+			if (getROLE().equals("매니저")) {
+				str = "MANAGER";
+			}
+			String TN = str + getPW();
 
 			sql = "insert into PARTTIMERS VALUES ('" + getNAME() + "','" + getPW() + "','" + getTEL() + "' , '"
 					+ getROLE() + "')";
-
+			sql2 = "CREATE TABLE " + "" + TN + ""
+					+ " (JOINTIME varchar2(50), OUTTIME varchar2(50), WORKTIME varchar2(20))";
 			boolean b = stmt.execute(sql);
 			if (!b) {
 				System.out.println("INSERT SUCCSESS.\n");
 			} else {
 				System.out.println("INSERT FAIL.\n");
 			}
+			boolean b2 = stmt.execute(sql2);
+			if (!b2) {
+				System.out.println("CREATE SUCCSESS.\n");
+			} else {
+				System.out.println("CREATE FAIL.\n");
+			}
+
 		} catch (ClassNotFoundException e) {
 			System.out.println(e);
 		} catch (SQLException e) {

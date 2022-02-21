@@ -16,8 +16,8 @@ public class MainFrame extends AFrame {
 	private Frame f;
 	private Toolkit tk = Toolkit.getDefaultToolkit();
 	Dimension screenSize = tk.getScreenSize();
-	private Button b1, b2, b3;
-	private Label l1;
+	private Button b1, b2, b3, b4, b5;
+	private Label l1, l2, l3;
 	private MenuBar mb;
 	JoinFrame jf = new JoinFrame();
 	OutFrame of = new OutFrame();
@@ -95,7 +95,8 @@ public class MainFrame extends AFrame {
 		b1 = new Button("출근체크");
 		b2 = new Button("퇴근체크");
 		b3 = new Button("직원관리");
-//		b4 = new Button("종료하기");
+		b4 = new Button("새로고침");
+		b5 = new Button("새로고침");
 		b1.setSize(150, 100);
 		b2.setSize(150, 100);
 		b3.setSize(150, 100);
@@ -122,6 +123,16 @@ public class MainFrame extends AFrame {
 			}
 		});
 
+		b4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		b5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
 		l1 = new Label(sdf.format(now), Label.CENTER);
 
 		l1.setSize(450, 20);

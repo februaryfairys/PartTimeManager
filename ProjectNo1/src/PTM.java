@@ -4,7 +4,6 @@ public class PTM {
 		MainFrame mf = new MainFrame();
 		JoinFrame jf = new JoinFrame();
 		OutFrame of = new OutFrame();
-		CompleteAddFrame caf = new CompleteAddFrame();
 		CompleteJoinFrame cjf = new CompleteJoinFrame();
 		CompleteOutFrame cof = new CompleteOutFrame();
 		ExitFrame ipf = new ExitFrame();
@@ -17,7 +16,6 @@ public class PTM {
 		mf.start();
 //		jf.start();
 //		of.start();
-//		caf.start();
 //		cjf.start();
 //		cof.start();
 //		ipf.start();
