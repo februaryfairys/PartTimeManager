@@ -33,7 +33,7 @@ public class OutFrame extends AFrame {
 
 	Date now = new Date();
 	SimpleDateFormat sdf = new SimpleDateFormat("MM월 DD일 a HH시 mm분입니다.");
-	SimpleDateFormat sdf2 = new SimpleDateFormat("YYYYMMDDHHmm");
+	SimpleDateFormat sdf2 = new SimpleDateFormat("YYYYMMddHHmm");
 
 	public String getName() {
 		return name;
@@ -142,8 +142,8 @@ public class OutFrame extends AFrame {
 		b3.setLocation(125, 120);
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				f2.dispose();
 				checkDAO();
+				f2.dispose();
 			}
 		});
 		b3.addActionListener(new ActionListener() {
@@ -190,7 +190,6 @@ public class OutFrame extends AFrame {
 			}
 		} catch (ClassNotFoundException e) {
 			System.out.println(e);
-			System.out.println("f");
 		} catch (SQLException e) {
 			System.out.println(e);
 
@@ -204,7 +203,7 @@ public class OutFrame extends AFrame {
 		String password = "ezen1234";
 //		String user = "c##february";
 //		String password = "wl887087wl";
-		String sql, sql2, str;
+		String sql, sql2, strrole, strpw, TN, outTime;
 
 		try {
 
@@ -213,13 +212,22 @@ public class OutFrame extends AFrame {
 			Connection conn = DriverManager.getConnection(url, user, password);
 			System.out.println("oracle connection sucess.\n");
 			Statement stmt = conn.createStatement();
+			ArrayList<PartTimerVo> list = dao.list(tf1.getText());
+			PartTimerVo data = (PartTimerVo) list.get(0);
 
-			str = tf1.getText() + tf2.getText();	
+			strrole = "PT";
+			if (data.getRole().equals("매니저")) {
+				strrole = "MN";
+			}
+			strpw = tf2.getText();
+			TN = strrole + strpw;
+			outTime = sdf2.format(now);
+
 			sql = "delete from WORKINGPARTTIMERS where name = '" + tf1.getText() + "' AND PW = '" + tf2.getText() + "'";
-			sql2 = "insert into" + str + "VALUES ('null','" + sdf2 + ",'null'";
+			sql2 = "insert into " + TN + " VALUES ('null', '" + outTime + "', 'null')";
 			boolean b = stmt.execute(sql);
 			boolean b2 = stmt.execute(sql2);
-			
+
 			if (!b) {
 				System.out.println("OUT SUCCSESS.\n");
 				CompleteOutFrame cof = new CompleteOutFrame();
@@ -229,12 +237,11 @@ public class OutFrame extends AFrame {
 			}
 			if (!b2) {
 				System.out.println("CHECK OUTTIME SUCCSESS.\n");
-				
+
 			} else {
 				System.out.println("CHECK OUTTIME FAIL.\n");
 			}
 
-//			직원 개인 데이터베이스에 현재 시각 삽입.
 		} catch (ClassNotFoundException e) {
 			System.out.println(e);
 		} catch (SQLException e) {

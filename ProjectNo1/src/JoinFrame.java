@@ -32,8 +32,8 @@ public class JoinFrame extends AFrame {
 //	private int minute = now.get(Calendar.MINUTE);
 
 	Date now = new Date();
-	SimpleDateFormat sdf = new SimpleDateFormat("MM월 DD일 a HH시 mm분입니다.");
-	SimpleDateFormat sdf2 = new SimpleDateFormat("YYYYMMDDHHmm");
+	SimpleDateFormat sdf = new SimpleDateFormat("MM월 dd일 a HH시 mm분입니다.");
+	SimpleDateFormat sdf2 = new SimpleDateFormat("YYYYMMddHHmm");
 
 	public String getName() {
 		return name;
@@ -83,10 +83,12 @@ public class JoinFrame extends AFrame {
 					iyi.password();
 				} else {
 					ArrayList<PartTimerVo> list = dao.list(tf1.getText());
+					PartTimerVo data = (PartTimerVo) list.get(0);
 					if (list.size() == 0) {
+
 						cnp.start();
 					} else {
-						PartTimerVo data = (PartTimerVo) list.get(0);
+
 						String pswd = data.getPw();
 						if (tf2.getText().equals(pswd)) {
 							setName(tf1.getText());
@@ -141,7 +143,6 @@ public class JoinFrame extends AFrame {
 		b3.setLocation(125, 120);
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				joinDAO();
 				checkDAO();
 				f2.dispose();
 
@@ -192,7 +193,6 @@ public class JoinFrame extends AFrame {
 			}
 		} catch (ClassNotFoundException e) {
 			System.out.println(e);
-			System.out.println("f");
 		} catch (SQLException e) {
 			System.out.println(e);
 
@@ -206,7 +206,7 @@ public class JoinFrame extends AFrame {
 		String password = "ezen1234";
 //		String user = "c##february";
 //		String password = "wl887087wl";
-		String sql, sql2, str;
+		String sql, sql2, strrole, strpw, TN, joinTime;
 
 		try {
 
@@ -215,10 +215,19 @@ public class JoinFrame extends AFrame {
 			Connection conn = DriverManager.getConnection(url, user, password);
 			System.out.println("oracle connection sucess.\n");
 			Statement stmt = conn.createStatement();
+			ArrayList<PartTimerVo> list = dao.list(tf1.getText());
+			PartTimerVo data = (PartTimerVo) list.get(0);
 
-			str = tf1.getText() + tf2.getText();
+			strrole = "PT";
+			if (data.getRole().equals("매니저")) {
+				strrole = "MN";
+			}
+			strpw = tf2.getText();
+			TN = strrole + strpw;
+			joinTime = sdf2.format(now);
+
 			sql = "insert into WORKINGPARTTIMERS VALUES ('" + tf1.getText() + "','" + tf2.getText() + "')";
-			sql2 = "insert into " + str + "VALUES ('" + sdf2 + "', 'null','null'";
+			sql2 = "insert into " + TN + " VALUES ('" + joinTime + "', 'null', 'null')";
 			boolean b = stmt.execute(sql);
 			boolean b2 = stmt.execute(sql2);
 

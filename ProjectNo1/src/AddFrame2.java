@@ -306,9 +306,9 @@ public class AddFrame2 extends AFrame {
 			Connection conn = DriverManager.getConnection(url, user, password);
 			System.out.println("oracle connection sucess.\n");
 			Statement stmt = conn.createStatement();
-			str = "PARTTIMER";
+			str = "PT";
 			if (getROLE().equals("¸Å´ÏÀú")) {
-				str = "MANAGER";
+				str = "MN";
 			}
 			String TN = str + getPW();
 
