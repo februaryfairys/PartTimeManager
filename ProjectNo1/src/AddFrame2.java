@@ -314,20 +314,20 @@ public class AddFrame2 extends AFrame {
 
 			sql = "insert into PARTTIMERS VALUES ('" + getNAME() + "','" + getPW() + "','" + getTEL() + "' , '"
 					+ getROLE() + "')";
-			sql2 = "CREATE TABLE " + "" + TN + ""
-					+ " (JOINTIME varchar2(50), OUTTIME varchar2(50), WORKTIME varchar2(20))";
+//			sql2 = "CREATE TABLE " + "" + TN + ""
+//					+ " (JOINTIME varchar2(50), OUTTIME varchar2(50), WORKTIME varchar2(20))";
 			boolean b = stmt.execute(sql);
 			if (!b) {
 				System.out.println("INSERT SUCCSESS.\n");
 			} else {
 				System.out.println("INSERT FAIL.\n");
 			}
-			boolean b2 = stmt.execute(sql2);
-			if (!b2) {
-				System.out.println("CREATE SUCCSESS.\n");
-			} else {
-				System.out.println("CREATE FAIL.\n");
-			}
+//			boolean b2 = stmt.execute(sql2);
+//			if (!b2) {
+//				System.out.println("CREATE SUCCSESS.\n");
+//			} else {
+//				System.out.println("CREATE FAIL.\n");
+//			}
 
 		} catch (ClassNotFoundException e) {
 			System.out.println(e);
