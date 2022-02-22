@@ -218,6 +218,7 @@ public class JoinFrame extends AFrame {
 			ArrayList<PartTimerVo> list = dao.list(tf1.getText());
 			PartTimerVo data = (PartTimerVo) list.get(0);
 
+			setName(data.getName());
 			strrole = "PT";
 			if (data.getRole().equals("¸Å´ÏÀú")) {
 				strrole = "MN";
@@ -234,7 +235,7 @@ public class JoinFrame extends AFrame {
 			if (!b) {
 				System.out.println("JOIN SUCCSESS.\n");
 				CompleteJoinFrame cjf = new CompleteJoinFrame();
-				cjf.set();
+				cjf.setName(tf1.getText());
 				cjf.start();
 			} else {
 				System.out.println("JOIN FAIL.\n");

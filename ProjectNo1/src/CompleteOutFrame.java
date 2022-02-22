@@ -9,7 +9,16 @@ public class CompleteOutFrame extends AFrame {
 	private Frame f;
 	private Button b;
 	private Label l1, l2;
-	OutFrame of = new OutFrame();
+	private String name;
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	public void start() {
 		f = new Frame("Checked Out");
 		f.setSize(250, 150);
@@ -22,7 +31,7 @@ public class CompleteOutFrame extends AFrame {
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		l1 = new Label("Åð±ÙÇß½À´Ï´Ù.", Label.CENTER);
-		l2 = new Label(of.getName() + "´Ô ¼ö°íÇÏ¼Ì½À´Ï´Ù.", Label.CENTER);
+		l2 = new Label(name + "´Ô ¼ö°íÇÏ¼Ì½À´Ï´Ù.", Label.CENTER);
 		l1.setSize(250, 50);
 		l2.setSize(250, 50);
 		l1.setLocation(0, 40);

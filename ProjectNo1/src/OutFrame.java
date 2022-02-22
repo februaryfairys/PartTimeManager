@@ -231,6 +231,7 @@ public class OutFrame extends AFrame {
 			if (!b) {
 				System.out.println("OUT SUCCSESS.\n");
 				CompleteOutFrame cof = new CompleteOutFrame();
+				cof.setName(tf1.getText());
 				cof.start();
 			} else {
 				System.out.println("OUT FAIL.\n");

@@ -58,7 +58,7 @@ public class ExitFrame extends AFrame {
 
 	public void checkExitFrame() {
 		cefF = new Frame("프로그램 종료");
-		cefF.setSize(250, 160);
+		cefF.setSize(250, 150);
 		cefF.setLayout(null);
 		cefF.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent E) {
@@ -77,15 +77,15 @@ public class ExitFrame extends AFrame {
 		cefL2 = new Label("프로그램을 종료할까요?", Label.CENTER);
 		cefL1.setSize(250, 20);
 		cefL2.setSize(250, 20);
-		cefL1.setLocation(0, 50);
-		cefL2.setLocation(0, 80);
+		cefL1.setLocation(0, 40);
+		cefL2.setLocation(0, 70);
 
 		cefB1 = new Button("네");
 		cefB2 = new Button("아니요");
 		cefB1.setSize(50, 30);
 		cefB2.setSize(50, 30);
-		cefB1.setLocation(75, 120);
-		cefB2.setLocation(125, 120);
+		cefB1.setLocation(75, 100);
+		cefB2.setLocation(125, 100);
 		cefB1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 //				if (tf1.getText().equals("")) {
