@@ -216,6 +216,8 @@ public class OutFrame extends AFrame {
 			} else {
 				System.out.println("OUT FAIL.\n");
 			}
+			
+			직원 개인 데이터베이스에 현재 시각 삽입.
 		} catch (ClassNotFoundException e) {
 			System.out.println(e);
 		} catch (SQLException e) {
