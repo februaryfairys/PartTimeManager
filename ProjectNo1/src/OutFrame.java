@@ -196,7 +196,7 @@ public class OutFrame extends AFrame {
 //		String password = "ezen1234";
 		String user = "c##february";
 		String password = "wl887087wl";
-		String sql;
+		String sql, sql2, str;
 
 		try {
 
@@ -207,7 +207,7 @@ public class OutFrame extends AFrame {
 			Statement stmt = conn.createStatement();
 
 			sql = "delete from WORKINGPARTTIMERS where name = '" + tf1.getText() + "' AND PW = '" + tf2.getText() + "'";
-
+			sql2 = "insert into";
 			boolean b = stmt.execute(sql);
 			if (!b) {
 				System.out.println("OUT SUCCSESS.\n");
@@ -217,7 +217,7 @@ public class OutFrame extends AFrame {
 				System.out.println("OUT FAIL.\n");
 			}
 			
-			직원 개인 데이터베이스에 현재 시각 삽입.
+//			직원 개인 데이터베이스에 현재 시각 삽입.
 		} catch (ClassNotFoundException e) {
 			System.out.println(e);
 		} catch (SQLException e) {
