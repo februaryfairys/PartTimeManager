@@ -11,8 +11,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class JoinFrame extends AFrame {
 	private Frame f, f2;
@@ -23,11 +25,15 @@ public class JoinFrame extends AFrame {
 	private AlreadyJoinedFrame ajf = new AlreadyJoinedFrame();
 	private String name;
 
-	private Calendar now = Calendar.getInstance();
-	private int ampm = now.get(Calendar.AM_PM);
-	private String strampm = null;
-	private int hour = now.get(Calendar.HOUR);
-	private int minute = now.get(Calendar.MINUTE);
+//	private Calendar now = Calendar.getInstance();
+//	private int ampm = now.get(Calendar.AM_PM);
+//	private String strampm = null;
+//	private int hour = now.get(Calendar.HOUR);
+//	private int minute = now.get(Calendar.MINUTE);
+
+	Date now = new Date();
+	SimpleDateFormat sdf = new SimpleDateFormat("MM월 DD일 a HH시 mm분입니다.");
+	SimpleDateFormat sdf2 = new SimpleDateFormat("YYYYMMDDHHmm");
 
 	public String getName() {
 		return name;
@@ -38,6 +44,7 @@ public class JoinFrame extends AFrame {
 	}
 
 	public void start() {
+
 		f = new Frame("출근하기");
 		f.setSize(250, 240);
 		f.setLayout(null);
@@ -112,13 +119,14 @@ public class JoinFrame extends AFrame {
 		});
 		f2.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		if (ampm == Calendar.AM) {
-			strampm = "오전 ";
-		} else {
-			strampm = "오후 ";
-		}
+//		if (ampm == Calendar.AM) {
+//			strampm = "오전 ";
+//		} else {
+//			strampm = "오후 ";
+//		}
 
-		l1 = new Label("현재 시간은 " + strampm + hour + " 시 " + minute + "분 " + "입니다.", Label.CENTER);
+//		l1 = new Label("현재 시간은 " + strampm + hour + " 시 " + minute + "분 " + "입니다.", Label.CENTER);
+		l1 = new Label(sdf.format(now), Label.CENTER);
 		l2 = new Label("출근할까요?", Label.CENTER);
 		l1.setSize(250, 20);
 		l2.setSize(250, 20);
@@ -156,10 +164,10 @@ public class JoinFrame extends AFrame {
 	public void checkDAO() {
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-//		String user = "c##ezen";
-//		String password = "ezen1234";
-		String user = "c##february";
-		String password = "wl887087wl";
+		String user = "c##ezen";
+		String password = "ezen1234";
+//		String user = "c##february";
+//		String password = "wl887087wl";
 		String sql;
 
 		try {
@@ -194,11 +202,11 @@ public class JoinFrame extends AFrame {
 	public void joinDAO() {
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-//		String user = "c##ezen";
-//		String password = "ezen1234";
-		String user = "c##february";
-		String password = "wl887087wl";
-		String sql;
+		String user = "c##ezen";
+		String password = "ezen1234";
+//		String user = "c##february";
+//		String password = "wl887087wl";
+		String sql, sql2, str;
 
 		try {
 
@@ -208,9 +216,12 @@ public class JoinFrame extends AFrame {
 			System.out.println("oracle connection sucess.\n");
 			Statement stmt = conn.createStatement();
 
+			str = tf1.getText() + tf2.getText();
 			sql = "insert into WORKINGPARTTIMERS VALUES ('" + tf1.getText() + "','" + tf2.getText() + "')";
-
+			sql2 = "insert into " + str + "VALUES ('" + sdf2 + "', 'null','null'";
 			boolean b = stmt.execute(sql);
+			boolean b2 = stmt.execute(sql2);
+
 			if (!b) {
 				System.out.println("JOIN SUCCSESS.\n");
 				CompleteJoinFrame cjf = new CompleteJoinFrame();
@@ -219,8 +230,14 @@ public class JoinFrame extends AFrame {
 			} else {
 				System.out.println("JOIN FAIL.\n");
 			}
-			
-			직원 개인 데이터베이스에 현재 시각 삽입.
+
+			if (!b2) {
+				System.out.println("CHECK JOIN TIME SUCCSESS.\n");
+
+			} else {
+				System.out.println("CHECK JOIN TIME FAIL.\n");
+			}
+
 		} catch (ClassNotFoundException e) {
 			System.out.println(e);
 			System.out.println("f");

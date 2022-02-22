@@ -293,10 +293,10 @@ public class AddFrame2 extends AFrame {
 
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-//		String user = "c##ezen";
-//		String password = "ezen1234";
-		String user = "c##february";
-		String password = "wl887087wl";
+		String user = "c##ezen";
+		String password = "ezen1234";
+//		String user = "c##february";
+//		String password = "wl887087wl";
 		String sql, sql2, str;
 
 		try {
