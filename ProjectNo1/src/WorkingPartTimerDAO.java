@@ -20,7 +20,7 @@ public class WorkingPartTimerDAO {
 		try {
 			connDB();
 
-			query = "SELECT parttimers.name, parttimers.ROLE FROM PARTTIMERS, WORKINGPARTTIMERS WHERE parttimers.PW = workingparttimers.PW";
+			query =  "SELECT NAME, ROLE from parttimers WHERE NAME = (SELECT NAME FROM WORKINGPARTTIMERS)";
 
 			System.out.println(query);
 			rs = stmt.executeQuery(query);
