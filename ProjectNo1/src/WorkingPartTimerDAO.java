@@ -20,18 +20,18 @@ public class WorkingPartTimerDAO {
 		try {
 			connDB();
 
-			query =  "SELECT NAME, ROLE from parttimers WHERE NAME = (SELECT NAME FROM WORKINGPARTTIMERS)";
+			query =  "SELECT * from PARTTIMERS WHERE NAME in (SELECT NAME FROM WORKINGPARTTIMERS)";
 
 			System.out.println(query);
 			rs = stmt.executeQuery(query);
-//			rs.last();
+			rs.last();
 			System.out.println("rs.getRow() : " + rs.getRow());
 
 			if (rs.getRow() == 0) {
 				System.out.println("0 row selected.....");
 			} else {
 				System.out.println(rs.getRow() + " rows selected.....");
-//				rs.previous();
+				rs.previous();
 				while (rs.next()) {
 					String name = rs.getString("NAME");
 					String pw = rs.getString("PW");
