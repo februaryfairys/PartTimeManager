@@ -15,13 +15,6 @@ public class PartTimerJoinDAO {
 	private Statement stmt;
 	private ResultSet rs;
 
-	public String getQuery() {
-		return query;
-	}
-
-	public void setQuery(String query) {
-		this.query = query;
-	}
 
 	public ArrayList<PartTimerVo> list(String pname) {
 		ArrayList<PartTimerVo> list = new ArrayList<PartTimerVo>();

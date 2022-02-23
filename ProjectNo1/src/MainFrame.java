@@ -5,6 +5,7 @@ import java.awt.Label;
 import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
+import java.awt.TextField;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,21 +17,25 @@ public class MainFrame extends AFrame {
 	private Frame f;
 	private Toolkit tk = Toolkit.getDefaultToolkit();
 	Dimension screenSize = tk.getScreenSize();
-	private Button b1, b2, b3, b4, b5;
+	private Button b1, b2, b3, b4, b5, b6;
 	private Label l1, l2, l3;
 	private MenuBar mb;
+	private TextField tf1, tf2;
 	JoinFrame jf = new JoinFrame();
 	OutFrame of = new OutFrame();
+	EmpFrame emf = new EmpFrame();
 	ManagingFrame mngf = new ManagingFrame();
 	AddFrame2 af = new AddFrame2();
 	SetPasswordFrame spf = new SetPasswordFrame();
 	ExitFrame ef = new ExitFrame();
+	ShowAllPartTimers sap = new ShowAllPartTimers();
+	ShowWorkingPartTimers swp = new ShowWorkingPartTimers();
 
 	public void start() {
 		Date now = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 E요일 a HH시 mm분입니다.");
 		f = new Frame("Part time Manager+");
-		f.setSize(450, 400);
+		f.setSize(610, 410);
 		f.setLayout(null);
 		f.addWindowListener(this);
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
@@ -92,56 +97,88 @@ public class MainFrame extends AFrame {
 			}
 		});
 
-		b1 = new Button("출근체크");
-		b2 = new Button("퇴근체크");
-		b3 = new Button("직원관리");
-		b4 = new Button("새로고침");
+		b1 = new Button("직원메뉴");
+		b2 = new Button("관리자메뉴");
+		b3 = new Button("설정");
+		b4 = new Button("종료");
 		b5 = new Button("새로고침");
-		b1.setSize(150, 100);
-		b2.setSize(150, 100);
-		b3.setSize(150, 100);
-//		b4.setSize(150, 100);
-		b1.setLocation(0, 300);
-		b2.setLocation(150, 300);
-		b3.setLocation(300, 300);
-//		b4.setLocation(450, 300);
+		b6 = new Button("새로고침");
+		b1.setSize(160, 60);
+		b2.setSize(160, 60);
+		b3.setSize(160, 60);
+		b4.setSize(160, 60);
+		b5.setSize(120, 60);
+		b6.setSize(120, 60);
+		b1.setLocation(415, 80);
+		b2.setLocation(415, 160);
+		b3.setLocation(415, 240);
+		b4.setLocation(415, 320);
+		b5.setLocation(55, 320);
+		b6.setLocation(245, 320);
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				jf.start();
+				emf.start();
 			}
 		});
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				of.start();
+				mngf.start();
 
 			}
 		});
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				mngf.start();
 
 			}
 		});
 
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				ef.start();
 			}
 		});
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				swp.start();
+				tf1.setText(swp.getWorkingPartTimers());
+			}
+		});
+		b6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sap.start();
+				tf2.setText(sap.getAllPartTimers());
 			}
 		});
 		l1 = new Label(sdf.format(now), Label.CENTER);
-
+		l2 = new Label("근무중", Label.CENTER);
+		l3 = new Label("모든직원", Label.CENTER);
 		l1.setSize(450, 20);
+		l2.setSize(160, 20);
+		l3.setSize(160, 20);
 		l1.setLocation(0, 60);
+		l2.setLocation(35, 300);
+		l3.setLocation(225, 300);
+		tf1 = new TextField();
+		tf2 = new TextField();
+		tf1.setSize(160, 220);
+		tf2.setSize(160, 220);
+		tf1.setLocation(35, 80);
+		tf2.setLocation(225, 80);
+		tf1.setEditable(false);
+		tf2.setEditable(false);
+
 		f.setMenuBar(mb);
 		f.add(b1);
 		f.add(b2);
 		f.add(b3);
+		f.add(b4);
+		f.add(b5);
+		f.add(b6);
 //		f.add(l1);
+		f.add(l2);
+		f.add(l3);
+		f.add(tf1);
+		f.add(tf2);
 		f.setVisible(true);
 
 	}

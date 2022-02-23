@@ -234,8 +234,8 @@ public class AddFrame2 extends AFrame {
 		chafB2 = new Button("¾Æ´Ï¿ä");
 		chafB1.setSize(50, 30);
 		chafB2.setSize(50, 30);
-		chafB1.setLocation(75, 120);
-		chafB2.setLocation(125, 120);
+		chafB1.setLocation(75, 110);
+		chafB2.setLocation(125, 110);
 		chafB1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				chaf.dispose();
@@ -312,20 +312,13 @@ public class AddFrame2 extends AFrame {
 
 			sql = "insert into PARTTIMERS VALUES ('" + getNAME() + "','" + getPW() + "','" + getTEL() + "' , '"
 					+ getROLE() + "')";
-//			sql2 = "CREATE TABLE " + "" + TN + ""
-//					+ " (JOINTIME varchar2(50), OUTTIME varchar2(50), WORKTIME varchar2(20))";
+
 			boolean b = stmt.execute(sql);
 			if (!b) {
 				System.out.println("INSERT SUCCSESS.\n");
 			} else {
 				System.out.println("INSERT FAIL.\n");
 			}
-//			boolean b2 = stmt.execute(sql2);
-//			if (!b2) {
-//				System.out.println("CREATE SUCCSESS.\n");
-//			} else {
-//				System.out.println("CREATE FAIL.\n");
-//			}
 
 		} catch (ClassNotFoundException e) {
 			System.out.println(e);

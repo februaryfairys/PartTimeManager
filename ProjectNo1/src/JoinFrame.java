@@ -25,12 +25,6 @@ public class JoinFrame extends AFrame {
 	private AlreadyJoinedFrame ajf = new AlreadyJoinedFrame();
 	private String name;
 
-//	private Calendar now = Calendar.getInstance();
-//	private int ampm = now.get(Calendar.AM_PM);
-//	private String strampm = null;
-//	private int hour = now.get(Calendar.HOUR);
-//	private int minute = now.get(Calendar.MINUTE);
-
 	Date now = new Date();
 	SimpleDateFormat sdf = new SimpleDateFormat("MM월 dd일 a HH시 mm분입니다.");
 	SimpleDateFormat sdfDt = new SimpleDateFormat("YYYYMMdd");
@@ -57,7 +51,7 @@ public class JoinFrame extends AFrame {
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		lid = new Label("성명");
-		lpw = new Label("비밀번호");
+		lpw = new Label("직원번호");
 		lid.setSize(55, 20);
 		lpw.setSize(55, 20);
 		lid.setLocation(30, 40);
@@ -122,13 +116,6 @@ public class JoinFrame extends AFrame {
 		});
 		f2.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-//		if (ampm == Calendar.AM) {
-//			strampm = "오전 ";
-//		} else {
-//			strampm = "오후 ";
-//		}
-
-//		l1 = new Label("현재 시간은 " + strampm + hour + " 시 " + minute + "분 " + "입니다.", Label.CENTER);
 		l1 = new Label(sdf.format(now), Label.CENTER);
 		l2 = new Label("출근할까요?", Label.CENTER);
 		l1.setSize(250, 20);
@@ -140,8 +127,8 @@ public class JoinFrame extends AFrame {
 		b3 = new Button("아니요");
 		b2.setSize(50, 30);
 		b3.setSize(50, 30);
-		b2.setLocation(75, 120);
-		b3.setLocation(125, 120);
+		b2.setLocation(75, 110);
+		b3.setLocation(125, 110);
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				checkDAO();

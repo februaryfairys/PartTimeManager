@@ -56,7 +56,7 @@ public class OutFrame extends AFrame {
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		lid = new Label("성명");
-		lpw = new Label("비밀번호");
+		lpw = new Label("직원번호");
 		lid.setSize(55, 20);
 		lpw.setSize(55, 20);
 		lid.setLocation(30, 40);
@@ -230,6 +230,7 @@ public class OutFrame extends AFrame {
 
 				}
 			}
+			workTime = "0";
 			
 			sql2 = "delete from WORKINGPARTTIMERS where name = '" + tf1.getText() + "' AND PW = '" + tf2.getText()
 					+ "'";
