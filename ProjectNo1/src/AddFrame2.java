@@ -295,8 +295,6 @@ public class AddFrame2 extends AFrame {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "c##ezen";
 		String password = "ezen1234";
-//		String user = "c##february";
-//		String password = "wl887087wl";
 		String sql, sql2, str;
 
 		try {

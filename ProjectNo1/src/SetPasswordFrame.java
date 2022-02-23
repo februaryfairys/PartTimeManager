@@ -159,8 +159,6 @@ public class SetPasswordFrame extends AFrame {
 	public void joinDAO() {
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521/xe";
-//		String user = "c##february";
-//		String password = "wl887087wl";
 		String user = "c##ezen";
 		String password = "ezen1234";
 		String sql = "SELECT * FROM PASSWORD WHERE PW = ('" + tf1.getText() + "')";

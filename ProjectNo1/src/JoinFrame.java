@@ -33,7 +33,8 @@ public class JoinFrame extends AFrame {
 
 	Date now = new Date();
 	SimpleDateFormat sdf = new SimpleDateFormat("MM월 dd일 a HH시 mm분입니다.");
-	SimpleDateFormat sdf2 = new SimpleDateFormat("YYYYMMddHHmm");
+	SimpleDateFormat sdfDt = new SimpleDateFormat("YYYYMMdd");
+	SimpleDateFormat sdfNow = new SimpleDateFormat("HHmm");
 
 	public String getName() {
 		return name;
@@ -167,8 +168,6 @@ public class JoinFrame extends AFrame {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "c##ezen";
 		String password = "ezen1234";
-//		String user = "c##february";
-//		String password = "wl887087wl";
 		String sql;
 
 		try {
@@ -204,9 +203,7 @@ public class JoinFrame extends AFrame {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "c##ezen";
 		String password = "ezen1234";
-//		String user = "c##february";
-//		String password = "wl887087wl";
-		String sql, sql2, strrole, strpw, TN, joinTime;
+		String sql, sql2, date, joinTime;
 
 		try {
 
@@ -215,20 +212,14 @@ public class JoinFrame extends AFrame {
 			Connection conn = DriverManager.getConnection(url, user, password);
 			System.out.println("oracle connection sucess.\n");
 			Statement stmt = conn.createStatement();
-			ArrayList<PartTimerVo> list = dao.list(tf1.getText());
-			PartTimerVo data = (PartTimerVo) list.get(0);
 
-			setName(data.getName());
-			strrole = "PT";
-			if (data.getRole().equals("매니저")) {
-				strrole = "MN";
-			}
-			strpw = tf2.getText();
-			TN = strrole + strpw;
-			joinTime = sdf2.format(now);
+			date = sdfDt.format(now);
+			joinTime = sdfNow.format(now);
 
-			sql = "insert into WORKINGPARTTIMERS VALUES ('" + tf1.getText() + "','" + tf2.getText() + "')";
-			sql2 = "insert into " + TN + " VALUES ('" + joinTime + "', 'null', 'null')";
+			sql = "insert into WORKINGPARTTIMERS VALUES ('" + tf1.getText() + "','" + tf2.getText() + "','" + joinTime
+					+ "')";
+			sql2 = "insert into WORKTIME VALUES ('" + date + "','" + tf1.getText() + "', '" + joinTime
+					+ "', 'null','null')";
 			boolean b = stmt.execute(sql);
 			boolean b2 = stmt.execute(sql2);
 

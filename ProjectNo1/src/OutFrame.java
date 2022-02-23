@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 public class OutFrame extends AFrame {
@@ -33,7 +32,8 @@ public class OutFrame extends AFrame {
 
 	Date now = new Date();
 	SimpleDateFormat sdf = new SimpleDateFormat("MM월 DD일 a HH시 mm분입니다.");
-	SimpleDateFormat sdf2 = new SimpleDateFormat("YYYYMMddHHmm");
+	SimpleDateFormat sdfDt = new SimpleDateFormat("YYYYMMdd");
+	SimpleDateFormat sdfNow = new SimpleDateFormat("HHmm");
 
 	public String getName() {
 		return name;
@@ -164,8 +164,6 @@ public class OutFrame extends AFrame {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "c##ezen";
 		String password = "ezen1234";
-//		String user = "c##february";
-//		String password = "wl887087wl";
 		String sql;
 
 		try {
@@ -201,9 +199,7 @@ public class OutFrame extends AFrame {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "c##ezen";
 		String password = "ezen1234";
-//		String user = "c##february";
-//		String password = "wl887087wl";
-		String sql, sql2, strrole, strpw, TN, outTime;
+		String sql1, sql2, sql3, date, joinTime, outTime, workTime;
 
 		try {
 
@@ -211,24 +207,38 @@ public class OutFrame extends AFrame {
 			System.out.println("jdbc driver loading success.");
 			Connection conn = DriverManager.getConnection(url, user, password);
 			System.out.println("oracle connection sucess.\n");
-			Statement stmt = conn.createStatement();
-			ArrayList<PartTimerVo> list = dao.list(tf1.getText());
-			PartTimerVo data = (PartTimerVo) list.get(0);
+			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-			strrole = "PT";
-			if (data.getRole().equals("매니저")) {
-				strrole = "MN";
+			date = sdfDt.format(now);
+			outTime = sdfNow.format(now);
+
+			joinTime = "0";
+			sql1 = "select JOINTIME from WORKINGPARTTIMERS where name = '" + tf1.getText() + "' AND PW = '"
+					+ tf2.getText() + "'";
+
+			ResultSet rs = stmt.executeQuery(sql1);
+
+			rs.last();
+			System.out.println("rs.getRow() : " + rs.getRow());
+			if (rs.getRow() == 0) {
+				System.out.println("0 row selected.....");
+			} else {
+				System.out.println(rs.getRow() + " rows selected.....");
+				rs.previous();
+				while (rs.next()) {
+					joinTime = rs.getString("JOINTIME");
+
+				}
 			}
-			strpw = tf2.getText();
-			TN = strrole + strpw;
-			outTime = sdf2.format(now);
+			
+			sql2 = "delete from WORKINGPARTTIMERS where name = '" + tf1.getText() + "' AND PW = '" + tf2.getText()
+					+ "'";
+			sql3 = "insert into WORKTIME VALUES ('" + date + "','" + tf1.getText() + "','null', '" + outTime + "', '"
+					+ workTime + "')";
 
-			sql = "delete from WORKINGPARTTIMERS where name = '" + tf1.getText() + "' AND PW = '" + tf2.getText() + "'";
-			sql2 = "insert into " + TN + " VALUES ('null', '" + outTime + "', 'null')";
-			boolean b = stmt.execute(sql);
 			boolean b2 = stmt.execute(sql2);
-
-			if (!b) {
+			boolean b3 = stmt.execute(sql3);
+			if (!b2) {
 				System.out.println("OUT SUCCSESS.\n");
 				CompleteOutFrame cof = new CompleteOutFrame();
 				cof.setName(tf1.getText());
@@ -236,14 +246,16 @@ public class OutFrame extends AFrame {
 			} else {
 				System.out.println("OUT FAIL.\n");
 			}
-			if (!b2) {
+
+			if (!b3) {
 				System.out.println("CHECK OUTTIME SUCCSESS.\n");
 
 			} else {
 				System.out.println("CHECK OUTTIME FAIL.\n");
 			}
+		}
 
-		} catch (ClassNotFoundException e) {
+		catch (ClassNotFoundException e) {
 			System.out.println(e);
 		} catch (SQLException e) {
 			System.out.println(e);
