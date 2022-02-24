@@ -213,7 +213,7 @@ public class AddFrame2 extends AFrame {
 			strampm = "오후 ";
 		}
 
-		chaf = new Frame("CheckOut");
+		chaf = new Frame("등록");
 		chaf.setSize(250, 160);
 		chaf.setLayout(null);
 		chaf.addWindowListener(new WindowAdapter() {
