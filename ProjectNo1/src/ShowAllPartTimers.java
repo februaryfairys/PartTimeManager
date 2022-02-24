@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class ShowAllPartTimers {
-	private PartTimerJoinDAO dao = new PartTimerJoinDAO();
+	private ShowAllDAO dao = new ShowAllDAO();
 	private String allPartTimers;
 
 	public String getAllPartTimers() {
@@ -13,19 +13,17 @@ public class ShowAllPartTimers {
 	}
 
 	public void start() {
-		ArrayList<PartTimerVo> list = dao.list(null);
+		ArrayList<ShowAllVo> list = dao.list();
 		StringBuilder sb = new StringBuilder();
-		String info = " ";
-		
+
 		for (int i = 0; i < list.size(); i++) {
-			PartTimerVo data = (PartTimerVo) list.get(i);
+			ShowAllVo data = (ShowAllVo) list.get(i);
 			String NAME = data.getName();
 			String ROLE = data.getRole();
 
-			info += NAME + " " + ROLE + "\n";
+			sb.append(NAME + " " + ROLE + "\n");
 		}
-//		System.out.println(sb.toString());
-//		setAllPartTimers(sb.toString());
-		System.out.println(info);
+
+		setAllPartTimers(sb.toString());
 	}
 }

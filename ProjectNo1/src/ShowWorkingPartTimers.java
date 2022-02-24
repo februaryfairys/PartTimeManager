@@ -11,19 +11,18 @@ public class ShowWorkingPartTimers {
 	public void setWorkingPartTimers(String workingPartTimers) {
 		this.workingPartTimers = workingPartTimers;
 	}
-	
+
 	public void start() {
-		ArrayList<PartTimerVo> list = dao.list(null);
+		ArrayList<WorkingPartTimerVo> list = dao.list();
 		StringBuilder sb = new StringBuilder();
-		
-		String s = "aa"+"\n"+"aa";
+
 		for (int i = 0; i < list.size(); i++) {
-			PartTimerVo data = (PartTimerVo) list.get(i);
+			WorkingPartTimerVo data = (WorkingPartTimerVo) list.get(i);
 			String NAME = data.getName();
 			String ROLE = data.getRole();
+
 			sb.append(NAME + " " + ROLE + "\n");
 		}
 		setWorkingPartTimers(sb.toString());
-		setWorkingPartTimers(s);
 	}
 }

@@ -5,6 +5,7 @@ import java.awt.Label;
 import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
+import java.awt.TextArea;
 import java.awt.TextField;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -21,6 +22,7 @@ public class MainFrame extends AFrame {
 	private Label l1, l2, l3;
 	private MenuBar mb;
 	private TextField tf1, tf2;
+	private TextArea ta1, ta2;
 	JoinFrame jf = new JoinFrame();
 	OutFrame of = new OutFrame();
 	EmpFrame emf = new EmpFrame();
@@ -140,13 +142,13 @@ public class MainFrame extends AFrame {
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				swp.start();
-				tf1.setText(swp.getWorkingPartTimers());
+				ta1.setText(swp.getWorkingPartTimers());
 			}
 		});
 		b6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sap.start();
-				tf2.setText(sap.getAllPartTimers());
+				ta2.setText(sap.getAllPartTimers());
 			}
 		});
 		l1 = new Label(sdf.format(now), Label.CENTER);
@@ -158,14 +160,14 @@ public class MainFrame extends AFrame {
 		l1.setLocation(0, 60);
 		l2.setLocation(35, 300);
 		l3.setLocation(225, 300);
-		tf1 = new TextField();
-		tf2 = new TextField();
-		tf1.setSize(160, 220);
-		tf2.setSize(160, 220);
-		tf1.setLocation(35, 80);
-		tf2.setLocation(225, 80);
-		tf1.setEditable(false);
-		tf2.setEditable(false);
+		ta1 = new TextArea();
+		ta2 = new TextArea();
+		ta1.setSize(160, 220);
+		ta2.setSize(160, 220);
+		ta1.setLocation(35, 80);
+		ta2.setLocation(225, 80);
+		ta1.setEditable(false);
+		ta2.setEditable(false);
 
 		f.setMenuBar(mb);
 		f.add(b1);
@@ -177,8 +179,8 @@ public class MainFrame extends AFrame {
 //		f.add(l1);
 		f.add(l2);
 		f.add(l3);
-		f.add(tf1);
-		f.add(tf2);
+		f.add(ta1);
+		f.add(ta2);
 		f.setVisible(true);
 
 	}
