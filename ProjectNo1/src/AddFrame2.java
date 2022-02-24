@@ -9,7 +9,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Calendar;
@@ -36,7 +35,7 @@ public class AddFrame2 extends AFrame {
 	public void start() {
 
 		f = new Frame("등록");
-		f.setSize(250, 465);
+		f.setSize(270, 465);
 		f.setLayout(null);
 		f.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent E) {
@@ -60,13 +59,13 @@ public class AddFrame2 extends AFrame {
 		ltel.setSize(36, 20);
 		ltel2.setSize(180, 20);
 
-		lid.setLocation(30, 40);
-		lid2.setLocation(30, 90);
-		lpw.setLocation(30, 120);
-		lpw2.setLocation(30, 180);
-		lchpw.setLocation(30, 230);
-		ltel.setLocation(30, 260);
-		ltel2.setLocation(30, 310);
+		lid.setLocation(40, 40);
+		lid2.setLocation(40, 90);
+		lpw.setLocation(40, 120);
+		lpw2.setLocation(40, 180);
+		lchpw.setLocation(40, 230);
+		ltel.setLocation(40, 260);
+		ltel2.setLocation(40, 310);
 
 		tf1 = new TextField();
 		tf2 = new TextField("버튼을 눌러 번호를 발급받으세요.");
@@ -76,10 +75,10 @@ public class AddFrame2 extends AFrame {
 		tf2.setSize(200, 20);
 		tf3.setSize(200, 20);
 		tf4.setSize(200, 20);
-		tf1.setLocation(25, 65);
-		tf2.setLocation(25, 145);
-		tf3.setLocation(25, 205);
-		tf4.setLocation(25, 285);
+		tf1.setLocation(35, 65);
+		tf2.setLocation(35, 145);
+		tf3.setLocation(35, 205);
+		tf4.setLocation(35, 285);
 		tf2.setEditable(false);
 
 		b1 = new Button("등록");
@@ -88,9 +87,9 @@ public class AddFrame2 extends AFrame {
 		b1.setSize(200, 50);
 		b2.setSize(60, 25);
 		bRd.setSize(60, 25);
-		b1.setLocation(25, 385);
-		b2.setLocation(115, 175);
-		bRd.setLocation(115, 115);
+		b1.setLocation(35, 385);
+		b2.setLocation(125, 175);
+		bRd.setLocation(125, 115);
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tf1.getText().equals("")) {
@@ -156,7 +155,7 @@ public class AddFrame2 extends AFrame {
 		r.add("직원");
 		r.add("매니저");
 		r.setSize(100, 100);
-		r.setLocation(25, 345);
+		r.setLocation(35, 345);
 
 		f.add(lid);
 		f.add(lid2);
@@ -295,7 +294,7 @@ public class AddFrame2 extends AFrame {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "c##ezen";
 		String password = "ezen1234";
-		String sql, sql2, str;
+		String sql;
 
 		try {
 
@@ -304,11 +303,6 @@ public class AddFrame2 extends AFrame {
 			Connection conn = DriverManager.getConnection(url, user, password);
 			System.out.println("oracle connection sucess.\n");
 			Statement stmt = conn.createStatement();
-			str = "PT";
-			if (getROLE().equals("매니저")) {
-				str = "MN";
-			}
-			String TN = str + getPW();
 
 			sql = "insert into PARTTIMERS VALUES ('" + getNAME() + "','" + getPW() + "','" + getTEL() + "' , '"
 					+ getROLE() + "')";

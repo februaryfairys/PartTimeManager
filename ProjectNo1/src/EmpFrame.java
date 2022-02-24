@@ -14,7 +14,7 @@ public class EmpFrame extends AFrame {
 	OutFrame of = new OutFrame();
 
 	public void start() {
-		f = new Frame("직원메뉴");
+		f = new Frame("직원");
 		f.setSize(230, 305);
 		f.setLayout(null);
 		f.addWindowListener(new WindowAdapter() {

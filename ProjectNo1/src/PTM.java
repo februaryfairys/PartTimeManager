@@ -12,8 +12,9 @@ public class PTM {
 		ManagingFrame mngf = new ManagingFrame();
 		AddFrame2 af = new AddFrame2();
 		SetPasswordFrame spf = new SetPasswordFrame();
-
-		mf.start();
+		LookUpFrame luf = new LookUpFrame();
+		EditFrame ef = new EditFrame();
+//		mf.start();
 //		jf.start();
 //		of.start();
 //		cjf.start();
@@ -24,6 +25,8 @@ public class PTM {
 //		mngf.start();
 //		af.start();
 //		spf.start();
+//		luf.start();
+		ef.start();
 
 	}
 }

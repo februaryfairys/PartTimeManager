@@ -32,6 +32,7 @@ public class MainFrame extends AFrame {
 	ExitFrame ef = new ExitFrame();
 	ShowAllPartTimers sap = new ShowAllPartTimers();
 	ShowWorkingPartTimers swp = new ShowWorkingPartTimers();
+	SettingsFrame sf = new SettingsFrame();
 
 	public void start() {
 		Date now = new Date();
@@ -130,7 +131,7 @@ public class MainFrame extends AFrame {
 		});
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				sf.start();
 			}
 		});
 

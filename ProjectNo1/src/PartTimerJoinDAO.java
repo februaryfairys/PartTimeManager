@@ -15,17 +15,16 @@ public class PartTimerJoinDAO {
 	private Statement stmt;
 	private ResultSet rs;
 
-
 	public ArrayList<PartTimerVo> list(String pname) {
 		ArrayList<PartTimerVo> list = new ArrayList<PartTimerVo>();
 
 		try {
 			connDB();
-			
+
 			query = "SELECT * FROM PARTTIMERS";
 			if (pname != null) {
 				query += " WHERE name = '" + pname + "'";
-			}
+			} 
 
 			System.out.println(query);
 			rs = stmt.executeQuery(query);
