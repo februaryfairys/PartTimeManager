@@ -20,7 +20,7 @@ public class WorkingPartTimerDAO {
 		try {
 			connDB();
 
-			query = "SELECT * from PARTTIMERS WHERE NAME in (SELECT NAME FROM WORKINGPARTTIMERS) ORDER BY ROLE";
+			query = "SELECT * from PARTTIMERS WHERE NAME in (SELECT NAME FROM WORKINGPARTTIMERS) ORDER BY NAME, ROLE";
 
 			System.out.println(query);
 			rs = stmt.executeQuery(query);
