@@ -20,12 +20,6 @@ public class ExitFrame extends AFrame {
 	private Label lpw, cefL1, cefL2;
 	private String PASSWORD = "0";
 
-	private Calendar now = Calendar.getInstance();
-	private int ampm = now.get(Calendar.AM_PM);
-	private String strampm = null;
-	private int hour = now.get(Calendar.HOUR);
-	private int minute = now.get(Calendar.MINUTE);
-
 	SetPasswordFrame spf = new SetPasswordFrame();
 
 	public void start() {
@@ -57,6 +51,12 @@ public class ExitFrame extends AFrame {
 	}
 
 	public void checkExitFrame() {
+		Calendar now = Calendar.getInstance();
+		int ampm = now.get(Calendar.AM_PM);
+		String strampm = null;
+		int hour = now.get(Calendar.HOUR);
+		int minute = now.get(Calendar.MINUTE);
+
 		cefF = new Frame("프로그램 종료");
 		cefF.setSize(250, 150);
 		cefF.setLayout(null);

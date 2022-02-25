@@ -11,13 +11,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Calendar;
 
 public class AddFrame2 extends AFrame {
 	private Frame f, f2, chaf, cafF;
 	private TextField tf1, tf2, tf3, tf4;
 	private Button b1, b2, bRd, b3, chafB1, chafB2, cafB;
-	private Label lid, lid2, lpw, lpw2, ltel, ltel2, lchpw, lError, chafL1, chafL2, cafL1, cafL2;
+	private Label lid, lid2, lpw, lpw2, ltel, ltel2, lchpw, lError, chafL2, cafL1, cafL2;
 	private Choice r;
 	private boolean c = false;
 	private String NAME;
@@ -25,11 +24,6 @@ public class AddFrame2 extends AFrame {
 	private String TEL;
 	private String ROLE;
 	
-	private Calendar now = Calendar.getInstance();
-	private int ampm = now.get(Calendar.AM_PM);
-	private String strampm = null;
-	private int hour = now.get(Calendar.HOUR);
-	private int minute = now.get(Calendar.MINUTE);
 
 	InputYourInfo iyi = new InputYourInfo();
 
@@ -207,11 +201,7 @@ public class AddFrame2 extends AFrame {
 	}
 
 	public void checkAddFrame() {
-		if (ampm == Calendar.AM) {
-			strampm = "오전 ";
-		} else {
-			strampm = "오후 ";
-		}
+	
 
 		chaf = new Frame("등록");
 		chaf.setSize(250, 160);
@@ -223,12 +213,9 @@ public class AddFrame2 extends AFrame {
 		});
 		chaf.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		chafL1 = new Label("현재 시간은 " + strampm + hour + " 시 " + minute + "분 " + "입니다.", Label.CENTER);
 		chafL2 = new Label("새로운 직원을 등록할까요?", Label.CENTER);
-		chafL1.setSize(250, 20);
 		chafL2.setSize(250, 20);
-		chafL1.setLocation(0, 50);
-		chafL2.setLocation(0, 80);
+		chafL2.setLocation(0, 60);
 
 		chafB1 = new Button("네");
 		chafB2 = new Button("아니요");
