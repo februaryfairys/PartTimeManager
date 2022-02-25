@@ -6,7 +6,6 @@ import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
 import java.awt.TextArea;
-import java.awt.TextField;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,8 +20,9 @@ public class MainFrame extends AFrame {
 	private Button b1, b2, b3, b4, b5, b6;
 	private Label l1, l2, l3;
 	private MenuBar mb;
-	private TextField tf1, tf2;
 	private TextArea ta1, ta2;
+	private String time;
+
 	JoinFrame jf = new JoinFrame();
 	OutFrame of = new OutFrame();
 	EmpFrame emf = new EmpFrame();
@@ -33,11 +33,17 @@ public class MainFrame extends AFrame {
 	ShowAllPartTimers sap = new ShowAllPartTimers();
 	ShowWorkingPartTimers swp = new ShowWorkingPartTimers();
 	SettingsFrame sf = new SettingsFrame();
-	ZTime zt = new ZTime();
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
 
 	public void start() {
-		Date now = new Date();
-//		SimpleDateFormat timeLabel = new SimpleDateFormat("yyyy년 MM월 dd일 E요일 a HH시 mm분입니다.");
+
 		f = new Frame("Part time Manager+");
 		f.setSize(610, 410);
 		f.setLayout(null);
@@ -154,7 +160,7 @@ public class MainFrame extends AFrame {
 				ta2.setText(sap.getAllPartTimers());
 			}
 		});
-		l1 = new Label(""+zt.getSecond()+"", Label.CENTER);
+		l1 = new Label("", Label.CENTER);
 		l2 = new Label("근무중", Label.CENTER);
 		l3 = new Label("모든직원", Label.CENTER);
 		l1.setSize(610, 20);
@@ -185,11 +191,29 @@ public class MainFrame extends AFrame {
 		f.add(ta1);
 		f.add(ta2);
 		f.setVisible(true);
+		
+		time();
 
 	}
 
+	public void time() {
+		MainFrame mf = new MainFrame();
+		for (;;) {
+			Date now = new Date();
+			SimpleDateFormat timeLabel = new SimpleDateFormat("yyyy년 MM월 dd일 E요일 a HH시 mm분입니다.");
+			String time;
+			time = timeLabel.format(now);
+			l1.setText(time);
+
+			try {
+				Thread.sleep(1000);
+
+			} catch (Exception e) {
+			}
+		}
+	}
+
 	public void windowClosing(WindowEvent E) {
-//		InputPasswordFrame ipf = new InputPasswordFrame();
 		ef.start();
 	}
 }
