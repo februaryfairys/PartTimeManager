@@ -191,7 +191,7 @@ public class MainFrame extends AFrame {
 		f.add(ta1);
 		f.add(ta2);
 		f.setVisible(true);
-		
+
 		time();
 
 	}

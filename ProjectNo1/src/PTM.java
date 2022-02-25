@@ -14,7 +14,6 @@ public class PTM {
 		SetPasswordFrame spf = new SetPasswordFrame();
 		LookUpFrame luf = new LookUpFrame();
 		EditFrame ef = new EditFrame();
-		ZTime zt = new ZTime();
 		mf.start();
 //		jf.start();
 //		of.start();
