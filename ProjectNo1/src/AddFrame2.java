@@ -24,6 +24,7 @@ public class AddFrame2 extends AFrame {
 	private String PW;
 	private String TEL;
 	private String ROLE;
+	
 	private Calendar now = Calendar.getInstance();
 	private int ampm = now.get(Calendar.AM_PM);
 	private String strampm = null;

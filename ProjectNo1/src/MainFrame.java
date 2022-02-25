@@ -33,10 +33,11 @@ public class MainFrame extends AFrame {
 	ShowAllPartTimers sap = new ShowAllPartTimers();
 	ShowWorkingPartTimers swp = new ShowWorkingPartTimers();
 	SettingsFrame sf = new SettingsFrame();
+	ZTime zt = new ZTime();
 
 	public void start() {
 		Date now = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 E요일 a HH시 mm분입니다.");
+//		SimpleDateFormat timeLabel = new SimpleDateFormat("yyyy년 MM월 dd일 E요일 a HH시 mm분입니다.");
 		f = new Frame("Part time Manager+");
 		f.setSize(610, 410);
 		f.setLayout(null);
@@ -143,6 +144,7 @@ public class MainFrame extends AFrame {
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				swp.start();
+
 				ta1.setText(swp.getWorkingPartTimers());
 			}
 		});
@@ -152,13 +154,13 @@ public class MainFrame extends AFrame {
 				ta2.setText(sap.getAllPartTimers());
 			}
 		});
-		l1 = new Label(sdf.format(now), Label.CENTER);
+		l1 = new Label(""+zt.getSecond()+"", Label.CENTER);
 		l2 = new Label("근무중", Label.CENTER);
 		l3 = new Label("모든직원", Label.CENTER);
-		l1.setSize(450, 20);
+		l1.setSize(610, 20);
 		l2.setSize(160, 20);
 		l3.setSize(160, 20);
-		l1.setLocation(0, 60);
+		l1.setLocation(0, 50);
 		l2.setLocation(35, 300);
 		l3.setLocation(225, 300);
 		ta1 = new TextArea();
@@ -177,7 +179,7 @@ public class MainFrame extends AFrame {
 		f.add(b4);
 		f.add(b5);
 		f.add(b6);
-//		f.add(l1);
+		f.add(l1);
 		f.add(l2);
 		f.add(l3);
 		f.add(ta1);

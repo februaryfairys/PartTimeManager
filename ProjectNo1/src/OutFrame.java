@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class OutFrame extends AFrame {
@@ -23,17 +24,6 @@ public class OutFrame extends AFrame {
 	private PartTimerJoinDAO dao = new PartTimerJoinDAO();
 	private AlreadyOutFrame aof = new AlreadyOutFrame();
 	private String name;
-
-//	private Calendar now = Calendar.getInstance();
-//	private int ampm = now.get(Calendar.AM_PM);
-//	private String strampm = null;
-//	private int hour = now.get(Calendar.HOUR);
-//	private int minute = now.get(Calendar.MINUTE);
-
-	Date now = new Date();
-	SimpleDateFormat sdf = new SimpleDateFormat("MM월 DD일 a HH시 mm분입니다.");
-	SimpleDateFormat sdfDt = new SimpleDateFormat("YYYYMMdd");
-	SimpleDateFormat sdfNow = new SimpleDateFormat("HHmm");
 
 	public String getName() {
 		return name;
@@ -110,6 +100,12 @@ public class OutFrame extends AFrame {
 	}
 
 	public void checkOutFrame() {
+		Calendar now = Calendar.getInstance();
+		int ampm = now.get(Calendar.AM_PM);
+		String strampm = null;
+		int hour = now.get(Calendar.HOUR);
+		int minute = now.get(Calendar.MINUTE);
+
 		f2 = new Frame("CheckOut");
 		f2.setSize(250, 160);
 		f2.setLayout(null);
@@ -120,14 +116,13 @@ public class OutFrame extends AFrame {
 		});
 		f2.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-//		if (ampm == Calendar.AM) {
-//			strampm = "오전 ";
-//		} else {
-//			strampm = "오후 ";
-//		}
+		if (ampm == Calendar.AM) {
+			strampm = "오전 ";
+		} else {
+			strampm = "오후 ";
+		}
 
-//		l1 = new Label("현재 시간은 " + strampm + hour + " 시 " + minute + "분 " + "입니다.", Label.CENTER);
-		l1 = new Label(sdf.format(now), Label.CENTER);
+		l1 = new Label("현재 시간은 " + strampm + hour + " 시 " + minute + "분 " + "입니다.", Label.CENTER);
 		l2 = new Label("퇴근할까요?", Label.CENTER);
 		l1.setSize(250, 20);
 		l2.setSize(250, 20);
@@ -138,12 +133,13 @@ public class OutFrame extends AFrame {
 		b3 = new Button("아니요");
 		b2.setSize(50, 30);
 		b3.setSize(50, 30);
-		b2.setLocation(75, 120);
-		b3.setLocation(125, 120);
+		b2.setLocation(75, 110);
+		b3.setLocation(125, 110);
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				checkDAO();
 				f2.dispose();
+
 			}
 		});
 		b3.addActionListener(new ActionListener() {
@@ -199,7 +195,11 @@ public class OutFrame extends AFrame {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "c##ezen";
 		String password = "ezen1234";
-		String sql1, sql2, sql3, date, joinTime, outTime, workTime;
+		String sql1, sql2, sql3, dt, joinTime, outTime, workTime;
+
+		Date now = new Date();
+		SimpleDateFormat sdfDt = new SimpleDateFormat("YYYYMMdd");
+		SimpleDateFormat sdfNow = new SimpleDateFormat("HHmm");
 
 		try {
 
@@ -209,9 +209,8 @@ public class OutFrame extends AFrame {
 			System.out.println("oracle connection sucess.\n");
 			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-			date = sdfDt.format(now);
+			dt = sdfDt.format(now);
 			outTime = sdfNow.format(now);
-
 			joinTime = "0";
 			sql1 = "select JOINTIME from WORKINGPARTTIMERS where name = '" + tf1.getText() + "' AND PW = '"
 					+ tf2.getText() + "'";
@@ -230,11 +229,12 @@ public class OutFrame extends AFrame {
 
 				}
 			}
+			int joinTime2 = Integer.parseInt(joinTime);
 			workTime = "0";
-			
+
 			sql2 = "delete from WORKINGPARTTIMERS where name = '" + tf1.getText() + "' AND PW = '" + tf2.getText()
 					+ "'";
-			sql3 = "insert into WORKTIME VALUES ('" + date + "','" + tf1.getText() + "','null', '" + outTime + "', '"
+			sql3 = "insert into WORKTIME VALUES ('" + dt + "','" + tf1.getText() + "','null', '" + outTime + "', '"
 					+ workTime + "')";
 
 			boolean b2 = stmt.execute(sql2);

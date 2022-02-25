@@ -25,11 +25,6 @@ public class JoinFrame extends AFrame {
 	private AlreadyJoinedFrame ajf = new AlreadyJoinedFrame();
 	private String name;
 
-	Date now = new Date();
-	SimpleDateFormat sdf = new SimpleDateFormat("MM월 dd일 a HH시 mm분입니다.");
-	SimpleDateFormat sdfDt = new SimpleDateFormat("YYYYMMdd");
-	SimpleDateFormat sdfNow = new SimpleDateFormat("HHmm");
-
 	public String getName() {
 		return name;
 	}
@@ -106,6 +101,12 @@ public class JoinFrame extends AFrame {
 	}
 
 	public void CheckJoinFrame() {
+		Calendar now = Calendar.getInstance();
+		int ampm = now.get(Calendar.AM_PM);
+		String strampm = null;
+		int hour = now.get(Calendar.HOUR);
+		int minute = now.get(Calendar.MINUTE);
+
 		f2 = new Frame("CheckJoin");
 		f2.setSize(250, 160);
 		f2.setLayout(null);
@@ -116,7 +117,13 @@ public class JoinFrame extends AFrame {
 		});
 		f2.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		l1 = new Label(sdf.format(now), Label.CENTER);
+		if (ampm == Calendar.AM) {
+			strampm = "오전 ";
+		} else {
+			strampm = "오후 ";
+		}
+
+		l1 = new Label("현재 시간은 " + strampm + hour + " 시 " + minute + "분 " + "입니다.", Label.CENTER);
 		l2 = new Label("출근할까요?", Label.CENTER);
 		l1.setSize(250, 20);
 		l2.setSize(250, 20);
@@ -190,7 +197,11 @@ public class JoinFrame extends AFrame {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "c##ezen";
 		String password = "ezen1234";
-		String sql, sql2, date, joinTime;
+		String sql, sql2, dt, joinTime;
+
+		Date now = new Date();
+		SimpleDateFormat sdfDt = new SimpleDateFormat("YYYYMMdd");
+		SimpleDateFormat sdfNow = new SimpleDateFormat("HHmm");
 
 		try {
 
@@ -200,12 +211,12 @@ public class JoinFrame extends AFrame {
 			System.out.println("oracle connection sucess.\n");
 			Statement stmt = conn.createStatement();
 
-			date = sdfDt.format(now);
+			dt = sdfDt.format(now);
 			joinTime = sdfNow.format(now);
-
+			
 			sql = "insert into WORKINGPARTTIMERS VALUES ('" + tf1.getText() + "','" + tf2.getText() + "','" + joinTime
 					+ "')";
-			sql2 = "insert into WORKTIME VALUES ('" + date + "','" + tf1.getText() + "', '" + joinTime
+			sql2 = "insert into WORKTIME VALUES ('" + dt + "','" + tf1.getText() + "', '" + joinTime
 					+ "', 'null','null')";
 			boolean b = stmt.execute(sql);
 			boolean b2 = stmt.execute(sql2);
