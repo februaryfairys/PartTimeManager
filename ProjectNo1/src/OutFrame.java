@@ -223,13 +223,11 @@ public class OutFrame extends AFrame {
 
 				}
 			}
-			int joinTime2 = Integer.parseInt(joinTime);
-			workTime = "0";
 
 			sql2 = "delete from WORKINGPARTTIMERS where name = '" + tf1.getText() + "' AND PW = '" + tf2.getText()
 					+ "'";
 			sql3 = "insert into WORKTIME VALUES ('" + dt + "','" + tf1.getText() + "','null', '" + outTime + "', '"
-					+ workTime + "')";
+					+ timeCal(joinTime, outTime) + "')";
 
 			boolean b2 = stmt.execute(sql2);
 			boolean b3 = stmt.execute(sql3);
@@ -255,5 +253,46 @@ public class OutFrame extends AFrame {
 		} catch (SQLException e) {
 			System.out.println(e);
 		}
+	}
+
+	public String timeCal(String jointime, String outtime) {
+
+		String worktime;
+
+		int jointimeh = Integer.parseInt(jointime.substring(0, 2));
+		int outtimeh = Integer.parseInt(outtime.substring(0, 2));
+		int jointimem = Integer.parseInt(jointime.substring(2));
+		int outtimem = Integer.parseInt(outtime.substring(2));
+
+//		System.out.println(jointimeh);
+//		System.out.println(outtimeh);
+//		System.out.println(jointimem);
+//		System.out.println(outtimem);
+
+		int jointimehm = jointimeh * 60;
+		int outtimehm = outtimeh * 60;
+
+//		System.out.println(jointimehm);
+//		System.out.println(outtimehm);
+
+		int jointime2 = jointimehm + jointimem;
+		int outtime2 = outtimehm + outtimem;
+
+//		System.out.println(jointime2);
+//		System.out.println(outtime2);
+
+		int worktimehm = outtime2 - jointime2;
+
+//		System.out.println(worktimehm);
+
+		int worktimeh = worktimehm / 60;
+		int worktimem = worktimehm % 60;
+
+//		System.out.println(worktimeh);
+//		System.out.println(worktimem);
+
+		worktime = worktimeh + worktimem + "";
+		
+		return worktime;
 	}
 }

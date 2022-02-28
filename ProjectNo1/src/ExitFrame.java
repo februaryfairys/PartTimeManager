@@ -18,7 +18,7 @@ public class ExitFrame extends AFrame {
 
 	public void start() {
 		f = new Frame("Input Password");
-		f.setSize(300, 180);
+		f.setSize(250,150);
 		f.setLayout(null);
 		f.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent E) {
@@ -26,18 +26,25 @@ public class ExitFrame extends AFrame {
 			}
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
+		
+		lpw = new Label("비밀번호를 입력하세요.", Label.CENTER);
+		lpw.setSize(250, 20);
+		lpw.setLocation(0, 40);
 
 		tf1 = new TextField("");
-		tf1.setSize(150, 20);
-		tf1.setLocation(75, 80);
+		tf1.setSize(100, 20);
+		tf1.setLocation(75, 70);
 
 		b1 = new Button("확인");
-		b1.setSize(150, 40);
-		b1.setLocation(75, 120);
-		b1.addActionListener(this);
-		lpw = new Label("비밀번호를 입력하세요.");
-		lpw.setSize(130, 20);
-		lpw.setLocation(85, 60);
+		b1.setSize(100, 30);
+		b1.setLocation(75, 100);
+		b1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				joinDAO();
+				checkExitFrame();
+			}
+		});
+
 		f.add(b1);
 		f.add(tf1);
 		f.add(lpw);
@@ -145,8 +152,4 @@ public class ExitFrame extends AFrame {
 		}
 	}
 
-	public void actionPerformed(ActionEvent e) {
-		joinDAO();
-		checkExitFrame();
-	}
 }

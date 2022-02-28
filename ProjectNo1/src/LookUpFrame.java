@@ -42,8 +42,8 @@ public class LookUpFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 		b1 = new Button("조회");
-		b2 = new Button("개인정보 조회");
-		b3 = new Button("개인정보 수정");
+		b2 = new Button("직원정보 조회");
+		b3 = new Button("직원정보 수정");
 		b4 = new Button("삭제");
 		b1.setSize(40, 20);
 		b2.setSize(160, 60);
@@ -114,14 +114,14 @@ public class LookUpFrame extends AFrame {
 		lst = new List();
 		lst.setSize(200, 70);
 		lst.setLocation(35, 90);
-		lst.add(p);
-		lst.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent me) {
-				if (me.getModifiers() == me.BUTTON3_MASK) {
-					p.show(f, me.getX(), me.getY());
-				}
-			}
-		});
+//		lst.add(p);
+//		lst.addMouseListener(new MouseAdapter() {
+//			public void mousePressed(MouseEvent me) {
+//				if (me.getModifiers() == me.BUTTON3_MASK) {
+//					p.show(f, me.getX(), me.getY());
+//				}
+//			}
+//		});
 
 		ta = new TextArea();
 		ta.setSize(200, 90);
