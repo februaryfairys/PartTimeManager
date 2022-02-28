@@ -1,10 +1,6 @@
 
-import java.awt.Button;
-import java.awt.Frame;
-import java.awt.Label;
-import java.awt.event.ActionEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.*;
+import java.awt.event.*;
 
 public class CheckNameOrPassword extends AFrame {
 	private Frame f;

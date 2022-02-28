@@ -1,16 +1,6 @@
-import java.awt.Button;
-import java.awt.Frame;
-import java.awt.Label;
-import java.awt.TextField;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -213,7 +203,7 @@ public class JoinFrame extends AFrame {
 
 			dt = sdfDt.format(now);
 			joinTime = sdfNow.format(now);
-			
+
 			sql = "insert into WORKINGPARTTIMERS VALUES ('" + tf1.getText() + "','" + tf2.getText() + "','" + joinTime
 					+ "')";
 			sql2 = "insert into WORKTIME VALUES ('" + dt + "','" + tf1.getText() + "', '" + joinTime

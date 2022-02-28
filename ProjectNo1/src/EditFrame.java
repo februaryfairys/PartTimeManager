@@ -1,14 +1,5 @@
-import java.awt.Button;
-import java.awt.Checkbox;
-import java.awt.CheckboxGroup;
-import java.awt.Choice;
-import java.awt.Frame;
-import java.awt.Label;
-import java.awt.TextField;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.*;
+import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -90,11 +81,10 @@ public class EditFrame extends AFrame {
 					l4.setText("두 글자 이상 입력하세요.");
 				} else if (c.getSelectedItem().equals("연락처")
 						&& (tf.getText().length() > 11 || tf.getText().length() < 10)) {
-					l5.setText("올바른 연락처를 입력하세요.");
+					l4.setText("올바른 연락처를 입력하세요.");
 				} else if ((c.getSelectedItem().equals("성명") && tf.getText().length() >= 2)
 						|| (c.getSelectedItem().equals("연락차")
 								&& (tf.getText().length() == 11 || tf.getText().length() == 10))) {
-					f.dispose();
 					checkEditFrame();
 				}
 			}
@@ -104,6 +94,7 @@ public class EditFrame extends AFrame {
 		f.add(l2);
 		f.add(l3);
 		f.add(l4);
+		f.add(l5);
 		f.add(c);
 		f.add(tf);
 		f.add(c2);
@@ -155,7 +146,7 @@ public class EditFrame extends AFrame {
 	}
 
 	public void completeEditFrame() {
-		cefF = new Frame("등록완료");
+		cefF = new Frame("수정완료");
 		cefF.setSize(250, 150);
 		cefF.setLayout(null);
 		cefF.addWindowListener(new WindowAdapter() {
@@ -166,7 +157,7 @@ public class EditFrame extends AFrame {
 		cefF.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		cefL1 = new Label("수정되었습니다.", Label.CENTER);
-		cefL2 = new Label(getName() + "님의 정보를 확인해주세요.", Label.CENTER);
+		cefL2 = new Label(tf.getText() + "님의 정보를 확인해주세요.", Label.CENTER);
 		cefL1.setSize(250, 20);
 		cefL1.setLocation(0, 40);
 		cefL2.setSize(250, 20);
@@ -179,6 +170,7 @@ public class EditFrame extends AFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				cefF.dispose();
+				
 			}
 		});
 		cefF.add(cefL1);
@@ -193,7 +185,7 @@ public class EditFrame extends AFrame {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "c##ezen";
 		String password = "ezen1234";
-		String sql;
+		String sql1, sql2, sql3;
 		String v1 = "NAME";
 
 		try {
@@ -208,13 +200,18 @@ public class EditFrame extends AFrame {
 				v1 = "TEL";
 			}
 
-			sql = "update PARTTIMERS set" + v1 + " = '" + tf.getText() + "' where NAME = " + getName();
+			sql1 = "update PARTTIMERS set " + v1 + " = '" + tf.getText() + "' where NAME = '" + getName() + "'";
+			sql2 = "update WORKINGPARTTIMERS set " + v1 + " = '" + tf.getText() + "' where NAME = '" + getName() + "'";
+			sql3 = "update WORKTIME set " + v1 + " = '" + tf.getText() + "' where NAME = '" + getName() + "'";
 			
-			if (!c2.getSelectedItem().equals("아니요")) {
-				sql = "update PARTTIMERS set" + v1 + "= '" + tf.getText() + "', ' ROLE = '" + c2.getSelectedItem()
-						+ "' where NAME = " + getName();
+			if (!(c2.getSelectedItem().equals("아니요"))) {
+				sql1 = "update PARTTIMERS set " + v1 + "= '" + tf.getText() + "', ROLE = '" + c2.getSelectedItem()
+						+ "' where NAME = '" + getName() + "'";
 			}
-			boolean b = stmt.execute(sql);
+
+			boolean b = stmt.execute(sql1);
+			stmt.execute(sql2);
+			stmt.execute(sql3);
 			if (!b) {
 				System.out.println("UPDATE SUCCSESS.\n");
 			} else {

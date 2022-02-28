@@ -21,7 +21,7 @@ public class ShowAllDAO {
 		try {
 			connDB();
 
-			query = "SELECT * from PARTTIMERS ORDER BY ROLE";
+			query = "SELECT * from PARTTIMERS ORDER BY ROLE, NAME";
 
 			System.out.println(query);
 			rs = stmt.executeQuery(query);

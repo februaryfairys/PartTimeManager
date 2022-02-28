@@ -1,12 +1,5 @@
-import java.awt.Button;
-import java.awt.Choice;
-import java.awt.Frame;
-import java.awt.Label;
-import java.awt.TextField;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.*;
+import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -23,11 +16,11 @@ public class AddFrame2 extends AFrame {
 	private String PW;
 	private String TEL;
 	private String ROLE;
-	
 
 	InputYourInfo iyi = new InputYourInfo();
 
 	public void start() {
+		Frame f;
 
 		f = new Frame("등록");
 		f.setSize(270, 465);
@@ -201,7 +194,6 @@ public class AddFrame2 extends AFrame {
 	}
 
 	public void checkAddFrame() {
-	
 
 		chaf = new Frame("등록");
 		chaf.setSize(250, 160);
