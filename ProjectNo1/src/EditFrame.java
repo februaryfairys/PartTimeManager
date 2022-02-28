@@ -106,9 +106,7 @@ public class EditFrame extends AFrame {
 		f.add(l4);
 		f.add(c);
 		f.add(tf);
-		f.add(cb1);
-		f.add(cb2);
-		f.add(cb3);
+		f.add(c2);
 		f.add(b);
 		f.setVisible(true);
 
@@ -196,6 +194,7 @@ public class EditFrame extends AFrame {
 		String user = "c##ezen";
 		String password = "ezen1234";
 		String sql;
+		String v1 = "NAME";
 
 		try {
 
@@ -205,14 +204,21 @@ public class EditFrame extends AFrame {
 			System.out.println("oracle connection sucess.\n");
 			Statement stmt = conn.createStatement();
 
-			sql = "insert into PARTTIMERS VALUES ('" + getNAME() + "','" + getPW() + "','" + getTEL() + "' , '"
-					+ getROLE() + "')";
+			if (c.getSelectedItem().equals("연락처")) {
+				v1 = "TEL";
+			}
 
+			sql = "update PARTTIMERS set" + v1 + " = '" + tf.getText() + "' where NAME = " + getName();
+			
+			if (!c2.getSelectedItem().equals("아니요")) {
+				sql = "update PARTTIMERS set" + v1 + "= '" + tf.getText() + "', ' ROLE = '" + c2.getSelectedItem()
+						+ "' where NAME = " + getName();
+			}
 			boolean b = stmt.execute(sql);
 			if (!b) {
-				System.out.println("INSERT SUCCSESS.\n");
+				System.out.println("UPDATE SUCCSESS.\n");
 			} else {
-				System.out.println("INSERT FAIL.\n");
+				System.out.println("UPDATE FAIL.\n");
 			}
 
 		} catch (ClassNotFoundException e) {
