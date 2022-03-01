@@ -14,7 +14,7 @@ public class ManagingFrame extends AFrame {
 	InputPasswordFrame ipf = new InputPasswordFrame();
 
 	public void start() {
-		f = new Frame("°ü¸®ÀÚ");
+		f = new Frame("Manager");
 		f.setSize(230, 300);
 		f.setLayout(null);
 		f.addWindowListener(new WindowAdapter() {

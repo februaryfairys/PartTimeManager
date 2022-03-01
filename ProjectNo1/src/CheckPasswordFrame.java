@@ -9,7 +9,7 @@ public class CheckPasswordFrame extends AFrame {
 
 	public void start() {
 		f = new Frame("Error");
-		f.setSize(250, 150);
+		f.setSize(250, 160);
 		f.setLayout(null);
 		f.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent E) {
@@ -19,12 +19,12 @@ public class CheckPasswordFrame extends AFrame {
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		l = new Label("올바른 비밀번호를 입력하세요.", Label.CENTER);
-		l.setSize(250, 50);
-		l.setLocation(0, 45);
+		l.setSize(250, 20);
+		l.setLocation(0, 65);
 
 		b = new Button("확인");
-		b.setSize(60, 30);
-		b.setLocation(95, 100);
+		b.setSize(50, 30);
+		b.setLocation(100, 110);
 		b.addActionListener(this);
 
 		f.add(l);

@@ -8,7 +8,7 @@ public class SettingsFrame extends AFrame {
 	SetPasswordFrame spf = new SetPasswordFrame();
 
 	public void start() {
-		f = new Frame("¼³Á¤");
+		f = new Frame("Setting");
 		f.setSize(230, 305);
 		f.setLayout(null);
 		f.addWindowListener(new WindowAdapter() {
@@ -36,12 +36,12 @@ public class SettingsFrame extends AFrame {
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-			
+				
 			}
 		});
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				
 			}
 		});
 		f.add(b1);

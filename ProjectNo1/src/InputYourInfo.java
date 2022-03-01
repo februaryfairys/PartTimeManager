@@ -8,7 +8,7 @@ public class InputYourInfo extends AFrame {
 
 	public void name() {
 		nF = new Frame("Error");
-		nF.setSize(250, 150);
+		nF.setSize(250, 160);
 		nF.setLayout(null);
 		nF.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent E) {
@@ -18,12 +18,12 @@ public class InputYourInfo extends AFrame {
 		nF.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 		
 		nL = new Label("성명을 입력하세요.", Label.CENTER);
-		nL.setSize(250, 50);
-		nL.setLocation(0, 45);
+		nL.setSize(250, 20);
+		nL.setLocation(0, 65);
 
 		nB = new Button("확인");
-		nB.setSize(60, 30);
-		nB.setLocation(95, 100);
+		nB.setSize(50, 30);
+		nB.setLocation(100, 110);
 		nB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				nF.dispose();
@@ -37,7 +37,7 @@ public class InputYourInfo extends AFrame {
 
 	public void password() {
 		pF = new Frame("Error");
-		pF.setSize(250, 150);
+		pF.setSize(250, 160);
 		pF.setLayout(null);
 		pF.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent E) {
@@ -47,12 +47,12 @@ public class InputYourInfo extends AFrame {
 		pF.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		pL = new Label("비밀번호를 입력하세요.", Label.CENTER);
-		pL.setSize(250, 50);
-		pL.setLocation(0, 45);
+		pL.setSize(250, 20);
+		pL.setLocation(0, 65);
 
 		pB = new Button("확인");
-		pB.setSize(60, 30);
-		pB.setLocation(95, 100);
+		pB.setSize(50, 30);
+		pB.setLocation(100, 110);
 		pB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pF.dispose();
@@ -65,7 +65,7 @@ public class InputYourInfo extends AFrame {
 
 	public void tel() {
 		tF = new Frame("Error");
-		tF.setSize(250, 150);
+		tF.setSize(250, 160);
 		tF.setLayout(null);
 		tF.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent E) {
@@ -75,12 +75,12 @@ public class InputYourInfo extends AFrame {
 		tF.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		tL = new Label("연락처를 입력하세요.", Label.CENTER);
-		tL.setSize(250, 50);
-		tL.setLocation(0, 45);
+		tL.setSize(250, 20);
+		tL.setLocation(0, 65);
 
 		tB = new Button("확인");
-		tB.setSize(60, 30);
-		tB.setLocation(95, 100);
+		tB.setSize(50, 30);
+		tB.setLocation(100, 110);
 		tB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tF.dispose();

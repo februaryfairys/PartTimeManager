@@ -7,8 +7,8 @@ public class CompletePasswordChangeFrame extends AFrame {
 	private Label l1, l2;
 
 	public void start() {
-		f = new Frame("변경완료");
-		f.setSize(250, 150);
+		f = new Frame("Complete");
+		f.setSize(250, 160);
 		f.setLayout(null);
 		f.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent E) {
@@ -18,17 +18,17 @@ public class CompletePasswordChangeFrame extends AFrame {
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		l1 = new Label("비밀번호가 변경되었습니다.", Label.CENTER);
-		l2 = new Label("비밀번호가 변경되었습니다.", Label.CENTER);
+		l2 = new Label("새로운 비밀번호를 기억하세요.", Label.CENTER);
 		l1.setSize(250, 20);
-		l1.setLocation(0, 40);
 		l2.setSize(250, 20);
-		l2.setLocation(0, 70);
+		l1.setLocation(0, 50);
+		l2.setLocation(0, 80);
 
 		b = new Button("확인");
-		b.setSize(60, 30);
-		b.setLocation(95, 100);
+		b.setSize(50, 30);
+		b.setLocation(100, 110);
 		b.addActionListener(this);
-//		f.add(l1);
+		f.add(l1);
 		f.add(l2);
 		f.add(b);
 		f.setVisible(true);

@@ -1,21 +1,6 @@
-import java.awt.Button;
-import java.awt.Frame;
-import java.awt.Label;
-import java.awt.List;
-import java.awt.MenuItem;
-import java.awt.PopupMenu;
-import java.awt.TextArea;
-import java.awt.TextField;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class LookUpFrame extends AFrame {
@@ -32,7 +17,7 @@ public class LookUpFrame extends AFrame {
 	EditFrame ef = new EditFrame();
 
 	public void start() {
-		f = new Frame("직원조회");
+		f = new Frame("Look Up");
 		f.setSize(460, 300);
 		f.setLayout(null);
 		f.addWindowListener(new WindowAdapter() {
@@ -140,7 +125,7 @@ public class LookUpFrame extends AFrame {
 
 	public void checkDeleteFrame() {
 
-		chdfF = new Frame("삭제");
+		chdfF = new Frame("Delete");
 		chdfF.setSize(250, 160);
 		chdfF.setLayout(null);
 		chdfF.addWindowListener(new WindowAdapter() {
@@ -149,12 +134,14 @@ public class LookUpFrame extends AFrame {
 			}
 		});
 		chdfF.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
+
 		chdfL1 = new Label("※이 작업은 되돌릴 수 없습니다.※", Label.CENTER);
 		chdfL2 = new Label("직원 정보를 영구적으로 삭제할까요?", Label.CENTER);
+		chdfL1.setForeground(Color.red);
 		chdfL1.setSize(250, 20);
 		chdfL2.setSize(250, 20);
-		chdfL1.setLocation(0, 40);
-		chdfL2.setLocation(0, 70);
+		chdfL1.setLocation(0, 50);
+		chdfL2.setLocation(0, 80);
 
 		chdfB1 = new Button("네");
 		chdfB2 = new Button("아니요");
@@ -184,8 +171,8 @@ public class LookUpFrame extends AFrame {
 	}
 
 	public void completeDeleteFrame() {
-		cdfF = new Frame("삭제완료");
-		cdfF.setSize(250, 150);
+		cdfF = new Frame("Complete");
+		cdfF.setSize(250, 160);
 		cdfF.setLayout(null);
 		cdfF.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent E) {
@@ -198,12 +185,12 @@ public class LookUpFrame extends AFrame {
 		cdfL2 = new Label(tf.getText() + "님 수고하셨습니다.", Label.CENTER);
 		cdfL1.setSize(250, 20);
 		cdfL2.setSize(250, 20);
-		cdfL1.setLocation(0, 40);
-		cdfL2.setLocation(0, 70);
+		cdfL1.setLocation(0, 50);
+		cdfL2.setLocation(0, 80);
 
 		cdfB = new Button("확인");
-		cdfB.setSize(60, 30);
-		cdfB.setLocation(95, 100);
+		cdfB.setSize(50, 30);
+		cdfB.setLocation(100, 110);
 		cdfB.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {

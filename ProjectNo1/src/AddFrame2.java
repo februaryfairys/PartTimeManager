@@ -1,9 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class AddFrame2 extends AFrame {
 	private Frame f, f2, chaf, cafF;
@@ -22,7 +19,7 @@ public class AddFrame2 extends AFrame {
 	public void start() {
 		Frame f;
 
-		f = new Frame("등록");
+		f = new Frame("Add");
 		f.setSize(270, 465);
 		f.setLayout(null);
 		f.addWindowListener(new WindowAdapter() {
@@ -39,6 +36,8 @@ public class AddFrame2 extends AFrame {
 		ltel = new Label("연락처");
 		ltel2 = new Label("");
 		lchpw = new Label("직원번호를 입력하세요.");
+		lid2.setForeground(Color.red);
+		ltel2.setForeground(Color.RED);
 		lid.setSize(30, 20);
 		lid2.setSize(180, 20);
 		lpw.setSize(55, 20);
@@ -167,7 +166,7 @@ public class AddFrame2 extends AFrame {
 	public void checkPasswordcheckFrame() {
 
 		f2 = new Frame("Error");
-		f2.setSize(250, 150);
+		f2.setSize(250, 160);
 		f2.setLayout(null);
 		f2.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent E) {
@@ -178,10 +177,10 @@ public class AddFrame2 extends AFrame {
 
 		lError = new Label("직원번호 일치 확인을 해주세요.", Label.CENTER);
 		lError.setSize(250, 20);
-		lError.setLocation(0, 55);
+		lError.setLocation(0, 65);
 		b3 = new Button("확인");
-		b3.setSize(60, 30);
-		b3.setLocation(95, 100);
+		b3.setSize(50, 30);
+		b3.setLocation(100, 110);
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				f2.dispose();
@@ -207,7 +206,7 @@ public class AddFrame2 extends AFrame {
 
 		chafL2 = new Label("새로운 직원을 등록할까요?", Label.CENTER);
 		chafL2.setSize(250, 20);
-		chafL2.setLocation(0, 60);
+		chafL2.setLocation(0, 65);
 
 		chafB1 = new Button("네");
 		chafB2 = new Button("아니요");
@@ -237,7 +236,7 @@ public class AddFrame2 extends AFrame {
 
 	public void completeAddFrame() {
 		cafF = new Frame("등록완료");
-		cafF.setSize(250, 150);
+		cafF.setSize(250, 160);
 		cafF.setLayout(null);
 		cafF.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent E) {
@@ -249,13 +248,13 @@ public class AddFrame2 extends AFrame {
 		cafL1 = new Label("등록되었습니다.", Label.CENTER);
 		cafL2 = new Label(getNAME() + "님 환영합니다.", Label.CENTER);
 		cafL1.setSize(250, 20);
-		cafL1.setLocation(0, 40);
+		cafL1.setLocation(0, 50);
 		cafL2.setSize(250, 20);
-		cafL2.setLocation(0, 70);
+		cafL2.setLocation(0, 80);
 
 		cafB = new Button("확인");
-		cafB.setSize(60, 30);
-		cafB.setLocation(95, 100);
+		cafB.setSize(50, 30);
+		cafB.setLocation(100, 110);
 		cafB.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {

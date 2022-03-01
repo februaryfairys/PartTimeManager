@@ -24,7 +24,7 @@ public class EditFrame extends AFrame {
 
 	public void start() {
 
-		f = new Frame("직원 정보 수정");
+		f = new Frame("Edit");
 		f.setSize(270, 400);
 		f.setLayout(null);
 		f.addWindowListener(new WindowAdapter() {
@@ -34,7 +34,7 @@ public class EditFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		l1 = new Label(getName() + "님의 개인정보를 수정합니다", Label.CENTER);
+		l1 = new Label(getName() + "님의 직원정보를 수정합니다", Label.CENTER);
 		l2 = new Label("수정할 항목");
 		l3 = new Label("수정할 내용");
 		l4 = new Label();
@@ -105,7 +105,7 @@ public class EditFrame extends AFrame {
 
 	public void checkEditFrame() {
 
-		chefF = new Frame("수정");
+		chefF = new Frame("Edit");
 		chefF.setSize(250, 160);
 		chefF.setLayout(null);
 		chefF.addWindowListener(new WindowAdapter() {
@@ -117,7 +117,7 @@ public class EditFrame extends AFrame {
 
 		chefL2 = new Label("직원 정보를 수정할까요?", Label.CENTER);
 		chefL2.setSize(250, 20);
-		chefL2.setLocation(0, 60);
+		chefL2.setLocation(0, 65);
 
 		chefB1 = new Button("네");
 		chefB2 = new Button("아니요");
@@ -146,8 +146,8 @@ public class EditFrame extends AFrame {
 	}
 
 	public void completeEditFrame() {
-		cefF = new Frame("수정완료");
-		cefF.setSize(250, 150);
+		cefF = new Frame("Complete");
+		cefF.setSize(250, 160);
 		cefF.setLayout(null);
 		cefF.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent E) {
@@ -159,13 +159,13 @@ public class EditFrame extends AFrame {
 		cefL1 = new Label("수정되었습니다.", Label.CENTER);
 		cefL2 = new Label(tf.getText() + "님의 정보를 확인해주세요.", Label.CENTER);
 		cefL1.setSize(250, 20);
-		cefL1.setLocation(0, 40);
+		cefL1.setLocation(0, 50);
 		cefL2.setSize(250, 20);
-		cefL2.setLocation(0, 70);
+		cefL2.setLocation(0, 80);
 
 		cefB = new Button("확인");
-		cefB.setSize(60, 30);
-		cefB.setLocation(95, 100);
+		cefB.setSize(50, 30);
+		cefB.setLocation(100, 110);
 		cefB.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {

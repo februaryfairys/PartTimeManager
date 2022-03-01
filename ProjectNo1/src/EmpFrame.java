@@ -10,7 +10,7 @@ public class EmpFrame extends AFrame {
 	OutFrame of = new OutFrame();
 
 	public void start() {
-		f = new Frame("Á÷¿ø");
+		f = new Frame("Employee");
 		f.setSize(230, 305);
 		f.setLayout(null);
 		f.addWindowListener(new WindowAdapter() {

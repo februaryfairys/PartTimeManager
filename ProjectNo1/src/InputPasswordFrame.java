@@ -9,13 +9,13 @@ import java.sql.Statement;
 public class InputPasswordFrame extends AFrame {
 	private Frame f;
 	private TextField tf1;
-	private Button b1;
+	private Button b1, b2;
 	private Label lpw;
 	private String PASSWORD = "0";
 
 	public void start() {
 		f = new Frame("Input Password");
-		f.setSize(250, 150);
+		f.setSize(250, 160);
 		f.setLayout(null);
 		f.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent E) {
@@ -23,18 +23,22 @@ public class InputPasswordFrame extends AFrame {
 			}
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
-		
+
 		lpw = new Label("비밀번호를 입력하세요.", Label.CENTER);
 		lpw.setSize(250, 20);
-		lpw.setLocation(0, 40);
-		
+		lpw.setLocation(0, 50);
+
 		tf1 = new TextField("");
 		tf1.setSize(100, 20);
-		tf1.setLocation(75, 70);
+		tf1.setLocation(75, 80);
+		tf1.setEchoChar('●');
 
 		b1 = new Button("확인");
-		b1.setSize(100, 30);
-		b1.setLocation(75, 100);
+		b2 = new Button("취소");
+		b1.setSize(50, 30);
+		b2.setSize(50, 30);
+		b1.setLocation(75, 110);
+		b2.setLocation(125, 110);
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CheckPasswordFrame chpf = new CheckPasswordFrame();
@@ -51,8 +55,12 @@ public class InputPasswordFrame extends AFrame {
 				}
 			}
 		});
+		b2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				f.dispose();
+			}
+		});
 
-		
 		f.add(b1);
 		f.add(tf1);
 		f.add(lpw);

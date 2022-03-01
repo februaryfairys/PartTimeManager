@@ -14,7 +14,7 @@ public class SetPasswordFrame extends AFrame {
 	private Button b1, b2, ccpfB1, ccpfB2;
 	private String PASSWORD = "0";
 	InputYourInfo iyi = new InputYourInfo();
-	InputPasswordErrorFrame ipef = new InputPasswordErrorFrame();
+	CheckPasswordFrame chpf = new CheckPasswordFrame();
 	CompletePasswordChangeFrame cpcf = new CompletePasswordChangeFrame();
 
 	public void start() {
@@ -67,14 +67,14 @@ public class SetPasswordFrame extends AFrame {
 				} else if (tf2.getText().equals("") || tf3.getText().equals("")) {
 					iyi.password();
 				} else if (tf2.getText().length() != 4 || tf3.getText().length() != 4) {
-					ipef.start();
+					chpf.start();
 					l5.setText("<비밀번호는 4자리로 설정해주세요.>");
 				} else {
 					if (tf2.getText().equals(tf3.getText())) {
 						joinDAO();
 						CheckChangePasswordFrame();
 					} else if (tf2.getText() != tf3.getText()) {
-						ipef.start();
+						chpf.start();
 						l5.setText("<새로운 비밀번호가 일치하지 않습니다.>");
 					}
 
@@ -122,8 +122,8 @@ public class SetPasswordFrame extends AFrame {
 		ccpfB2 = new Button("아니요");
 		ccpfB1.setSize(50, 30);
 		ccpfB2.setSize(50, 30);
-		ccpfB1.setLocation(75, 120);
-		ccpfB2.setLocation(125, 120);
+		ccpfB1.setLocation(75, 110);
+		ccpfB2.setLocation(125, 110);
 		ccpfB1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (PASSWORD.equals(tf1.getText())) {
@@ -132,7 +132,7 @@ public class SetPasswordFrame extends AFrame {
 					f2.dispose();
 					cpcf.start();
 				} else {
-					ipef.start();
+					chpf.start();
 					l5.setText("<현재 비밀번호가 일치하지 않습니다.>");
 				}
 			}

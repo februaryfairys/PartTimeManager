@@ -29,7 +29,7 @@ public class OutFrame extends AFrame {
 
 	public void start() {
 
-		f = new Frame("퇴근하기");
+		f = new Frame("Out");
 		f.setSize(250, 240);
 		f.setLayout(null);
 		f.addWindowListener(new WindowAdapter() {
@@ -41,21 +41,22 @@ public class OutFrame extends AFrame {
 
 		lid = new Label("성명");
 		lpw = new Label("직원번호");
-		lid.setSize(55, 20);
-		lpw.setSize(55, 20);
-		lid.setLocation(30, 40);
-		lpw.setLocation(30, 100);
+		lid.setSize(50, 20);
+		lpw.setSize(50, 20);
+		lid.setLocation(35, 40);
+		lpw.setLocation(35, 100);
 
 		tf1 = new TextField();
 		tf2 = new TextField();
-		tf1.setSize(200, 20);
-		tf2.setSize(200, 20);
-		tf1.setLocation(25, 65);
-		tf2.setLocation(25, 125);
-
+		tf1.setSize(190, 20);
+		tf2.setSize(190, 20);
+		tf1.setLocation(30, 65);
+		tf2.setLocation(30, 125);
+		tf2.setEchoChar('●');
+		
 		b1 = new Button("퇴근하기");
-		b1.setSize(200, 50);
-		b1.setLocation(25, 160);
+		b1.setSize(160, 50);
+		b1.setLocation(45, 160);
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -133,7 +134,6 @@ public class OutFrame extends AFrame {
 			public void actionPerformed(ActionEvent e) {
 				checkDAO();
 				f2.dispose();
-
 			}
 		});
 		b3.addActionListener(new ActionListener() {
@@ -220,7 +220,6 @@ public class OutFrame extends AFrame {
 				rs.previous();
 				while (rs.next()) {
 					joinTime = rs.getString("JOINTIME");
-
 				}
 			}
 

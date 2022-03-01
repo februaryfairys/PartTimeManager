@@ -18,7 +18,7 @@ public class ExitFrame extends AFrame {
 
 	public void start() {
 		f = new Frame("Input Password");
-		f.setSize(250,150);
+		f.setSize(250,160);
 		f.setLayout(null);
 		f.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent E) {
@@ -29,15 +29,16 @@ public class ExitFrame extends AFrame {
 		
 		lpw = new Label("비밀번호를 입력하세요.", Label.CENTER);
 		lpw.setSize(250, 20);
-		lpw.setLocation(0, 40);
+		lpw.setLocation(0, 50);
 
 		tf1 = new TextField("");
 		tf1.setSize(100, 20);
-		tf1.setLocation(75, 70);
+		tf1.setLocation(75,80);
+		tf1.setEchoChar('●');
 
 		b1 = new Button("확인");
-		b1.setSize(100, 30);
-		b1.setLocation(75, 100);
+		b1.setSize(50, 30);
+		b1.setLocation(100, 110);
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				joinDAO();
@@ -58,8 +59,8 @@ public class ExitFrame extends AFrame {
 		int hour = now.get(Calendar.HOUR);
 		int minute = now.get(Calendar.MINUTE);
 
-		cefF = new Frame("프로그램 종료");
-		cefF.setSize(250, 150);
+		cefF = new Frame("Exit");
+		cefF.setSize(250, 160);
 		cefF.setLayout(null);
 		cefF.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent E) {
@@ -78,22 +79,24 @@ public class ExitFrame extends AFrame {
 		cefL2 = new Label("프로그램을 종료할까요?", Label.CENTER);
 		cefL1.setSize(250, 20);
 		cefL2.setSize(250, 20);
-		cefL1.setLocation(0, 40);
-		cefL2.setLocation(0, 70);
+		cefL1.setLocation(0, 50);
+		cefL2.setLocation(0, 80);
 
 		cefB1 = new Button("네");
 		cefB2 = new Button("아니요");
 		cefB1.setSize(50, 30);
 		cefB2.setSize(50, 30);
-		cefB1.setLocation(75, 100);
-		cefB2.setLocation(125, 100);
+		cefB1.setLocation(75, 110);
+		cefB2.setLocation(125, 110);
 		cefB1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 //				if (tf1.getText().equals("")) {
 //					
 //				}
 				if (PASSWORD.equals(tf1.getText())) {
+					PASSWORD = "0";
 					System.exit(0);
+				
 				}
 
 				if (PASSWORD == "0") {
@@ -105,7 +108,6 @@ public class ExitFrame extends AFrame {
 		});
 		cefB2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				f.dispose();
 				cefF.dispose();
 			}
 		});
