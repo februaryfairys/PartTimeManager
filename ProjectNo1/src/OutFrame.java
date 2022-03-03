@@ -53,7 +53,7 @@ public class OutFrame extends AFrame {
 		tf1.setLocation(30, 65);
 		tf2.setLocation(30, 125);
 		tf2.setEchoChar('¡Ü');
-		
+
 		b1 = new Button("Åð±ÙÇÏ±â");
 		b1.setSize(160, 50);
 		b1.setLocation(45, 160);
@@ -225,7 +225,7 @@ public class OutFrame extends AFrame {
 
 			sql2 = "delete from WORKINGPARTTIMERS where name = '" + tf1.getText() + "' AND PW = '" + tf2.getText()
 					+ "'";
-			sql3 = "insert into WORKTIME VALUES ('" + dt + "','" + tf1.getText() + "','null', '" + outTime + "', '"
+			sql3 = "insert into WORKTIME VALUES ('" + dt + "','" + tf1.getText() + "','0', '" + outTime + "', '"
 					+ timeCal(joinTime, outTime) + "')";
 
 			boolean b2 = stmt.execute(sql2);
@@ -263,35 +263,19 @@ public class OutFrame extends AFrame {
 		int jointimem = Integer.parseInt(jointime.substring(2));
 		int outtimem = Integer.parseInt(outtime.substring(2));
 
-//		System.out.println(jointimeh);
-//		System.out.println(outtimeh);
-//		System.out.println(jointimem);
-//		System.out.println(outtimem);
-
 		int jointimehm = jointimeh * 60;
 		int outtimehm = outtimeh * 60;
-
-//		System.out.println(jointimehm);
-//		System.out.println(outtimehm);
 
 		int jointime2 = jointimehm + jointimem;
 		int outtime2 = outtimehm + outtimem;
 
-//		System.out.println(jointime2);
-//		System.out.println(outtime2);
-
 		int worktimehm = outtime2 - jointime2;
-
-//		System.out.println(worktimehm);
 
 		int worktimeh = worktimehm / 60;
 		int worktimem = worktimehm % 60;
 
-//		System.out.println(worktimeh);
-//		System.out.println(worktimem);
-
 		worktime = worktimeh + worktimem + "";
-		
+
 		return worktime;
 	}
 }

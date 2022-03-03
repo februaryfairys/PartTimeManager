@@ -9,18 +9,19 @@ public class PTM {
 		LookUpFrame luf = new LookUpFrame();
 		EditFrame ef = new EditFrame();
 		CheckNameOrPassword cnp = new CheckNameOrPassword();
-		
 		CheckPasswordFrame cpf = new CheckPasswordFrame();
-		cnp.start();
-		cpf.start();
-		af.completeAddFrame();
+		PayFrame pf = new PayFrame();
+//		cnp.start();
+//		cpf.start();
+//		af.completeAddFrame();
+//		pf.start(null,null);
 //		mf.start();
 //		ipf.start();
 //		ipef.start();
 //		mngf.start();
 //		af.start();
 //		spf.start();
-//		luf.start();
+		luf.start();
 //		ef.start();
 //		zt.start();
 

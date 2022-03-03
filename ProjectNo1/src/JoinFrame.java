@@ -207,7 +207,7 @@ public class JoinFrame extends AFrame {
 			sql = "insert into WORKINGPARTTIMERS VALUES ('" + tf1.getText() + "','" + tf2.getText() + "','" + joinTime
 					+ "')";
 			sql2 = "insert into WORKTIME VALUES ('" + dt + "','" + tf1.getText() + "', '" + joinTime
-					+ "', 'null','null')";
+					+ "', '0','0')";
 			boolean b = stmt.execute(sql);
 			boolean b2 = stmt.execute(sql2);
 

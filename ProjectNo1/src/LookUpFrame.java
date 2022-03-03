@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class LookUpFrame extends AFrame {
 	private Frame f, chdfF, cdfF;
 	private List lst;
-	private Button b1, b2, b3, b4, chdfB1, chdfB2, cdfB;
+	private Button b1, b2, b3, b4, b5, chdfB1, chdfB2, cdfB;
 	private TextField tf;
 	private TextArea ta;
 	private Label chdfL1, chdfL2, cdfL1, cdfL2;
@@ -27,17 +27,20 @@ public class LookUpFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 		b1 = new Button("조회");
-		b2 = new Button("직원정보 조회");
-		b3 = new Button("직원정보 수정");
-		b4 = new Button("삭제");
+		b2 = new Button("직원 정보 조회");
+		b3 = new Button("직원 정보 수정");
+		b4 = new Button("직원 정보 삭제");
+		b5 = new Button("근무 시간 조회");
 		b1.setSize(40, 20);
-		b2.setSize(160, 60);
-		b3.setSize(160, 60);
-		b4.setSize(160, 60);
+		b2.setSize(160, 40);
+		b3.setSize(160, 40);
+		b4.setSize(160, 40);
+		b5.setSize(160, 40);
 		b1.setLocation(195, 50);
 		b2.setLocation(265, 50);
-		b3.setLocation(265, 130);
-		b4.setLocation(265, 210);
+		b3.setLocation(265, 110);
+		b4.setLocation(265, 170);
+		b5.setLocation(265, 230);
 
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -61,7 +64,6 @@ public class LookUpFrame extends AFrame {
 					String info = name + " " + role + "\n직원번호 : " + pw + "\n연락처 : " + tel;
 					ta.setText(info);
 				}
-
 			}
 		});
 		b3.addActionListener(new ActionListener() {
@@ -77,6 +79,14 @@ public class LookUpFrame extends AFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (lst.getSelectedItem() != null) {
 					checkDeleteFrame();
+				}
+			}
+		});
+
+		b5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (lst.getSelectedItem() != null) {
+					timeDAO();
 				}
 			}
 		});
@@ -117,6 +127,7 @@ public class LookUpFrame extends AFrame {
 		f.add(b2);
 		f.add(b3);
 		f.add(b4);
+		f.add(b5);
 		f.add(tf);
 		f.add(lst);
 		f.add(ta);
@@ -231,6 +242,55 @@ public class LookUpFrame extends AFrame {
 				System.out.println("DELETE FAIL.\n");
 			}
 
+		} catch (ClassNotFoundException e) {
+			System.out.println(e);
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+	}
+
+	public void timeDAO() {
+
+		String driver = "oracle.jdbc.driver.OracleDriver";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "c##ezen";
+		String password = "ezen1234";
+		String sql1;
+
+		try {
+
+			Class.forName(driver);
+			System.out.println("jdbc driver loading success.");
+			Connection conn = DriverManager.getConnection(url, user, password);
+			System.out.println("oracle connection sucess.\n");
+			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+			sql1 = "SELECT DISTINCT DT FROM WORKTIME WHERE NAME = '" + lst.getSelectedItem() + "'";
+
+			ResultSet rs = stmt.executeQuery(sql1);
+
+			
+
+			ArrayList<WorkTimeVo> list = new ArrayList<WorkTimeVo>();
+			
+			rs.first();
+			
+			if (rs.getRow() == 0) {
+				System.out.println("0 row selected.....");
+			} else {
+				System.out.println(rs.getRow() + " rows selected.....");
+				rs.previous();
+				while (rs.next()) {
+					
+					String DT = rs.getString("DT");
+					
+					WorkTimeVo data = new WorkTimeVo(DT);
+					list.add(data);
+				}
+				PayFrame pf = new PayFrame();
+				pf.start(lst.getSelectedItem(), list);
+			}
+			
 		} catch (ClassNotFoundException e) {
 			System.out.println(e);
 		} catch (SQLException e) {

@@ -62,6 +62,7 @@ public class InputPasswordFrame extends AFrame {
 		});
 
 		f.add(b1);
+		f.add(b2);
 		f.add(tf1);
 		f.add(lpw);
 		f.setVisible(true);
