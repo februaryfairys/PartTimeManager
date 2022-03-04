@@ -28,7 +28,7 @@ public class CompleteJoinFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		l1 = new Label("출근했습니다.");
+		l1 = new Label("출근했습니다.", Label.CENTER);
 		l2 = new Label(name + "님 반갑습니다.", Label.CENTER);
 		l1.setSize(250, 20);
 		l2.setSize(250, 20);

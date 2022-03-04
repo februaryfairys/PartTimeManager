@@ -8,18 +8,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
-public class PayFrame extends AFrame {
+public class WorkTimeFrame extends AFrame {
 	private Frame f;
 	private Button b1, b2;
 	private Label l1, l2, l3, l4, l5, l6, l7;
 	private Choice c1, c2, c3;
 	private TextArea ta1, ta2;
 	private TextField tf1;
+	private String result, name;
+	private int WTH, WTM, WT;
 
 	public void start(String name, ArrayList<WorkTimeVo> list) {
 
+		this.name = name;
 		f = new Frame("Work Time");
 		f.setSize(540, 400);
 		f.setLayout(null);
@@ -54,6 +62,7 @@ public class PayFrame extends AFrame {
 		l7.setLocation(305, 160);
 
 		c1 = new Choice();
+		c1 = new Choice();
 		c2 = new Choice();
 		c3 = new Choice();
 		c1.setSize(200, 20);
@@ -68,6 +77,7 @@ public class PayFrame extends AFrame {
 		for (int i = 0; i < list.size(); i++) {
 			WorkTimeVo data = list.get(i);
 			String DT = data.getDT();
+
 			c1.add(DT);
 			c2.add(DT);
 		}
@@ -90,7 +100,10 @@ public class PayFrame extends AFrame {
 		b1.setLocation(55, 330);
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				calDAO();
+				result = "해당 기간 동안의\n" + name + "님의 근무 시간은\n" + WTH + "시간 " + WTM + "분입니다.";
+				ta1.setText(result);
+		
 			}
 		});
 		b2 = new Button("계산");
@@ -98,6 +111,7 @@ public class PayFrame extends AFrame {
 		b2.setLocation(325, 330);
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 			}
 		});
 
@@ -119,4 +133,66 @@ public class PayFrame extends AFrame {
 		f.setVisible(true);
 
 	}
+
+	public void calDAO() {
+		String driver = "oracle.jdbc.driver.OracleDriver";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String user = "c##ezen";
+		String password = "ezen1234";
+		String sql1;
+
+		try {
+
+			Class.forName(driver);
+			System.out.println("jdbc driver loading success.");
+			Connection conn = DriverManager.getConnection(url, user, password);
+			System.out.println("oracle connection sucess.\n");
+			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+			sql1 = "SELECT sum(WORKTIMEH), sum(WORKTIMEM) FROM WORKTIME where NAME = '" + name + "'";
+			WTH = 0;
+			WTM = 0;
+			ResultSet rs = stmt.executeQuery(sql1);
+
+			rs.first();
+			if (rs.getRow() == 0) {
+				System.out.println("0 row selected.....");
+			} else {
+				System.out.println(rs.getRow() + " rows selected.....");
+				rs.previous();
+				while (rs.next()) {
+					WTH = rs.getInt("SUM(WORKTIMEH)");
+					WTM = rs.getInt("SUM(WORKTIMEM)");
+				}
+				WT = WTH * 60 + WTM;
+				workTimeH(WT);
+				workTimeM(WT);
+			}
+
+		} catch (ClassNotFoundException e) {
+			System.out.println(e);
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+
+	}
+
+	public int workTimeH(int WT) {
+
+		int workTimeH;
+
+		workTimeH = WT / 60;
+
+		return workTimeH;
+	}
+
+	public int workTimeM(int WT) {
+
+		int workTimeM;
+
+		workTimeM = WT % 60;
+
+		return workTimeM;
+	}
+
 }

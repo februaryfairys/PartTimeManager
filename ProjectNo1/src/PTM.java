@@ -10,18 +10,18 @@ public class PTM {
 		EditFrame ef = new EditFrame();
 		CheckNameOrPassword cnp = new CheckNameOrPassword();
 		CheckPasswordFrame cpf = new CheckPasswordFrame();
-		PayFrame pf = new PayFrame();
+		WorkTimeFrame pf = new WorkTimeFrame();
 //		cnp.start();
 //		cpf.start();
 //		af.completeAddFrame();
 //		pf.start(null,null);
-//		mf.start();
+		mf.start();
 //		ipf.start();
 //		ipef.start();
 //		mngf.start();
 //		af.start();
 //		spf.start();
-		luf.start();
+//		luf.start();
 //		ef.start();
 //		zt.start();
 

@@ -255,7 +255,9 @@ public class LookUpFrame extends AFrame {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "c##ezen";
 		String password = "ezen1234";
-		String sql1;
+		String sql1, name;
+
+		ArrayList<WorkTimeVo> list = new ArrayList<WorkTimeVo>();
 
 		try {
 
@@ -265,32 +267,27 @@ public class LookUpFrame extends AFrame {
 			System.out.println("oracle connection sucess.\n");
 			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-			sql1 = "SELECT DISTINCT DT FROM WORKTIME WHERE NAME = '" + lst.getSelectedItem() + "'";
+			name = lst.getSelectedItem();
+			sql1 = "SELECT DISTINCT DT FROM WORKTIME WHERE NAME = '" + name + "' order by DT";
 
 			ResultSet rs = stmt.executeQuery(sql1);
-
-			
-
-			ArrayList<WorkTimeVo> list = new ArrayList<WorkTimeVo>();
-			
 			rs.first();
-			
+
 			if (rs.getRow() == 0) {
 				System.out.println("0 row selected.....");
 			} else {
 				System.out.println(rs.getRow() + " rows selected.....");
 				rs.previous();
 				while (rs.next()) {
-					
 					String DT = rs.getString("DT");
-					
 					WorkTimeVo data = new WorkTimeVo(DT);
 					list.add(data);
+					System.out.println(DT);
 				}
-				PayFrame pf = new PayFrame();
+				WorkTimeFrame pf = new WorkTimeFrame();
 				pf.start(lst.getSelectedItem(), list);
 			}
-			
+
 		} catch (ClassNotFoundException e) {
 			System.out.println(e);
 		} catch (SQLException e) {
