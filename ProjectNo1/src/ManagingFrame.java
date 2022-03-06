@@ -26,7 +26,7 @@ public class ManagingFrame extends AFrame {
 
 		b1 = new Button("직원등록");
 		b2 = new Button("직원조회");
-		b3 = new Button("근무시간계산");
+		b3 = new Button("닫기");
 		b1.setSize(160, 60);
 		b2.setSize(160, 60);
 		b3.setSize(160, 60);
@@ -47,7 +47,7 @@ public class ManagingFrame extends AFrame {
 		});
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				f.dispose();
 			}
 		});
 		f.add(b1);

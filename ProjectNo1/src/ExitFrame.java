@@ -18,7 +18,7 @@ public class ExitFrame extends AFrame {
 
 	public void start() {
 		f = new Frame("Input Password");
-		f.setSize(250,160);
+		f.setSize(250, 160);
 		f.setLayout(null);
 		f.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent E) {
@@ -26,14 +26,14 @@ public class ExitFrame extends AFrame {
 			}
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
-		
+
 		lpw = new Label("비밀번호를 입력하세요.", Label.CENTER);
 		lpw.setSize(250, 20);
 		lpw.setLocation(0, 50);
 
 		tf1 = new TextField("");
 		tf1.setSize(100, 20);
-		tf1.setLocation(75,80);
+		tf1.setLocation(75, 80);
 		tf1.setEchoChar('●');
 
 		b1 = new Button("확인");
@@ -96,7 +96,7 @@ public class ExitFrame extends AFrame {
 				if (PASSWORD.equals(tf1.getText())) {
 					PASSWORD = "0";
 					System.exit(0);
-				
+
 				}
 
 				if (PASSWORD == "0") {

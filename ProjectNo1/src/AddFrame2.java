@@ -17,7 +17,6 @@ public class AddFrame2 extends AFrame {
 	InputYourInfo iyi = new InputYourInfo();
 
 	public void start() {
-		Frame f;
 
 		f = new Frame("Add");
 		f.setSize(270, 465);
@@ -135,7 +134,8 @@ public class AddFrame2 extends AFrame {
 					rd[i] = (int) (Math.random() * 9) + 1;
 					Rd[i] = rd[i] + " ";
 				}
-				tf2.setText(Rd[0].trim() + Rd[1].trim() + Rd[2].trim() + Rd[3].trim());
+				String password = Rd[0].trim() + Rd[1].trim() + Rd[2].trim() + Rd[3].trim();
+				tf2.setText(password);
 			}
 		});
 		r = new Choice();

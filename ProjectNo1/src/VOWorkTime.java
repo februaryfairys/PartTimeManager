@@ -1,8 +1,8 @@
 
-public class WorkTimeVo {
+public class VOWorkTime {
 	private String DT;
 
-	public WorkTimeVo(String DT) {
+	public VOWorkTime(String DT) {
 		this.DT = DT;
 	}
 

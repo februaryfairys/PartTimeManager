@@ -63,8 +63,8 @@ public class JoinFrame extends AFrame {
 				} else if (tf2.getText().equals("")) {
 					iyi.password();
 				} else {
-					ArrayList<PartTimerVo> list = dao.list(tf1.getText());
-					PartTimerVo data = (PartTimerVo) list.get(0);
+					ArrayList<VOPartTimer> list = dao.list(tf1.getText());
+					VOPartTimer data = (VOPartTimer) list.get(0);
 					if (list.size() == 0) {
 						cnp.start();
 					} else {

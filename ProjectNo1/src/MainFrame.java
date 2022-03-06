@@ -23,6 +23,7 @@ public class MainFrame extends AFrame {
 	ShowAllPartTimers sap = new ShowAllPartTimers();
 	ShowWorkingPartTimers swp = new ShowWorkingPartTimers();
 	SettingsFrame sf = new SettingsFrame();
+	InputPasswordFrame ipf = new InputPasswordFrame();
 
 	public String getTime() {
 		return time;
@@ -46,7 +47,7 @@ public class MainFrame extends AFrame {
 		MenuItem miOut = new MenuItem("퇴근체크");
 		Menu mManage = new Menu("관리");
 		MenuItem miAdd = new MenuItem("직원 등록");
-		MenuItem miEdit = new MenuItem("수정/삭제");
+		MenuItem miEdit = new MenuItem("직원 조회");
 		Menu mSetting = new Menu("설정");
 		MenuItem miPw = new MenuItem("비밀번호 변경");
 		MenuItem miExit = new MenuItem("프로그램 종료");
@@ -80,7 +81,7 @@ public class MainFrame extends AFrame {
 		});
 		miEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				jf.start();
+				ipf.start();
 
 			}
 		});
@@ -187,7 +188,6 @@ public class MainFrame extends AFrame {
 	}
 
 	public void time() {
-		MainFrame mf = new MainFrame();
 		for (;;) {
 			Date now = new Date();
 			SimpleDateFormat timeLabel = new SimpleDateFormat("yyyy년 MM월 dd일 E요일 a HH시 mm분입니다.");

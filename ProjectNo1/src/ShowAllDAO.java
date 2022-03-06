@@ -15,8 +15,8 @@ public class ShowAllDAO {
 	private Statement stmt;
 	private ResultSet rs;
 
-	public ArrayList<ShowAllVo> list() {
-		ArrayList<ShowAllVo> list = new ArrayList<ShowAllVo>();
+	public ArrayList<VOShowAllPartTimers> list() {
+		ArrayList<VOShowAllPartTimers> list = new ArrayList<VOShowAllPartTimers>();
 
 		try {
 			connDB();
@@ -39,7 +39,7 @@ public class ShowAllDAO {
 					String tel = rs.getString("TEL");
 					String role = rs.getString("ROLE");
 
-					ShowAllVo data = new ShowAllVo(name, pw, tel, role);
+					VOShowAllPartTimers data = new VOShowAllPartTimers(name, pw, tel, role);
 					list.add(data);
 				}
 			}

@@ -67,11 +67,11 @@ public class OutFrame extends AFrame {
 				} else if (tf2.getText().equals("")) {
 					iyi.password();
 				} else {
-					ArrayList<PartTimerVo> list = dao.list(tf1.getText());
+					ArrayList<VOPartTimer> list = dao.list(tf1.getText());
 					if (list.size() == 0) {
 						cnp.start();
 					} else {
-						PartTimerVo data = (PartTimerVo) list.get(0);
+						VOPartTimer data = (VOPartTimer) list.get(0);
 						String pswd = data.getPw();
 						if (tf2.getText().equals(pswd)) {
 							checkOutFrame();

@@ -20,7 +20,7 @@ public class SettingsFrame extends AFrame {
 
 		b1 = new Button("비밀번호 변경");
 		b2 = new Button("프로그램 초기화");
-		b3 = new Button(" ");
+		b3 = new Button("닫기");
 		b1.setSize(160, 60);
 		b2.setSize(160, 60);
 		b3.setSize(160, 60);
@@ -41,7 +41,7 @@ public class SettingsFrame extends AFrame {
 		});
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				f.dispose();
 			}
 		});
 		f.add(b1);

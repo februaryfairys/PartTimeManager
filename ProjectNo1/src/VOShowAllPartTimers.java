@@ -1,15 +1,15 @@
 
-public class ShowAllVo {
+public class VOShowAllPartTimers {
 
 	private String name; // 이름
 	private String pw; // 비밀번호
 	private String tel; // 연락처
 	private String role; // 역할
 
-	public ShowAllVo() {
+	public VOShowAllPartTimers() {
 	}
 
-	public ShowAllVo(String name, String pw, String tel, String role) {
+	public VOShowAllPartTimers(String name, String pw, String tel, String role) {
 		this.name = name;
 		this.pw = pw;
 		this.tel = tel;

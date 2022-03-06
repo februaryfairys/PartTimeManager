@@ -13,11 +13,11 @@ public class ShowAllPartTimers {
 	}
 
 	public void start() {
-		ArrayList<ShowAllVo> list = dao.list();
+		ArrayList<VOShowAllPartTimers> list = dao.list();
 		StringBuilder sb = new StringBuilder();
 
 		for (int i = 0; i < list.size(); i++) {
-			ShowAllVo data = (ShowAllVo) list.get(i);
+			VOShowAllPartTimers data = (VOShowAllPartTimers) list.get(i);
 			String NAME = data.getName();
 			String ROLE = data.getRole();
 

@@ -1,15 +1,15 @@
 
-public class WorkingPartTimerVo {
+public class VOWorkingPartTimer {
 
 	private String name; // 이름
 	private String pw; // 비밀번호
 	private String tel; // 연락처
 	private String role; // 역할
 
-	public WorkingPartTimerVo() {
+	public VOWorkingPartTimer() {
 	}
 
-	public WorkingPartTimerVo(String name, String pw, String tel, String role) {
+	public VOWorkingPartTimer(String name, String pw, String tel, String role) {
 		this.name = name;
 		this.pw = pw;
 		this.tel = tel;

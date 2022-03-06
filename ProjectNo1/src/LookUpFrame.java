@@ -45,8 +45,8 @@ public class LookUpFrame extends AFrame {
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tf.getText().length() > 1) {
-					ArrayList<PartTimerVo> list = dao.list(tf.getText());
-					PartTimerVo data = (PartTimerVo) list.get(0);
+					ArrayList<VOPartTimer> list = dao.list(tf.getText());
+					VOPartTimer data = (VOPartTimer) list.get(0);
 					lst.add(data.getName());
 				}
 
@@ -55,8 +55,8 @@ public class LookUpFrame extends AFrame {
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (lst.getSelectedItem() != null) {
-					ArrayList<PartTimerVo> list = dao.list(lst.getSelectedItem());
-					PartTimerVo data = (PartTimerVo) list.get(0);
+					ArrayList<VOPartTimer> list = dao.list(lst.getSelectedItem());
+					VOPartTimer data = (VOPartTimer) list.get(0);
 					String name = data.getName();
 					String pw = data.getPw();
 					String tel = data.getTel();
@@ -257,7 +257,7 @@ public class LookUpFrame extends AFrame {
 		String password = "ezen1234";
 		String sql1, name;
 
-		ArrayList<WorkTimeVo> list = new ArrayList<WorkTimeVo>();
+		ArrayList<VOWorkTime> list = new ArrayList<VOWorkTime>();
 
 		try {
 
@@ -280,7 +280,7 @@ public class LookUpFrame extends AFrame {
 				rs.previous();
 				while (rs.next()) {
 					String DT = rs.getString("DT");
-					WorkTimeVo data = new WorkTimeVo(DT);
+					VOWorkTime data = new VOWorkTime(DT);
 					list.add(data);
 					System.out.println(DT);
 				}

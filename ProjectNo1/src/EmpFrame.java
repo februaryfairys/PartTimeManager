@@ -22,7 +22,7 @@ public class EmpFrame extends AFrame {
 
 		b1 = new Button("Ãâ±Ù");
 		b2 = new Button("Åð±Ù");
-		b3 = new Button(" ");
+		b3 = new Button("´Ý±â");
 		b1.setSize(160, 60);
 		b2.setSize(160, 60);
 		b3.setSize(160, 60);
@@ -43,7 +43,7 @@ public class EmpFrame extends AFrame {
 		});
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				f.dispose();
 			}
 		});
 		f.add(b1);

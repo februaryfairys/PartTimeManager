@@ -14,8 +14,8 @@ public class WorkingPartTimerDAO {
 	private Statement stmt;
 	private ResultSet rs;
 
-	public ArrayList<WorkingPartTimerVo> list() {
-		ArrayList<WorkingPartTimerVo> list = new ArrayList<WorkingPartTimerVo>();
+	public ArrayList<VOWorkingPartTimer> list() {
+		ArrayList<VOWorkingPartTimer> list = new ArrayList<VOWorkingPartTimer>();
 
 		try {
 			connDB();
@@ -37,7 +37,7 @@ public class WorkingPartTimerDAO {
 					String tel = rs.getString("TEL");
 					String role = rs.getString("ROLE");
 
-					WorkingPartTimerVo data = new WorkingPartTimerVo(name, pw, tel, role);
+					VOWorkingPartTimer data = new VOWorkingPartTimer(name, pw, tel, role);
 					list.add(data);
 				}
 			}

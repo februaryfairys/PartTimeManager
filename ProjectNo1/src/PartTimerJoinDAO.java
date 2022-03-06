@@ -15,8 +15,8 @@ public class PartTimerJoinDAO {
 	private Statement stmt;
 	private ResultSet rs;
 
-	public ArrayList<PartTimerVo> list(String pname) {
-		ArrayList<PartTimerVo> list = new ArrayList<PartTimerVo>();
+	public ArrayList<VOPartTimer> list(String pname) {
+		ArrayList<VOPartTimer> list = new ArrayList<VOPartTimer>();
 
 		try {
 			connDB();
@@ -24,7 +24,7 @@ public class PartTimerJoinDAO {
 			query = "SELECT * FROM PARTTIMERS";
 			if (pname != null) {
 				query += " WHERE name = '" + pname + "'";
-			} 
+			}
 
 			System.out.println(query);
 			rs = stmt.executeQuery(query);
@@ -42,7 +42,7 @@ public class PartTimerJoinDAO {
 					String tel = rs.getString("TEL");
 					String role = rs.getString("ROLE");
 
-					PartTimerVo data = new PartTimerVo(name, pw, tel, role);
+					VOPartTimer data = new VOPartTimer(name, pw, tel, role);
 					list.add(data);
 				}
 			}

@@ -13,11 +13,11 @@ public class ShowWorkingPartTimers {
 	}
 
 	public void start() {
-		ArrayList<WorkingPartTimerVo> list = dao.list();
+		ArrayList<VOWorkingPartTimer> list = dao.list();
 		StringBuilder sb = new StringBuilder();
 
 		for (int i = 0; i < list.size(); i++) {
-			WorkingPartTimerVo data = (WorkingPartTimerVo) list.get(i);
+			VOWorkingPartTimer data = (VOWorkingPartTimer) list.get(i);
 			String NAME = data.getName();
 			String ROLE = data.getRole();
 

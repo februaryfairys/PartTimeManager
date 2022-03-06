@@ -24,8 +24,9 @@ public class WorkTimeFrame extends AFrame {
 	private TextField tf1;
 	private String result, name;
 	private int WTH, WTM, WT;
+	private String MHW = "9160";
 
-	public void start(String name, ArrayList<WorkTimeVo> list) {
+	public void start(String name, ArrayList<VOWorkTime> list) {
 
 		this.name = name;
 		f = new Frame("Work Time");
@@ -75,7 +76,7 @@ public class WorkTimeFrame extends AFrame {
 		c3.add("매니저");
 
 		for (int i = 0; i < list.size(); i++) {
-			WorkTimeVo data = list.get(i);
+			VOWorkTime data = list.get(i);
 			String DT = data.getDT();
 
 			c1.add(DT);
@@ -91,7 +92,7 @@ public class WorkTimeFrame extends AFrame {
 		ta1.setEditable(false);
 		ta2.setEditable(false);
 
-		tf1 = new TextField();
+		tf1 = new TextField(MHW);
 		tf1.setSize(150, 20);
 		tf1.setLocation(305, 120);
 
@@ -103,7 +104,7 @@ public class WorkTimeFrame extends AFrame {
 				calDAO();
 				result = "해당 기간 동안의\n" + name + "님의 근무 시간은\n" + WTH + "시간 " + WTM + "분입니다.";
 				ta1.setText(result);
-		
+
 			}
 		});
 		b2 = new Button("계산");
@@ -111,7 +112,10 @@ public class WorkTimeFrame extends AFrame {
 		b2.setLocation(325, 330);
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				int wage = Integer.parseInt(tf1.getText());
+				result = "해당 기간 동안의\n" + name + "님의 급여는\n" + "'" + wageCal(WTH, WTM, wage) + "'원입니다.\n"
+						+ "(원 단위 미만 절사)";
+				ta2.setText(result);
 			}
 		});
 
@@ -139,7 +143,9 @@ public class WorkTimeFrame extends AFrame {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "c##ezen";
 		String password = "ezen1234";
-		String sql1;
+		String sql;
+		int DTFrom = Integer.parseInt(c1.getSelectedItem());
+		int DTTo = Integer.parseInt(c2.getSelectedItem());
 
 		try {
 
@@ -149,10 +155,19 @@ public class WorkTimeFrame extends AFrame {
 			System.out.println("oracle connection sucess.\n");
 			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-			sql1 = "SELECT sum(WORKTIMEH), sum(WORKTIMEM) FROM WORKTIME where NAME = '" + name + "'";
+			sql = "SELECT sum(WORKTIMEH), sum(WORKTIMEM) FROM WORKTIME where NAME = '" + name + "'";
+
+			if (DTFrom > DTTo) {
+				int tmp;
+				tmp = DTFrom;
+				DTFrom = DTTo;
+				DTTo = tmp;
+			}
+			sql += " AND (DT BETWEEN " + DTFrom + " AND " + DTTo + ")";
+
 			WTH = 0;
 			WTM = 0;
-			ResultSet rs = stmt.executeQuery(sql1);
+			ResultSet rs = stmt.executeQuery(sql);
 
 			rs.first();
 			if (rs.getRow() == 0) {
@@ -193,6 +208,13 @@ public class WorkTimeFrame extends AFrame {
 		workTimeM = WT % 60;
 
 		return workTimeM;
+	}
+
+	public int wageCal(int WTH, int WTM, int wage) {
+		int wageH = wage * WTH;
+		int wageM = wage / 60 * WTM;
+		int wageHM = wageH + wageM;
+		return wageHM;
 	}
 
 }
