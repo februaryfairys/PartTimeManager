@@ -5,6 +5,7 @@ public class InputYourInfo extends AFrame {
 	private Frame nF, pF, tF;
 	private Label nL, pL, tL;
 	private Button nB, pB, tB;
+	private String s;
 
 	public void name() {
 		nF = new Frame("Error");
@@ -16,7 +17,7 @@ public class InputYourInfo extends AFrame {
 			}
 		});
 		nF.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
-		
+
 		nL = new Label("성명을 입력하세요.", Label.CENTER);
 		nL.setSize(250, 20);
 		nL.setLocation(0, 65);
@@ -90,6 +91,47 @@ public class InputYourInfo extends AFrame {
 		tF.add(tL);
 		tF.add(tB);
 		tF.setVisible(true);
+	}
+
+	public void start(String S) {
+
+		s = "";
+
+		if (S == "name") {
+			s = "rr을 입력하세요.";
+		}
+		if (S == "password") {
+			s = "직원번호를 입력하세요.";
+		}
+		if (S == "tel") {
+			s = "연락처를 입력하세요.";
+		}
+		nF = new Frame("Error");
+		nF.setSize(250, 160);
+		nF.setLayout(null);
+		nF.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent E) {
+				nF.dispose();
+			}
+		});
+		nF.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
+
+		nL = new Label("성명을 입력하세요.", Label.CENTER);
+		nL.setSize(250, 20);
+		nL.setLocation(0, 65);
+
+		nB = new Button("확인");
+		nB.setSize(50, 30);
+		nB.setLocation(100, 110);
+		nB.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nF.dispose();
+			}
+		});
+
+		nF.add(nL);
+		nF.add(nB);
+		nF.setVisible(true);
 	}
 
 }

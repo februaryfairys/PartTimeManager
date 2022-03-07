@@ -80,10 +80,12 @@ public class AddFrame2 extends AFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (tf1.getText().equals("")) {
 					iyi.name();
+					
 				} else if (!(tf1.getText().length() >= 2)) {
 					lid2.setText("두 글자 이상 입력하세요.");
 				} else if (tf3.getText().equals("")) {
 					iyi.password();
+				
 				} else if (c != true) {
 					checkPasswordcheckFrame();
 				} else if (!(tf2.getText().equals(tf3.getText()))) {
