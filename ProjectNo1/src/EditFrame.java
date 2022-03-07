@@ -74,9 +74,9 @@ public class EditFrame extends AFrame {
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (c.getSelectedItem().equals("성명") && tf.getText().equals("")) {
-					iyi.name();
+					iyi.start("name");
 				} else if (c.getSelectedItem().equals("연락처") && tf.getText().equals("")) {
-					iyi.tel();
+					iyi.start("tel");
 				} else if (c.getSelectedItem().equals("성명") && !(tf.getText().length() >= 2)) {
 					l4.setText("두 글자 이상 입력하세요.");
 				} else if (c.getSelectedItem().equals("연락처")

@@ -59,9 +59,9 @@ public class JoinFrame extends AFrame {
 				InputYourInfo iyi = new InputYourInfo();
 				CheckNameOrPassword cnp = new CheckNameOrPassword();
 				if (tf1.getText().equals("")) {
-					iyi.name();
+					iyi.start("name");
 				} else if (tf2.getText().equals("")) {
-					iyi.password();
+					iyi.start("password");
 				} else {
 					ArrayList<VOPartTimer> list = dao.list(tf1.getText());
 					VOPartTimer data = (VOPartTimer) list.get(0);

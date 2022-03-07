@@ -13,8 +13,11 @@ public class AddFrame2 extends AFrame {
 	private String PW;
 	private String TEL;
 	private String ROLE;
+	private String name;
 
 	InputYourInfo iyi = new InputYourInfo();
+	CheckPasswordFrame chpf = new CheckPasswordFrame();
+	CheckAddFrame chaff = new CheckAddFrame();
 
 	public void start() {
 
@@ -79,30 +82,30 @@ public class AddFrame2 extends AFrame {
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tf1.getText().equals("")) {
-					iyi.name();
-					
+					iyi.start("name");
 				} else if (!(tf1.getText().length() >= 2)) {
 					lid2.setText("두 글자 이상 입력하세요.");
 				} else if (tf3.getText().equals("")) {
-					iyi.password();
-				
+					iyi.start("password");
 				} else if (c != true) {
-					checkPasswordcheckFrame();
+					chpf.start(1);
 				} else if (!(tf2.getText().equals(tf3.getText()))) {
-					checkPasswordcheckFrame();
+					chpf.start(1);
 					c = false;
 				} else if (tf4.getText().equals("")) {
-					iyi.tel();
+					iyi.start("tel");
+					;
 				} else if (tf4.getText().length() > 11 || tf4.getText().length() < 10) {
 					ltel2.setText("올바른 연락처를 입력하세요.");
 				} else {
 					if (tf1.getText().length() >= 2 && tf2.getText().equals(tf3.getText()) && c == true
 							&& tf4.getText().length() >= 10 && tf4.getText().length() <= 11) {
-						setNAME(tf1.getText());
-						setPW(tf2.getText());
-						setTEL(tf4.getText());
-						setROLE(r.getSelectedItem());
-						checkAddFrame();
+						chaff.setNAME(tf1.getText());
+						chaff.setPW(tf2.getText());
+						chaff.setTEL(tf4.getText());
+						chaff.setROLE(r.getSelectedItem());
+						name = tf1.getText();
+						chaff.start(name);
 						c = false;
 					}
 
@@ -165,112 +168,7 @@ public class AddFrame2 extends AFrame {
 
 	}
 
-	public void checkPasswordcheckFrame() {
-
-		f2 = new Frame("Error");
-		f2.setSize(250, 160);
-		f2.setLayout(null);
-		f2.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent E) {
-				f2.dispose();
-			}
-		});
-		f2.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
-
-		lError = new Label("직원번호 일치 확인을 해주세요.", Label.CENTER);
-		lError.setSize(250, 20);
-		lError.setLocation(0, 65);
-		b3 = new Button("확인");
-		b3.setSize(50, 30);
-		b3.setLocation(100, 110);
-		b3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				f2.dispose();
-				lError.setText("직원번호 일치 확인을 해주세요.");
-			}
-		});
-		f2.add(b3);
-		f2.add(lError);
-		f2.setVisible(true);
-	}
-
-	public void checkAddFrame() {
-
-		chaf = new Frame("등록");
-		chaf.setSize(250, 160);
-		chaf.setLayout(null);
-		chaf.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent E) {
-				chaf.dispose();
-			}
-		});
-		chaf.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
-
-		chafL2 = new Label("새로운 직원을 등록할까요?", Label.CENTER);
-		chafL2.setSize(250, 20);
-		chafL2.setLocation(0, 65);
-
-		chafB1 = new Button("네");
-		chafB2 = new Button("아니요");
-		chafB1.setSize(50, 30);
-		chafB2.setSize(50, 30);
-		chafB1.setLocation(75, 110);
-		chafB2.setLocation(125, 110);
-		chafB1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				chaf.dispose();
-				f.dispose();
-				addDAO();
-				completeAddFrame();
-			}
-		});
-		chafB2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				chaf.dispose();
-			}
-		});
-
-		chaf.add(chafB1);
-		chaf.add(chafB2);
-		chaf.add(chafL2);
-		chaf.setVisible(true);
-	}
-
-	public void completeAddFrame() {
-		cafF = new Frame("등록완료");
-		cafF.setSize(250, 160);
-		cafF.setLayout(null);
-		cafF.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent E) {
-				cafF.dispose();
-			}
-		});
-		cafF.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
-
-		cafL1 = new Label("등록되었습니다.", Label.CENTER);
-		cafL2 = new Label(getNAME() + "님 환영합니다.", Label.CENTER);
-		cafL1.setSize(250, 20);
-		cafL1.setLocation(0, 50);
-		cafL2.setSize(250, 20);
-		cafL2.setLocation(0, 80);
-
-		cafB = new Button("확인");
-		cafB.setSize(50, 30);
-		cafB.setLocation(100, 110);
-		cafB.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				cafF.dispose();
-			}
-		});
-		cafF.add(cafL1);
-		cafF.add(cafL2);
-		cafF.add(cafB);
-		cafF.setVisible(true);
-	}
-
-	public void addDAO() {
-
+	public void addDAO(String NAME, String PW, String TEL, String ROLE) {
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "c##ezen";
@@ -285,8 +183,7 @@ public class AddFrame2 extends AFrame {
 			System.out.println("oracle connection sucess.\n");
 			Statement stmt = conn.createStatement();
 
-			sql = "insert into PARTTIMERS VALUES ('" + getNAME() + "','" + getPW() + "','" + getTEL() + "' , '"
-					+ getROLE() + "')";
+			sql = "insert into PARTTIMERS VALUES ('" + NAME + "','" + PW + "','" + TEL + "' , '" + ROLE + "')";
 
 			boolean b = stmt.execute(sql);
 			if (!b) {

@@ -63,9 +63,9 @@ public class OutFrame extends AFrame {
 				InputYourInfo iyi = new InputYourInfo();
 				CheckNameOrPassword cnp = new CheckNameOrPassword();
 				if (tf1.getText().equals("")) {
-					iyi.name();
+					iyi.start("name");
 				} else if (tf2.getText().equals("")) {
-					iyi.password();
+					iyi.start("password");
 				} else {
 					ArrayList<VOPartTimer> list = dao.list(tf1.getText());
 					if (list.size() == 0) {
@@ -189,7 +189,7 @@ public class OutFrame extends AFrame {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "c##ezen";
 		String password = "ezen1234";
-		String sql1, sql2, sql3, dt, joinTime, outTime, workTime;
+		String sql1, sql2, sql3, dt, joinTime, outTime;
 
 		Date now = new Date();
 		SimpleDateFormat sdfDt = new SimpleDateFormat("YYYYMMdd");

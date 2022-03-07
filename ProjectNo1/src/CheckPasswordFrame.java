@@ -6,8 +6,15 @@ public class CheckPasswordFrame extends AFrame {
 	private Frame f;
 	private Label l;
 	private Button b;
+	private String s;
 
-	public void start() {
+	public void start(int Key) {
+
+		if (Key == 1) {
+			s = "직원번호 일치 확인을 해주세요.";
+		} else {
+			s = "올바른 비밀번호를 입력하세요.";
+		}
 		f = new Frame("Error");
 		f.setSize(250, 160);
 		f.setLayout(null);
@@ -18,7 +25,7 @@ public class CheckPasswordFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		l = new Label("올바른 비밀번호를 입력하세요.", Label.CENTER);
+		l = new Label(s, Label.CENTER);
 		l.setSize(250, 20);
 		l.setLocation(0, 65);
 

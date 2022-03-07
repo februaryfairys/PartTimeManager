@@ -29,7 +29,7 @@ public class CompleteJoinFrame extends AFrame {
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		l1 = new Label("√‚±Ÿ«ﬂΩ¿¥œ¥Ÿ.", Label.CENTER);
-		l2 = new Label(name + "¥‘ π›∞©Ω¿¥œ¥Ÿ.", Label.CENTER);
+		l2 = new Label(getName() + "¥‘ π›∞©Ω¿¥œ¥Ÿ.", Label.CENTER);
 		l1.setSize(250, 20);
 		l2.setSize(250, 20);
 		l1.setLocation(0, 50);

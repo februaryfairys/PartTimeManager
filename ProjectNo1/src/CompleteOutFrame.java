@@ -27,7 +27,7 @@ public class CompleteOutFrame extends AFrame {
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		l1 = new Label("Åð±ÙÇß½À´Ï´Ù.", Label.CENTER);
-		l2 = new Label(name + "´Ô ¼ö°íÇÏ¼Ì½À´Ï´Ù.", Label.CENTER);
+		l2 = new Label(getName() + "´Ô ¼ö°íÇÏ¼Ì½À´Ï´Ù.", Label.CENTER);
 		l1.setSize(250, 20);
 		l2.setSize(250, 20);
 		l1.setLocation(0, 50);

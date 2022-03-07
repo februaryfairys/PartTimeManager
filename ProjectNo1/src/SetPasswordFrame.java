@@ -63,18 +63,18 @@ public class SetPasswordFrame extends AFrame {
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tf1.getText().equals("")) {
-					iyi.password();
+					iyi.start("password");
 				} else if (tf2.getText().equals("") || tf3.getText().equals("")) {
-					iyi.password();
+					iyi.start("password");
 				} else if (tf2.getText().length() != 4 || tf3.getText().length() != 4) {
-					chpf.start();
+					chpf.start(0);
 					l5.setText("<비밀번호는 4자리로 설정해주세요.>");
 				} else {
 					if (tf2.getText().equals(tf3.getText())) {
 						joinDAO();
 						CheckChangePasswordFrame();
 					} else if (tf2.getText() != tf3.getText()) {
-						chpf.start();
+						chpf.start(0);
 						l5.setText("<새로운 비밀번호가 일치하지 않습니다.>");
 					}
 
@@ -132,7 +132,7 @@ public class SetPasswordFrame extends AFrame {
 					f2.dispose();
 					cpcf.start();
 				} else {
-					chpf.start();
+					chpf.start(0);
 					l5.setText("<현재 비밀번호가 일치하지 않습니다.>");
 				}
 			}

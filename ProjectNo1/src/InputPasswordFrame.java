@@ -51,7 +51,7 @@ public class InputPasswordFrame extends AFrame {
 				}
 
 				if (PASSWORD == "0") {
-					chpf.start();
+					chpf.start(0);
 				}
 			}
 		});

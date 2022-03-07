@@ -2,7 +2,6 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class AFrame extends WindowAdapter implements ActionListener {
-	private Frame f;
 	private Toolkit tk = Toolkit.getDefaultToolkit();
 	Dimension screenSize = tk.getScreenSize();
 

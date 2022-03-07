@@ -101,7 +101,7 @@ public class ExitFrame extends AFrame {
 
 				if (PASSWORD == "0") {
 					CheckPasswordFrame chpf = new CheckPasswordFrame();
-					chpf.start();
+					chpf.start(0);
 				}
 
 			}
