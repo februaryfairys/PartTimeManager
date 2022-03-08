@@ -15,7 +15,7 @@ public class OutFrame extends AFrame {
 	private TextField tf1, tf2;
 	private Button b1, b2, b3;
 	private Label lid, lpw, l1, l2;
-	private PartTimerJoinDAO dao = new PartTimerJoinDAO();
+	private JoinDAO dao = new JoinDAO();
 	private AlreadyOutFrame aof = new AlreadyOutFrame();
 	private String name;
 

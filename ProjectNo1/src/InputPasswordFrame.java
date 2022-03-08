@@ -1,10 +1,5 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 public class InputPasswordFrame extends AFrame {
 	private Frame f;
@@ -12,8 +7,10 @@ public class InputPasswordFrame extends AFrame {
 	private Button b1, b2;
 	private Label lpw;
 	private String PASSWORD = "0";
+	private String password = "0";
+	DAO dao = new DAO();
 
-	public void start() {
+	public void start(int key) {
 		f = new Frame("Input Password");
 		f.setSize(250, 160);
 		f.setLayout(null);
@@ -42,17 +39,27 @@ public class InputPasswordFrame extends AFrame {
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CheckPasswordFrame chpf = new CheckPasswordFrame();
-				joinDAO();
-
-				if (PASSWORD.equals(tf1.getText())) {
-					LookUpFrame luf = new LookUpFrame();
-					luf.start();
-					f.dispose();
-				}
-
-				if (PASSWORD == "0") {
+				password = tf1.getText();
+				dao.joinPassword(password);
+				PASSWORD = dao.getPASSWORD();
+				if (PASSWORD.equals(password)) {
+					if (key == 0) {
+						LookUpFrame luf = new LookUpFrame();
+						luf.start();
+						f.dispose();
+					} else if (key == 1) {
+						ExitFrame ef = new ExitFrame();
+						ef.start(password);
+						f.dispose();
+					} else if (key == 2) {
+						CheckResetFrame chrf = new CheckResetFrame();
+						chrf.start();
+						f.dispose();
+					}
+				} else {
 					chpf.start(0);
 				}
+
 			}
 		});
 		b2.addActionListener(new ActionListener() {
@@ -68,39 +75,38 @@ public class InputPasswordFrame extends AFrame {
 		f.setVisible(true);
 	}
 
-	public void joinDAO() {
-		String driver = "oracle.jdbc.driver.OracleDriver";
-		String url = "jdbc:oracle:thin:@localhost:1521/xe";
-		String user = "c##ezen";
-		String password = "ezen1234";
-		String sql = "SELECT * FROM PASSWORD WHERE PW = ('" + tf1.getText() + "')";
-
-		try {
-			Class.forName(driver);
-			System.out.println("jdbc driver loading success.");
-			Connection conn = DriverManager.getConnection(url, user, password);
-			System.out.println("oracle connection sucess.\n");
-			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-			ResultSet rs = stmt.executeQuery(sql);
-
-			rs.first();
-			System.out.println("rs.getRow() : " + rs.getRow());
-
-			if (rs.getRow() == 0) {
-				System.out.println("0 row selected.....");
-				System.out.println(PASSWORD);
-			} else {
-				System.out.println(rs.getRow() + " rows selected.....");
-				rs.previous();
-				while (rs.next()) {
-					PASSWORD = rs.getString("PW");
-				}
-			}
-		} catch (ClassNotFoundException e) {
-			System.out.println(e);
-		} catch (SQLException e) {
-			System.out.println(e);
-		}
-	}
-
+//
+//	public void joinDAO(String key) {
+//		String driver = "oracle.jdbc.driver.OracleDriver";
+//		String url = "jdbc:oracle:thin:@localhost:1521/xe";
+//		String user = "c##ezen";
+//		String password = "ezen1234";
+//		String sql = "SELECT * FROM PASSWORD WHERE PW = ('" + key + "')";
+//
+//		try {
+//			Class.forName(driver);
+//			System.out.println("jdbc driver loading success.");
+//			Connection conn = DriverManager.getConnection(url, user, password);
+//			System.out.println("oracle connection sucess.\n");
+//			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+//			ResultSet rs = stmt.executeQuery(sql);
+//
+//			rs.first();
+//			System.out.println("rs.getRow() : " + rs.getRow());
+//
+//			if (rs.getRow() == 0) {
+//				System.out.println("0 row selected.....");
+//			} else {
+//				System.out.println(rs.getRow() + " rows selected.....");
+//				rs.previous();
+//				while (rs.next()) {
+//					setPASSWORD(rs.getString("PW"));
+//				}
+//			}
+//		} catch (ClassNotFoundException e) {
+//			System.out.println(e);
+//		} catch (SQLException e) {
+//			System.out.println(e);
+//		}
+//	}
 }

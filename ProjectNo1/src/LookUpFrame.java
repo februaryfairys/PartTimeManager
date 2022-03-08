@@ -4,17 +4,18 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class LookUpFrame extends AFrame {
-	private Frame f, chdfF, cdfF;
+	private Frame f;
 	private List lst;
-	private Button b1, b2, b3, b4, b5, chdfB1, chdfB2, cdfB;
+	private Button b1, b2, b3, b4, b5;
 	private TextField tf;
 	private TextArea ta;
-	private Label chdfL1, chdfL2, cdfL1, cdfL2;
 	private PopupMenu p;
 	private MenuItem pi1, pi2;
+	private String name;
 
-	PartTimerJoinDAO dao = new PartTimerJoinDAO();
+	JoinDAO dao = new JoinDAO();
 	EditFrame ef = new EditFrame();
+	CheckDeleteFrame chdf = new CheckDeleteFrame();
 
 	public void start() {
 		f = new Frame("Look Up");
@@ -49,7 +50,6 @@ public class LookUpFrame extends AFrame {
 					VOPartTimer data = (VOPartTimer) list.get(0);
 					lst.add(data.getName());
 				}
-
 			}
 		});
 		b2.addActionListener(new ActionListener() {
@@ -78,7 +78,8 @@ public class LookUpFrame extends AFrame {
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (lst.getSelectedItem() != null) {
-					checkDeleteFrame();
+					name = lst.getSelectedItem();
+					chdf.start(name);
 				}
 			}
 		});
@@ -109,14 +110,6 @@ public class LookUpFrame extends AFrame {
 		lst = new List();
 		lst.setSize(200, 70);
 		lst.setLocation(35, 90);
-//		lst.add(p);
-//		lst.addMouseListener(new MouseAdapter() {
-//			public void mousePressed(MouseEvent me) {
-//				if (me.getModifiers() == me.BUTTON3_MASK) {
-//					p.show(f, me.getX(), me.getY());
-//				}
-//			}
-//		});
 
 		ta = new TextArea();
 		ta.setSize(200, 90);
@@ -134,87 +127,7 @@ public class LookUpFrame extends AFrame {
 		f.setVisible(true);
 	}
 
-	public void checkDeleteFrame() {
-
-		chdfF = new Frame("Delete");
-		chdfF.setSize(250, 160);
-		chdfF.setLayout(null);
-		chdfF.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent E) {
-				chdfF.dispose();
-			}
-		});
-		chdfF.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
-
-		chdfL1 = new Label("※이 작업은 되돌릴 수 없습니다.※", Label.CENTER);
-		chdfL2 = new Label("직원 정보를 영구적으로 삭제할까요?", Label.CENTER);
-		chdfL1.setForeground(Color.red);
-		chdfL1.setSize(250, 20);
-		chdfL2.setSize(250, 20);
-		chdfL1.setLocation(0, 50);
-		chdfL2.setLocation(0, 80);
-
-		chdfB1 = new Button("네");
-		chdfB2 = new Button("아니요");
-		chdfB1.setSize(50, 30);
-		chdfB2.setSize(50, 30);
-		chdfB1.setLocation(75, 110);
-		chdfB2.setLocation(125, 110);
-		chdfB1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				chdfF.dispose();
-				deleteDAO();
-				lst.remove(lst.getSelectedItem());
-				completeDeleteFrame();
-			}
-		});
-		chdfB2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				chdfF.dispose();
-			}
-		});
-
-		chdfF.add(chdfB1);
-		chdfF.add(chdfB2);
-		chdfF.add(chdfL1);
-		chdfF.add(chdfL2);
-		chdfF.setVisible(true);
-	}
-
-	public void completeDeleteFrame() {
-		cdfF = new Frame("Complete");
-		cdfF.setSize(250, 160);
-		cdfF.setLayout(null);
-		cdfF.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent E) {
-				cdfF.dispose();
-			}
-		});
-		cdfF.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
-
-		cdfL1 = new Label("삭제되었습니다.", Label.CENTER);
-		cdfL2 = new Label(tf.getText() + "님 수고하셨습니다.", Label.CENTER);
-		cdfL1.setSize(250, 20);
-		cdfL2.setSize(250, 20);
-		cdfL1.setLocation(0, 50);
-		cdfL2.setLocation(0, 80);
-
-		cdfB = new Button("확인");
-		cdfB.setSize(50, 30);
-		cdfB.setLocation(100, 110);
-		cdfB.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				cdfF.dispose();
-			}
-		});
-		cdfF.add(cdfL1);
-		cdfF.add(cdfL2);
-		cdfF.add(cdfB);
-		cdfF.setVisible(true);
-	}
-
-	public void deleteDAO() {
+	public void deleteDAO(String name) {
 
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -230,14 +143,15 @@ public class LookUpFrame extends AFrame {
 			System.out.println("oracle connection sucess.\n");
 			Statement stmt = conn.createStatement();
 
-			sql1 = "DELETE FROM PARTTIMERS where NAME = '" + lst.getSelectedItem() + "'";
-			sql2 = "DELETE FROM WORKINGPARTTIMERS where NAME = '" + lst.getSelectedItem() + "'";
+			sql1 = "DELETE FROM PARTTIMERS where NAME = '" + name + "'";
+			sql2 = "DELETE FROM WORKINGPARTTIMERS where NAME = '" + name + "'";
 
 			boolean b = stmt.execute(sql1);
 			stmt.execute(sql2);
 
 			if (!b) {
 				System.out.println("DELETE SUCCSESS.\n");
+				lst.remove(lst.getSelectedItem());
 			} else {
 				System.out.println("DELETE FAIL.\n");
 			}
@@ -282,7 +196,6 @@ public class LookUpFrame extends AFrame {
 					String DT = rs.getString("DT");
 					VOWorkTime data = new VOWorkTime(DT);
 					list.add(data);
-					System.out.println(DT);
 				}
 				WorkTimeFrame pf = new WorkTimeFrame();
 				pf.start(lst.getSelectedItem(), list);

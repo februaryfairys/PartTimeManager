@@ -17,7 +17,7 @@ public class MainFrame extends AFrame {
 	OutFrame of = new OutFrame();
 	EmpFrame emf = new EmpFrame();
 	ManagingFrame mngf = new ManagingFrame();
-	AddFrame2 af = new AddFrame2();
+	AddFrame af = new AddFrame();
 	SetPasswordFrame spf = new SetPasswordFrame();
 	ExitFrame ef = new ExitFrame();
 	ShowAllPartTimers sap = new ShowAllPartTimers();
@@ -38,7 +38,11 @@ public class MainFrame extends AFrame {
 		f = new Frame("Part time Manager+");
 		f.setSize(610, 410);
 		f.setLayout(null);
-		f.addWindowListener(this);
+		f.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent E) {
+				ipf.start(1);
+			}
+		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		mb = new MenuBar();
@@ -81,7 +85,7 @@ public class MainFrame extends AFrame {
 		});
 		miEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ipf.start();
+				ipf.start(0);
 
 			}
 		});
@@ -94,7 +98,7 @@ public class MainFrame extends AFrame {
 
 		miExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ef.start();
+				ipf.start(1);
 			}
 		});
 
@@ -132,10 +136,9 @@ public class MainFrame extends AFrame {
 				sf.start();
 			}
 		});
-
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ef.start();
+				ipf.start(1);
 			}
 		});
 		b5.addActionListener(new ActionListener() {
@@ -197,13 +200,8 @@ public class MainFrame extends AFrame {
 
 			try {
 				Thread.sleep(1000);
-
 			} catch (Exception e) {
 			}
 		}
-	}
-
-	public void windowClosing(WindowEvent E) {
-		ef.start();
 	}
 }

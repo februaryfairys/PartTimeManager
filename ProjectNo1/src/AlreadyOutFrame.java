@@ -1,7 +1,5 @@
-
 import java.awt.*;
 import java.awt.event.*;
-
 
 public class AlreadyOutFrame extends AFrame {
 	private Frame f;
@@ -35,7 +33,5 @@ public class AlreadyOutFrame extends AFrame {
 
 	public void actionPerformed(ActionEvent e) {
 		f.dispose();
-
 	}
-
 }

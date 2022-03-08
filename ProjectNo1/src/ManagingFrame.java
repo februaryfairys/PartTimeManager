@@ -9,7 +9,7 @@ public class ManagingFrame extends AFrame {
 
 	private Frame f;
 	private Button b1, b2, b3;
-	AddFrame2 af = new AddFrame2();
+	AddFrame af = new AddFrame();
 	LookUpFrame luf = new LookUpFrame();
 	InputPasswordFrame ipf = new InputPasswordFrame();
 
@@ -42,7 +42,7 @@ public class ManagingFrame extends AFrame {
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				f.dispose();
-				ipf.start();
+				ipf.start(0);
 			}
 		});
 		b3.addActionListener(new ActionListener() {

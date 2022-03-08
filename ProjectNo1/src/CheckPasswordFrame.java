@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.awt.event.*;
 
@@ -41,7 +40,5 @@ public class CheckPasswordFrame extends AFrame {
 
 	public void actionPerformed(ActionEvent e) {
 		f.dispose();
-
 	}
-
 }

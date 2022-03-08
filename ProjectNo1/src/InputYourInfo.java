@@ -47,5 +47,4 @@ public class InputYourInfo extends AFrame {
 		f.add(B);
 		f.setVisible(true);
 	}
-
 }

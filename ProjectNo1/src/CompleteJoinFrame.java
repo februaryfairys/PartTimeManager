@@ -49,5 +49,4 @@ public class CompleteJoinFrame extends AFrame {
 	public void actionPerformed(ActionEvent e) {
 		f.dispose();
 	}
-
 }

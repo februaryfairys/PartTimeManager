@@ -4,7 +4,7 @@ public class PTM {
 		MainFrame mf = new MainFrame();
 		ExitFrame ipf = new ExitFrame();
 		ManagingFrame mngf = new ManagingFrame();
-		AddFrame2 af = new AddFrame2();
+		AddFrame af = new AddFrame();
 		SetPasswordFrame spf = new SetPasswordFrame();
 		LookUpFrame luf = new LookUpFrame();
 		EditFrame ef = new EditFrame();

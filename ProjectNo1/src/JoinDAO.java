@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class PartTimerJoinDAO {
+public class JoinDAO {
 
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521/xe";
@@ -56,11 +56,8 @@ public class PartTimerJoinDAO {
 	public void connDB() {
 		try {
 			Class.forName(driver);
-//			System.out.println("jdbc driver loading success.");
 			con = DriverManager.getConnection(url, user, password);
-//			System.out.println("oracle connection success.");
 			stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-//			System.out.println("statement create success.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

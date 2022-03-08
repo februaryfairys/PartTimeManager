@@ -27,16 +27,14 @@ public class CompletePasswordChangeFrame extends AFrame {
 		b = new Button("»Æ¿Œ");
 		b.setSize(50, 30);
 		b.setLocation(100, 110);
-		b.addActionListener(this);
+		b.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				f.dispose();
+			}
+		});
 		f.add(l1);
 		f.add(l2);
 		f.add(b);
 		f.setVisible(true);
-
-	}
-
-	public void actionPerformed(ActionEvent e) {
-		f.dispose();
-
 	}
 }

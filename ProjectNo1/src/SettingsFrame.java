@@ -6,6 +6,7 @@ public class SettingsFrame extends AFrame {
 	private Frame f;
 	private Button b1, b2, b3;
 	SetPasswordFrame spf = new SetPasswordFrame();
+	InputPasswordFrame ipf = new InputPasswordFrame();
 
 	public void start() {
 		f = new Frame("Setting");
@@ -35,8 +36,8 @@ public class SettingsFrame extends AFrame {
 		});
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
+				f.dispose();
+				ipf.start(2);
 			}
 		});
 		b3.addActionListener(new ActionListener() {
@@ -48,10 +49,6 @@ public class SettingsFrame extends AFrame {
 		f.add(b2);
 		f.add(b3);
 		f.setVisible(true);
-
-	}
-
-	public void actionPerformed(ActionEvent e) {
 
 	}
 }

@@ -6,13 +6,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class EditFrame extends AFrame {
-	private Frame f, chefF, cefF;
+	private Frame f;
 	private TextField tf;
-	private Label l1, l2, l3, l4, l5, chefL2, cefL1, cefL2;
+	private Label l1, l2, l3, l4, l5;
 	private Choice c, c2;
-	private Button b, chefB1, chefB2, cefB;
-	private String name;
+	private Button b;
+	private String name, sub, val, role;
+
 	InputYourInfo iyi = new InputYourInfo();
+	CheckEditFrame chef = new CheckEditFrame();
 
 	public String getName() {
 		return name;
@@ -83,13 +85,17 @@ public class EditFrame extends AFrame {
 						&& (tf.getText().length() > 11 || tf.getText().length() < 10)) {
 					l4.setText("올바른 연락처를 입력하세요.");
 				} else if ((c.getSelectedItem().equals("성명") && tf.getText().length() >= 2)
-						|| (c.getSelectedItem().equals("연락차")
+						|| (c.getSelectedItem().equals("연락처")
 								&& (tf.getText().length() == 11 || tf.getText().length() == 10))) {
-					checkEditFrame();
+					name = getName();
+					sub = c.getSelectedItem();
+					val = tf.getText();
+					role = c2.getSelectedItem();
+					chef.start(name, sub, val, role);
+					f.dispose();
 				}
 			}
 		});
-
 		f.add(l1);
 		f.add(l2);
 		f.add(l3);
@@ -100,128 +106,5 @@ public class EditFrame extends AFrame {
 		f.add(c2);
 		f.add(b);
 		f.setVisible(true);
-
-	}
-
-	public void checkEditFrame() {
-
-		chefF = new Frame("Edit");
-		chefF.setSize(250, 160);
-		chefF.setLayout(null);
-		chefF.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent E) {
-				chefF.dispose();
-			}
-		});
-		chefF.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
-
-		chefL2 = new Label("직원 정보를 수정할까요?", Label.CENTER);
-		chefL2.setSize(250, 20);
-		chefL2.setLocation(0, 65);
-
-		chefB1 = new Button("네");
-		chefB2 = new Button("아니요");
-		chefB1.setSize(50, 30);
-		chefB2.setSize(50, 30);
-		chefB1.setLocation(75, 110);
-		chefB2.setLocation(125, 110);
-		chefB1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				chefF.dispose();
-				f.dispose();
-				editDAO();
-				completeEditFrame();
-			}
-		});
-		chefB2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				chefF.dispose();
-			}
-		});
-
-		chefF.add(chefB1);
-		chefF.add(chefB2);
-		chefF.add(chefL2);
-		chefF.setVisible(true);
-	}
-
-	public void completeEditFrame() {
-		cefF = new Frame("Complete");
-		cefF.setSize(250, 160);
-		cefF.setLayout(null);
-		cefF.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent E) {
-				cefF.dispose();
-			}
-		});
-		cefF.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
-
-		cefL1 = new Label("수정되었습니다.", Label.CENTER);
-		cefL2 = new Label(tf.getText() + "님의 정보를 확인해주세요.", Label.CENTER);
-		cefL1.setSize(250, 20);
-		cefL1.setLocation(0, 50);
-		cefL2.setSize(250, 20);
-		cefL2.setLocation(0, 80);
-
-		cefB = new Button("확인");
-		cefB.setSize(50, 30);
-		cefB.setLocation(100, 110);
-		cefB.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				cefF.dispose();
-				
-			}
-		});
-		cefF.add(cefL1);
-		cefF.add(cefL2);
-		cefF.add(cefB);
-		cefF.setVisible(true);
-	}
-
-	public void editDAO() {
-
-		String driver = "oracle.jdbc.driver.OracleDriver";
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "c##ezen";
-		String password = "ezen1234";
-		String sql1, sql2, sql3;
-		String v1 = "NAME";
-
-		try {
-
-			Class.forName(driver);
-			System.out.println("jdbc driver loading success.");
-			Connection conn = DriverManager.getConnection(url, user, password);
-			System.out.println("oracle connection sucess.\n");
-			Statement stmt = conn.createStatement();
-
-			if (c.getSelectedItem().equals("연락처")) {
-				v1 = "TEL";
-			}
-
-			sql1 = "update PARTTIMERS set " + v1 + " = '" + tf.getText() + "' where NAME = '" + getName() + "'";
-			sql2 = "update WORKINGPARTTIMERS set " + v1 + " = '" + tf.getText() + "' where NAME = '" + getName() + "'";
-			sql3 = "update WORKTIME set " + v1 + " = '" + tf.getText() + "' where NAME = '" + getName() + "'";
-			
-			if (!(c2.getSelectedItem().equals("아니요"))) {
-				sql1 = "update PARTTIMERS set " + v1 + "= '" + tf.getText() + "', ROLE = '" + c2.getSelectedItem()
-						+ "' where NAME = '" + getName() + "'";
-			}
-
-			boolean b = stmt.execute(sql1);
-			stmt.execute(sql2);
-			stmt.execute(sql3);
-			if (!b) {
-				System.out.println("UPDATE SUCCSESS.\n");
-			} else {
-				System.out.println("UPDATE FAIL.\n");
-			}
-
-		} catch (ClassNotFoundException e) {
-			System.out.println(e);
-		} catch (SQLException e) {
-			System.out.println(e);
-		}
 	}
 }

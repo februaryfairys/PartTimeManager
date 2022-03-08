@@ -1,19 +1,13 @@
 import java.awt.*;
 import java.awt.event.*;
 
-public class CompleteAddFrame extends AFrame {
+public class CompleteResetFrame extends AFrame {
 	private Frame f;
 	private Label l1, l2;
 	private Button b;
-	private String name;
 
-	public String getName() {
-		return name;
-	}
+	public void start() {
 
-	public void start(String name) {
-		this.name = name;
-		
 		f = new Frame("Complete");
 		f.setSize(250, 160);
 		f.setLayout(null);
@@ -24,8 +18,8 @@ public class CompleteAddFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		l1 = new Label("등록되었습니다.", Label.CENTER);
-		l2 = new Label(getName() + "님 환영합니다.", Label.CENTER);
+		l1 = new Label("프로그램을 초기화했습니다.", Label.CENTER);
+		l2 = new Label("프로그램을 종료합니다.", Label.CENTER);
 		l1.setSize(250, 20);
 		l2.setSize(250, 20);
 		l1.setLocation(0, 50);
@@ -36,7 +30,8 @@ public class CompleteAddFrame extends AFrame {
 		b.setLocation(100, 110);
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				f.dispose();
+				System.exit(0);
+
 			}
 		});
 		f.add(l1);

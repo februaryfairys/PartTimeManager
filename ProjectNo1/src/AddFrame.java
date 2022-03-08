@@ -1,23 +1,18 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.*;
 
-public class AddFrame2 extends AFrame {
-	private Frame f, f2, chaf, cafF;
+public class AddFrame extends AFrame {
+	private Frame f;
 	private TextField tf1, tf2, tf3, tf4;
-	private Button b1, b2, bRd, b3, chafB1, chafB2, cafB;
-	private Label lid, lid2, lpw, lpw2, ltel, ltel2, lchpw, lError, chafL2, cafL1, cafL2;
+	private Button b1, b2, bRd;
+	private Label lid, lid2, lpw, lpw2, ltel, ltel2, lchpw;
 	private Choice r;
 	private boolean c = false;
-	private String NAME;
-	private String PW;
-	private String TEL;
-	private String ROLE;
 	private String name;
 
 	InputYourInfo iyi = new InputYourInfo();
 	CheckPasswordFrame chpf = new CheckPasswordFrame();
-	CheckAddFrame chaff = new CheckAddFrame();
+	CheckAddFrame chaf = new CheckAddFrame();
 
 	public void start() {
 
@@ -100,12 +95,12 @@ public class AddFrame2 extends AFrame {
 				} else {
 					if (tf1.getText().length() >= 2 && tf2.getText().equals(tf3.getText()) && c == true
 							&& tf4.getText().length() >= 10 && tf4.getText().length() <= 11) {
-						chaff.setNAME(tf1.getText());
-						chaff.setPW(tf2.getText());
-						chaff.setTEL(tf4.getText());
-						chaff.setROLE(r.getSelectedItem());
+						chaf.setNAME(tf1.getText());
+						chaf.setPW(tf2.getText());
+						chaf.setTEL(tf4.getText());
+						chaf.setROLE(r.getSelectedItem());
 						name = tf1.getText();
-						chaff.start(name);
+						chaf.start(name);
 						c = false;
 					}
 
@@ -168,66 +163,4 @@ public class AddFrame2 extends AFrame {
 
 	}
 
-	public void addDAO(String NAME, String PW, String TEL, String ROLE) {
-		String driver = "oracle.jdbc.driver.OracleDriver";
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "c##ezen";
-		String password = "ezen1234";
-		String sql;
-
-		try {
-
-			Class.forName(driver);
-			System.out.println("jdbc driver loading success.");
-			Connection conn = DriverManager.getConnection(url, user, password);
-			System.out.println("oracle connection sucess.\n");
-			Statement stmt = conn.createStatement();
-
-			sql = "insert into PARTTIMERS VALUES ('" + NAME + "','" + PW + "','" + TEL + "' , '" + ROLE + "')";
-
-			boolean b = stmt.execute(sql);
-			if (!b) {
-				System.out.println("INSERT SUCCSESS.\n");
-			} else {
-				System.out.println("INSERT FAIL.\n");
-			}
-
-		} catch (ClassNotFoundException e) {
-			System.out.println(e);
-		} catch (SQLException e) {
-			System.out.println(e);
-		}
-	}
-
-	public String getNAME() {
-		return NAME;
-	}
-
-	public void setNAME(String NAME) {
-		this.NAME = NAME;
-	}
-
-	public String getPW() {
-		return PW;
-	}
-
-	public void setPW(String PW) {
-		this.PW = PW;
-	}
-
-	public String getTEL() {
-		return TEL;
-	}
-
-	public void setTEL(String TEL) {
-		this.TEL = TEL;
-	}
-
-	public String getROLE() {
-		return ROLE;
-	}
-
-	public void setROLE(String ROLE) {
-		this.ROLE = ROLE;
-	}
 }

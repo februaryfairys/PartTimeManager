@@ -52,8 +52,4 @@ public class EmpFrame extends AFrame {
 		f.setVisible(true);
 
 	}
-
-	public void actionPerformed(ActionEvent e) {
-
-	}
 }

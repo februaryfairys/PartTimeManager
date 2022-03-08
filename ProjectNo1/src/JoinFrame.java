@@ -7,21 +7,13 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class JoinFrame extends AFrame {
-	private Frame f, f2;
+	private Frame f;
 	private TextField tf1, tf2;
-	private Button b1, b2, b3, b4;
-	private Label lid, lpw, l1, l2;
-	private PartTimerJoinDAO dao = new PartTimerJoinDAO();
+	private Button b1;
+	private Label lid, lpw;
+	private JoinDAO dao = new JoinDAO();
 	private AlreadyJoinedFrame ajf = new AlreadyJoinedFrame();
-	private String name;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+	private String name, password;
 
 	public void start() {
 
@@ -64,14 +56,16 @@ public class JoinFrame extends AFrame {
 					iyi.start("password");
 				} else {
 					ArrayList<VOPartTimer> list = dao.list(tf1.getText());
-					VOPartTimer data = (VOPartTimer) list.get(0);
 					if (list.size() == 0) {
 						cnp.start();
 					} else {
+						VOPartTimer data = (VOPartTimer) list.get(0);
 						String pswd = data.getPw();
 						if (tf2.getText().equals(pswd)) {
-							setName(tf1.getText());
-							CheckJoinFrame();
+							CheckJoinFrame chjf = new CheckJoinFrame();
+							name = tf1.getText();
+							password = tf2.getText();
+							chjf.start(name, password);
 							f.dispose();
 						} else {
 							cnp.start();
@@ -80,7 +74,6 @@ public class JoinFrame extends AFrame {
 				}
 			}
 		});
-		
 
 		f.add(b1);
 		f.add(tf1);
@@ -90,85 +83,27 @@ public class JoinFrame extends AFrame {
 		f.setVisible(true);
 	}
 
-	public void CheckJoinFrame() {
-		Calendar now = Calendar.getInstance();
-		int ampm = now.get(Calendar.AM_PM);
-		String strampm = null;
-		int hour = now.get(Calendar.HOUR);
-		int minute = now.get(Calendar.MINUTE);
-
-		f2 = new Frame("CheckJoin");
-		f2.setSize(250, 160);
-		f2.setLayout(null);
-		f2.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent E) {
-				f2.dispose();
-			}
-		});
-		f2.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
-
-		if (ampm == Calendar.AM) {
-			strampm = "오전 ";
-		} else {
-			strampm = "오후 ";
-		}
-
-		l1 = new Label("현재 시간은 " + strampm + hour + " 시 " + minute + "분 " + "입니다.", Label.CENTER);
-		l2 = new Label("출근할까요?", Label.CENTER);
-		l1.setSize(250, 20);
-		l2.setSize(250, 20);
-		l1.setLocation(0, 50);
-		l2.setLocation(0, 80);
-
-		b3 = new Button("네");
-		b4 = new Button("아니요");
-		b3.setSize(50, 30);
-		b4.setSize(50, 30);
-		b3.setLocation(75, 110);
-		b4.setLocation(125, 110);
-		b3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				checkDAO();
-				f2.dispose();
-
-			}
-		});
-		b4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				f2.dispose();
-			}
-		});
-
-		f2.add(b3);
-		f2.add(b4);
-		f2.add(l1);
-		f2.add(l2);
-		f2.setVisible(true);
-
-	}
-
-	public void checkDAO() {
+	public void checkDAO(String name, String password) {
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "c##ezen";
-		String password = "ezen1234";
+		String dbPassword = "ezen1234";
 		String sql;
 
 		try {
 
 			Class.forName(driver);
 			System.out.println("jdbc driver loading success.");
-			Connection conn = DriverManager.getConnection(url, user, password);
+			Connection conn = DriverManager.getConnection(url, user, dbPassword);
 			System.out.println("oracle connection sucess.\n");
 			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-			sql = "SELECT * FROM WORKINGPARTTIMERS WHERE NAME = '" + tf1.getText() + "' AND PW = '" + tf2.getText()
-					+ "'";
+			sql = "SELECT * FROM WORKINGPARTTIMERS WHERE NAME = '" + name + "' AND PW = '" + password + "'";
 			ResultSet rs = stmt.executeQuery(sql);
 			rs.first();
 			if (rs.getRow() == 0) {
 				System.out.println("0 row selected.....");
-				joinDAO();
+				joinTimeDAO(name, password);
 			} else {
 				System.out.println(rs.getRow() + " rows selected.....");
 				rs.previous();
@@ -178,15 +113,14 @@ public class JoinFrame extends AFrame {
 			System.out.println(e);
 		} catch (SQLException e) {
 			System.out.println(e);
-
 		}
 	}
 
-	public void joinDAO() {
+	public void joinTimeDAO(String nm, String pw) {
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "c##ezen";
-		String password = "ezen1234";
+		String dbPassword = "ezen1234";
 		String sql, sql2, dt, joinTime;
 
 		Date now = new Date();
@@ -197,24 +131,22 @@ public class JoinFrame extends AFrame {
 
 			Class.forName(driver);
 			System.out.println("jdbc driver loading success.");
-			Connection conn = DriverManager.getConnection(url, user, password);
+			Connection conn = DriverManager.getConnection(url, user, dbPassword);
 			System.out.println("oracle connection sucess.\n");
 			Statement stmt = conn.createStatement();
 
 			dt = sdfDt.format(now);
 			joinTime = sdfNow.format(now);
 
-			sql = "insert into WORKINGPARTTIMERS VALUES ('" + tf1.getText() + "','" + tf2.getText() + "','" + joinTime
-					+ "')";
-			sql2 = "insert into WORKTIME VALUES ('" + dt + "','" + tf1.getText() + "', '" + joinTime
-					+ "', '0','0','0')";
+			sql = "insert into WORKINGPARTTIMERS VALUES ('" + nm + "','" + pw + "','" + joinTime + "')";
+			sql2 = "insert into WORKTIME VALUES ('" + dt + "','" + nm + "', '" + joinTime + "', '0','0','0')";
 			boolean b = stmt.execute(sql);
 			boolean b2 = stmt.execute(sql2);
 
 			if (!b) {
 				System.out.println("JOIN SUCCSESS.\n");
 				CompleteJoinFrame cjf = new CompleteJoinFrame();
-				cjf.setName(tf1.getText());
+				cjf.setName(nm);
 				cjf.start();
 			} else {
 				System.out.println("JOIN FAIL.\n");

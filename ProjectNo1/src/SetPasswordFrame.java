@@ -58,8 +58,8 @@ public class SetPasswordFrame extends AFrame {
 		b2 = new Button("√Îº“");
 		b1.setSize(50, 30);
 		b2.setSize(50, 30);
-		b1.setLocation(65, 280);
-		b2.setLocation(135, 280);
+		b1.setLocation(75, 280);
+		b2.setLocation(125, 280);
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tf1.getText().equals("")) {
@@ -190,8 +190,6 @@ public class SetPasswordFrame extends AFrame {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "c##ezen";
 		String password = "ezen1234";
-//		String user = "c##february";
-//		String password = "wl887087wl";
 		String sql;
 
 		try {
