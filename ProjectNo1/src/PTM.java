@@ -2,9 +2,9 @@ public class PTM {
 
 	public static void main(String[] args) {
 		MainFrame mf = new MainFrame();
-		LookUpFrame luf = new LookUpFrame();
+		HelpFrame hf = new HelpFrame();
 //		mf.start();
-		luf.start();
+		hf.start();
 
 	}
 }
