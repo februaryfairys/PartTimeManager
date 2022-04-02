@@ -163,4 +163,8 @@ public class AddFrame extends AFrame {
 
 	}
 
+	public void dispose() {
+		f.dispose();
+	}
+
 }

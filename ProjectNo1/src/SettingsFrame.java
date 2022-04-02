@@ -5,8 +5,8 @@ public class SettingsFrame extends AFrame {
 
 	private Frame f;
 	private Button b1, b2, b3;
-	SetPasswordFrame spf = new SetPasswordFrame();
-	InputPasswordFrame ipf = new InputPasswordFrame();
+	SettingsFrame2 sf2 = new SettingsFrame2();
+	SetPayFrame spf = new SetPayFrame();
 
 	public void start() {
 		f = new Frame("Setting");
@@ -19,8 +19,8 @@ public class SettingsFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		b1 = new Button("비밀번호 변경");
-		b2 = new Button("프로그램 초기화");
+		b1 = new Button("급여 설정");
+		b2 = new Button("프로그램 설정");
 		b3 = new Button("닫기");
 		b1.setSize(160, 60);
 		b2.setSize(160, 60);
@@ -37,7 +37,7 @@ public class SettingsFrame extends AFrame {
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				f.dispose();
-				ipf.start(2);
+				sf2.start();
 			}
 		});
 		b3.addActionListener(new ActionListener() {

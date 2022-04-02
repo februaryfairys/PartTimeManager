@@ -17,14 +17,17 @@ import java.util.ArrayList;
 
 public class WorkTimeFrame extends AFrame {
 	private Frame f;
-	private Button b1, b2;
+	private Button b1, b2, b3;
 	private Label l1, l2, l3, l4, l5, l6, l7;
 	private Choice c1, c2, c3;
 	private TextArea ta1, ta2;
 	private TextField tf1;
 	private String result, name;
-	private int WTH, WTM, WT;
-	private String MHW = "9160";
+	private int WTH = 0, WTM = 0, WT;
+	private String MHW = "";
+	private String ROLE = "";
+	private String opt1 = "opt1";
+	private String opt2 = "opt2";
 
 	public void start(String name, ArrayList<VOWorkTime> list) {
 
@@ -44,7 +47,7 @@ public class WorkTimeFrame extends AFrame {
 		l3 = new Label("아래 근무일까지 조회합니다.");
 		l4 = new Label(name + "님의 급여를 계산합니다.", Label.CENTER);
 		l5 = new Label("책정된 시급은 얼마인가요?");
-		l6 = new Label("원");
+		l6 = new Label("원", Label.CENTER);
 		l7 = new Label(name + "님의 역할은 무엇인가요?");
 
 		l1.setSize(270, 20);
@@ -52,14 +55,14 @@ public class WorkTimeFrame extends AFrame {
 		l3.setSize(200, 20);
 		l4.setSize(270, 20);
 		l5.setSize(200, 20);
-		l6.setSize(50, 20);
+		l6.setSize(20, 20);
 		l7.setSize(200, 20);
 		l1.setLocation(0, 50);
 		l2.setLocation(35, 90);
 		l3.setLocation(35, 160);
 		l4.setLocation(270, 50);
 		l5.setLocation(305, 90);
-		l6.setLocation(460, 120);
+		l6.setLocation(410, 120);
 		l7.setLocation(305, 160);
 
 		c1 = new Choice();
@@ -93,7 +96,7 @@ public class WorkTimeFrame extends AFrame {
 		ta2.setEditable(false);
 
 		tf1 = new TextField(MHW);
-		tf1.setSize(150, 20);
+		tf1.setSize(100, 20);
 		tf1.setLocation(305, 120);
 
 		b1 = new Button("조회");
@@ -101,16 +104,26 @@ public class WorkTimeFrame extends AFrame {
 		b1.setLocation(55, 330);
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				calDAO();
+				dao(opt1);
 				result = "해당 기간 동안의\n" + name + "님의 근무 시간은\n" + WTH + "시간 " + WTM + "분입니다.";
 				ta1.setText(result);
 
 			}
 		});
-		b2 = new Button("계산");
-		b2.setSize(160, 40);
-		b2.setLocation(325, 330);
+		b2 = new Button("최저임금");
+		b2.setSize(65, 20);
+		b2.setLocation(440, 120);
 		b2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dao(opt2);
+
+			}
+		});
+
+		b3 = new Button("계산");
+		b3.setSize(160, 40);
+		b3.setLocation(325, 330);
+		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int wage = Integer.parseInt(tf1.getText());
 				result = "해당 기간 동안의\n" + name + "님의 급여는\n" + "'" + wageCal(WTH, WTM, wage) + "'원입니다.\n"
@@ -134,56 +147,78 @@ public class WorkTimeFrame extends AFrame {
 		f.add(tf1);
 		f.add(b1);
 		f.add(b2);
+		f.add(b3);
 		f.setVisible(true);
 
 	}
 
-	public void calDAO() {
+	public void start2() {
+	}
+
+	public void dao(String opt) {
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "c##ezen";
 		String password = "ezen1234";
-		String sql;
+		String sql = "";
+
 		int DTFrom = Integer.parseInt(c1.getSelectedItem());
 		int DTTo = Integer.parseInt(c2.getSelectedItem());
 
 		try {
 
 			Class.forName(driver);
-			System.out.println("jdbc driver loading success.");
 			Connection conn = DriverManager.getConnection(url, user, password);
-			System.out.println("oracle connection sucess.\n");
 			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-			sql = "SELECT sum(WORKTIMEH), sum(WORKTIMEM) FROM WORKTIME where NAME = '" + name + "'";
-
-			if (DTFrom > DTTo) {
-				int tmp;
-				tmp = DTFrom;
-				DTFrom = DTTo;
-				DTTo = tmp;
-			}
-			sql += " AND (DT BETWEEN " + DTFrom + " AND " + DTTo + ")";
-
-			WTH = 0;
-			WTM = 0;
-			ResultSet rs = stmt.executeQuery(sql);
-
-			rs.first();
-			if (rs.getRow() == 0) {
-				System.out.println("0 row selected.....");
-			} else {
-				System.out.println(rs.getRow() + " rows selected.....");
-				rs.previous();
-				while (rs.next()) {
-					WTH = rs.getInt("SUM(WORKTIMEH)");
-					WTM = rs.getInt("SUM(WORKTIMEM)");
+			if (opt == opt1) {
+				sql = "SELECT sum(WORKTIMEH), sum(WORKTIMEM) FROM WORKTIME where NAME = '" + name + "'";
+				if (DTFrom > DTTo) {
+					int tmp;
+					tmp = DTFrom;
+					DTFrom = DTTo;
+					DTTo = tmp;
 				}
-				WT = WTH * 60 + WTM;
-				workTimeH(WT);
-				workTimeM(WT);
+				sql += " AND (DT BETWEEN " + DTFrom + " AND " + DTTo + ")";
+
+				ResultSet rs = stmt.executeQuery(sql);
+
+				rs.first();
+				if (rs.getRow() == 0) {
+					System.out.println("0 row selected.....");
+				} else {
+					System.out.println(rs.getRow() + " rows selected.....");
+					rs.previous();
+					while (rs.next()) {
+						WTH = rs.getInt("SUM(WORKTIMEH)");
+						WTM = rs.getInt("SUM(WORKTIMEM)");
+					}
+					WT = WTH * 60 + WTM;
+					WTH = workTimeH(WT);
+					WTM = workTimeM(WT);
+				}
+
 			}
 
+			else if (opt == opt2) {
+				sql = "SELECT * FROM WAGE";
+				ResultSet rs = stmt.executeQuery(sql);
+				rs.first();
+				if (rs.getRow() == 0) {
+					System.out.println("0 row selected.....");
+				} else {
+					System.out.println(rs.getRow() + " rows selected.....");
+					rs.previous();
+					while (rs.next()) {
+
+						MHW = rs.getString("MHW");
+						ROLE = rs.getString("ROLE");
+						tf1.setText(MHW);
+
+					}
+
+				}
+			}
 		} catch (ClassNotFoundException e) {
 			System.out.println(e);
 		} catch (SQLException e) {
@@ -214,7 +249,13 @@ public class WorkTimeFrame extends AFrame {
 		int wageH = wage * WTH;
 		int wageM = wage / 60 * WTM;
 		int wageHM = wageH + wageM;
+		if (c3.getSelectedItem() == "매니저") {
+			dao(opt2);
+			wageHM = wageHM * (100 + Integer.parseInt(ROLE)) / 100;
+		}
 		return wageHM;
 	}
 
+	public void conn() {
+	}
 }

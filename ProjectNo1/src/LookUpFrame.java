@@ -133,7 +133,7 @@ public class LookUpFrame extends AFrame {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "c##ezen";
 		String password = "ezen1234";
-		String sql1, sql2;
+		String sql1, sql2, sql3;
 
 		try {
 
@@ -144,14 +144,18 @@ public class LookUpFrame extends AFrame {
 			Statement stmt = conn.createStatement();
 
 			sql1 = "DELETE FROM PARTTIMERS where NAME = '" + name + "'";
-			sql2 = "DELETE FROM WORKINGPARTTIMERS where NAME = '" + name + "'";
+			sql2 = "SELECT * FROM WORKINGPARTTIMERS WHERE NAME = '" + name + "'";
+			sql3 = "DELETE FROM WORKINGPARTTIMERS where NAME = '" + name + "'";
 
 			boolean b = stmt.execute(sql1);
-			stmt.execute(sql2);
+			ResultSet rs = stmt.executeQuery(sql2);
+			if (rs.getRow() != 0) {
+				stmt.execute(sql3);
+			}
 
 			if (!b) {
 				System.out.println("DELETE SUCCSESS.\n");
-				lst.remove(lst.getSelectedItem());
+//				lst.remove(lst.getSelectedItem());
 			} else {
 				System.out.println("DELETE FAIL.\n");
 			}

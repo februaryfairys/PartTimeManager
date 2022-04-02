@@ -24,6 +24,7 @@ public class MainFrame extends AFrame {
 	ShowWorkingPartTimers swp = new ShowWorkingPartTimers();
 	SettingsFrame sf = new SettingsFrame();
 	InputPasswordFrame ipf = new InputPasswordFrame();
+	HelpFrame hf = new HelpFrame();
 
 	public String getTime() {
 		return time;
@@ -55,12 +56,14 @@ public class MainFrame extends AFrame {
 		Menu mSetting = new Menu("설정");
 		MenuItem miPw = new MenuItem("비밀번호 변경");
 		MenuItem miExit = new MenuItem("프로그램 종료");
+		MenuItem miHelp = new MenuItem("도움말");
 		mParttimer.add(miJoin);
 		mParttimer.add(miOut);
 		mManage.add(miAdd);
 		mManage.add(miEdit);
 		mSetting.add(miPw);
 		mSetting.add(miExit);
+		mSetting.add(miHelp);
 		mb.add(mParttimer);
 		mb.add(mManage);
 		mb.add(mSetting);
@@ -99,6 +102,11 @@ public class MainFrame extends AFrame {
 		miExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ipf.start(1);
+			}
+		});
+		miHelp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				hf.start();
 			}
 		});
 

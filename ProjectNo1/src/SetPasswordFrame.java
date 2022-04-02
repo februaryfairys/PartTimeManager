@@ -43,16 +43,20 @@ public class SetPasswordFrame extends AFrame {
 		l3.setLocation(0, 130);
 		l4.setLocation(0, 190);
 		l5.setLocation(0, 250);
+		l5.setForeground(Color.red);
 
 		tf1 = new TextField();
 		tf2 = new TextField();
 		tf3 = new TextField();
-		tf1.setSize(200, 20);
-		tf2.setSize(200, 20);
-		tf3.setSize(200, 20);
-		tf1.setLocation(25, 100);
-		tf2.setLocation(25, 160);
-		tf3.setLocation(25, 220);
+		tf1.setSize(190, 20);
+		tf2.setSize(190, 20);
+		tf3.setSize(190, 20);
+		tf1.setLocation(30, 100);
+		tf2.setLocation(30, 160);
+		tf3.setLocation(30, 220);
+		tf1.setEchoChar('●');
+		tf2.setEchoChar('●');
+		tf3.setEchoChar('●');
 
 		b1 = new Button("확인");
 		b2 = new Button("취소");
@@ -77,7 +81,6 @@ public class SetPasswordFrame extends AFrame {
 						chpf.start(0);
 						l5.setText("<새로운 비밀번호가 일치하지 않습니다.>");
 					}
-
 				}
 			}
 		});

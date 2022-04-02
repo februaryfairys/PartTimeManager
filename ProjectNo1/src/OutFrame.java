@@ -1,10 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -189,10 +185,9 @@ public class OutFrame extends AFrame {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "c##ezen";
 		String password = "ezen1234";
-		String sql1, sql2, sql3, dt, joinTime, outTime;
+		String sql1, sql2, sql3, joinTime, outTime;
 
 		Date now = new Date();
-		SimpleDateFormat sdfDt = new SimpleDateFormat("YYYYMMdd");
 		SimpleDateFormat sdfNow = new SimpleDateFormat("HHmm");
 
 		try {
@@ -203,7 +198,6 @@ public class OutFrame extends AFrame {
 			System.out.println("oracle connection sucess.\n");
 			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-			dt = sdfDt.format(now);
 			outTime = sdfNow.format(now);
 			joinTime = "0";
 			sql1 = "select JOINTIME from WORKINGPARTTIMERS where name = '" + tf1.getText() + "' AND PW = '"
@@ -225,9 +219,9 @@ public class OutFrame extends AFrame {
 
 			sql2 = "delete from WORKINGPARTTIMERS where name = '" + tf1.getText() + "' AND PW = '" + tf2.getText()
 					+ "'";
-			sql3 = "insert into WORKTIME VALUES ('" + dt + "','" + tf1.getText() + "','0', '" + outTime + "', '"
-					+ workTimeH(joinTime, outTime) + "','" + workTimeM(joinTime, outTime) + "')";
 
+			sql3 = "UPDATE WORKTIME SET OUTTIME =" + outTime + ", WORKTIMEH =" + workTimeH(joinTime, outTime)
+					+ ", WORKTIMEM = " + workTimeM(joinTime, outTime) + " WHERE JOINTIME = '" + joinTime + "'";
 			boolean b2 = stmt.execute(sql2);
 			boolean b3 = stmt.execute(sql3);
 			if (!b2) {

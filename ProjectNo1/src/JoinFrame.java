@@ -1,3 +1,5 @@
+
+
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
@@ -139,7 +141,8 @@ public class JoinFrame extends AFrame {
 			joinTime = sdfNow.format(now);
 
 			sql = "insert into WORKINGPARTTIMERS VALUES ('" + nm + "','" + pw + "','" + joinTime + "')";
-			sql2 = "insert into WORKTIME VALUES ('" + dt + "','" + nm + "', '" + joinTime + "', '0','0','0')";
+			sql2 = "insert into WORKTIME VALUES ('" + dt + "','" + nm + "', '" + pw + "','" + joinTime
+					+ "', '0','0','0')";
 			boolean b = stmt.execute(sql);
 			boolean b2 = stmt.execute(sql2);
 

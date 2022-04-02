@@ -17,7 +17,7 @@ public class CheckNameOrPassword extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		l = new Label("성명 또는 비밀번호를 확인하세요.", Label.CENTER);
+		l = new Label("성명 또는 직원번호를 확인하세요.", Label.CENTER);
 		l.setSize(250, 20);
 		l.setLocation(0, 65);
 

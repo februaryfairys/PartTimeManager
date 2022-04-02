@@ -1,18 +1,12 @@
 import java.awt.*;
 import java.awt.event.*;
 
-public class CompleteAddFrame extends AFrame {
+public class CompleteRoleWageSetFrame extends AFrame {
 	private Frame f;
-	private Label l1, l2;
+	private Label l;
 	private Button b;
-	private String name;
 
-	public String getName() {
-		return name;
-	}
-
-	public void start(String name) {
-		this.name = name;
+	public void start() {
 
 		f = new Frame("Complete");
 		f.setSize(250, 160);
@@ -24,12 +18,9 @@ public class CompleteAddFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		l1 = new Label("등록되었습니다.", Label.CENTER);
-		l2 = new Label(getName() + "님 환영합니다.", Label.CENTER);
-		l1.setSize(250, 20);
-		l2.setSize(250, 20);
-		l1.setLocation(0, 50);
-		l2.setLocation(0, 80);
+		l = new Label("역할에 따른 임금 설정이 완료되었습니다.", Label.CENTER);
+		l.setSize(250, 20);
+		l.setLocation(0, 65);
 
 		b = new Button("확인");
 		b.setSize(50, 30);
@@ -40,8 +31,7 @@ public class CompleteAddFrame extends AFrame {
 
 			}
 		});
-		f.add(l1);
-		f.add(l2);
+		f.add(l);
 		f.add(b);
 		f.setVisible(true);
 	}
