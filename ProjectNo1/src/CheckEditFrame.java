@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import Project1.dao.DAO;
+
 public class CheckEditFrame extends AFrame {
 	private Frame f;
 	private Label l;

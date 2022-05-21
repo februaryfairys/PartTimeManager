@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
 
+import Project1.dao.DAO;
+
 public class InputPasswordFrame extends AFrame {
 	private Frame f;
 	private TextField tf1;

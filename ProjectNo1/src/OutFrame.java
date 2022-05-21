@@ -1,10 +1,23 @@
-import java.awt.*;
-import java.awt.event.*;
-import java.sql.*;
+import java.awt.Button;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
+import Project1.dao.JoinDAO;
+import Project1.dto.PartTimerVo;
 
 public class OutFrame extends AFrame {
 	private Frame f, f2;
@@ -63,11 +76,11 @@ public class OutFrame extends AFrame {
 				} else if (tf2.getText().equals("")) {
 					iyi.start("password");
 				} else {
-					ArrayList<VOPartTimer> list = dao.list(tf1.getText());
+					ArrayList<PartTimerVo> list = dao.list(tf1.getText());
 					if (list.size() == 0) {
 						cnp.start();
 					} else {
-						VOPartTimer data = (VOPartTimer) list.get(0);
+						PartTimerVo data = (PartTimerVo) list.get(0);
 						String pswd = data.getPw();
 						if (tf2.getText().equals(pswd)) {
 							checkOutFrame();

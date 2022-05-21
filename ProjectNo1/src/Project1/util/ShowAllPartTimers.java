@@ -1,8 +1,12 @@
+package Project1.util;
 import java.util.ArrayList;
 
+import Project1.dao.ShowAllDAO;
+import Project1.dto.PartTimerVo;
+
 public class ShowAllPartTimers {
-	private ShowAllDAO dao = new ShowAllDAO();
-	private String allPartTimers;
+	public ShowAllDAO dao = new ShowAllDAO();
+	public String allPartTimers;
 
 	public String getAllPartTimers() {
 		return allPartTimers;
@@ -13,15 +17,15 @@ public class ShowAllPartTimers {
 	}
 
 	public void start() {
-		ArrayList<VOShowAllPartTimers> list = dao.list();
+		ArrayList<PartTimerVo> list = dao.list();
 		StringBuilder sb = new StringBuilder();
 
 		for (int i = 0; i < list.size(); i++) {
-			VOShowAllPartTimers data = (VOShowAllPartTimers) list.get(i);
-			String NAME = data.getName();
-			String ROLE = data.getRole();
+			PartTimerVo data = (PartTimerVo) list.get(i);
+			String name = data.getName();
+			String role = data.getRole();
 
-			sb.append(NAME + " " + ROLE + "\n");
+			sb.append(name + " " + role + "\n");
 		}
 
 		setAllPartTimers(sb.toString());

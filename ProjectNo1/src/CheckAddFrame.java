@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
 
+import Project1.dao.DAO;
+
 public class CheckAddFrame extends AFrame {
 	private Frame f;
 	private Label l;

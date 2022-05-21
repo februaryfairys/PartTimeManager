@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
 
+import Project1.dao.DAO;
+
 public class CheckResetFrame extends AFrame {
 	private Frame f;
 	private Label l1, l2;

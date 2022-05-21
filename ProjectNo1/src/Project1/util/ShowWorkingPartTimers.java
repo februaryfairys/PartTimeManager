@@ -1,4 +1,8 @@
+package Project1.util;
 import java.util.ArrayList;
+
+import Project1.dao.WorkingPartTimerDAO;
+import Project1.dto.PartTimerVo;
 
 public class ShowWorkingPartTimers {
 	private WorkingPartTimerDAO dao = new WorkingPartTimerDAO();
@@ -13,11 +17,11 @@ public class ShowWorkingPartTimers {
 	}
 
 	public void start() {
-		ArrayList<VOWorkingPartTimer> list = dao.list();
+		ArrayList<PartTimerVo> list = dao.list();
 		StringBuilder sb = new StringBuilder();
 
 		for (int i = 0; i < list.size(); i++) {
-			VOWorkingPartTimer data = (VOWorkingPartTimer) list.get(i);
+			PartTimerVo data = (PartTimerVo) list.get(i);
 			String NAME = data.getName();
 			String ROLE = data.getRole();
 

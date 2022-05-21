@@ -1,3 +1,4 @@
+package Project1.dto;
 
 public class VOWorkTime {
 	private String DT;

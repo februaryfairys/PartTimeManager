@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import Project1.dto.VOWorkTime;
+
 public class WorkTimeFrame extends AFrame {
 	private Frame f;
 	private Button b1, b2, b3;

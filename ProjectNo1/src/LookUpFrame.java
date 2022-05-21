@@ -1,7 +1,24 @@
-import java.awt.*;
-import java.awt.event.*;
-import java.sql.*;
+import java.awt.Button;
+import java.awt.Frame;
+import java.awt.List;
+import java.awt.MenuItem;
+import java.awt.PopupMenu;
+import java.awt.TextArea;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+
+import Project1.dao.JoinDAO;
+import Project1.dto.PartTimerVo;
+import Project1.dto.VOWorkTime;
 
 public class LookUpFrame extends AFrame {
 	private Frame f;
@@ -46,8 +63,8 @@ public class LookUpFrame extends AFrame {
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tf.getText().length() > 1) {
-					ArrayList<VOPartTimer> list = dao.list(tf.getText());
-					VOPartTimer data = (VOPartTimer) list.get(0);
+					ArrayList<PartTimerVo> list = dao.list(tf.getText());
+					PartTimerVo data = (PartTimerVo) list.get(0);
 					lst.add(data.getName());
 				}
 			}
@@ -55,8 +72,8 @@ public class LookUpFrame extends AFrame {
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (lst.getSelectedItem() != null) {
-					ArrayList<VOPartTimer> list = dao.list(lst.getSelectedItem());
-					VOPartTimer data = (VOPartTimer) list.get(0);
+					ArrayList<PartTimerVo> list = dao.list(lst.getSelectedItem());
+					PartTimerVo data = (PartTimerVo) list.get(0);
 					String name = data.getName();
 					String pw = data.getPw();
 					String tel = data.getTel();

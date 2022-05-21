@@ -1,8 +1,11 @@
+package Project1.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import Project1.dto.PartTimerVo;
 
 public class JoinDAO {
 
@@ -15,8 +18,8 @@ public class JoinDAO {
 	private Statement stmt;
 	private ResultSet rs;
 
-	public ArrayList<VOPartTimer> list(String pname) {
-		ArrayList<VOPartTimer> list = new ArrayList<VOPartTimer>();
+	public ArrayList<PartTimerVo> list(String pname) {
+		ArrayList<PartTimerVo> list = new ArrayList<PartTimerVo>();
 
 		try {
 			connDB();
@@ -42,7 +45,7 @@ public class JoinDAO {
 					String tel = rs.getString("TEL");
 					String role = rs.getString("ROLE");
 
-					VOPartTimer data = new VOPartTimer(name, pw, tel, role);
+					PartTimerVo data = new PartTimerVo(name, pw, tel, role);
 					list.add(data);
 				}
 			}

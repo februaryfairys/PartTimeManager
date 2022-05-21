@@ -1,11 +1,13 @@
-
+package Project1.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class ShowAllDAO {
+import Project1.dto.PartTimerVo;
+
+public class WorkingPartTimerDAO {
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521/xe";
 	String user = "c##ezen";
@@ -15,15 +17,14 @@ public class ShowAllDAO {
 	private Statement stmt;
 	private ResultSet rs;
 
-	public ArrayList<VOShowAllPartTimers> list() {
-		ArrayList<VOShowAllPartTimers> list = new ArrayList<VOShowAllPartTimers>();
+	public ArrayList<PartTimerVo> list() {
+		ArrayList<PartTimerVo> list = new ArrayList<PartTimerVo>();
 
 		try {
 			connDB();
 
-			query = "SELECT * from PARTTIMERS ORDER BY ROLE, NAME";
+			query = "SELECT * from PARTTIMERS WHERE NAME in (SELECT NAME FROM WORKINGPARTTIMERS) ORDER BY ROLE, NAME";
 
-			System.out.println(query);
 			rs = stmt.executeQuery(query);
 			rs.first();
 			System.out.println("rs.getRow() : " + rs.getRow());
@@ -39,7 +40,7 @@ public class ShowAllDAO {
 					String tel = rs.getString("TEL");
 					String role = rs.getString("ROLE");
 
-					VOShowAllPartTimers data = new VOShowAllPartTimers(name, pw, tel, role);
+					PartTimerVo data = new PartTimerVo(name, pw, tel, role);
 					list.add(data);
 				}
 			}
@@ -53,8 +54,11 @@ public class ShowAllDAO {
 	public void connDB() {
 		try {
 			Class.forName(driver);
+//			System.out.println("jdbc driver loading success.");
 			con = DriverManager.getConnection(url, user, password);
+//			System.out.println("oracle connection success.");
 			stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+//			System.out.println("statement create success.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
