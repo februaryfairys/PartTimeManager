@@ -1,3 +1,6 @@
+import view.HelpFrame;
+import view.MainFrame;
+
 public class PTM {
 
 	public static void main(String[] args) {
