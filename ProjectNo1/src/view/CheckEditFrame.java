@@ -47,12 +47,12 @@ public class CheckEditFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		l = new Label(getName() + "���� ���� ������ �����ұ��?", Label.CENTER);
+		l = new Label(getName() + "님의 직원 정보를 수정할까요?", Label.CENTER);
 		l.setSize(250, 20);
 		l.setLocation(0, 65);
 
-		b1 = new Button("��");
-		b2 = new Button("�ƴϿ�");
+		b1 = new Button("네");
+		b2 = new Button("아니요");
 		b1.setSize(50, 30);
 		b2.setSize(50, 30);
 		b1.setLocation(75, 110);
@@ -63,7 +63,7 @@ public class CheckEditFrame extends AFrame {
 				CompleteEditFrame cef = new CompleteEditFrame();
 				f.dispose();
 				dao.edit(getName(), getSub(), getVal(), getRole());
-				if (sub.equals("����")) {
+				if (sub.equals("성명")) {
 					cef.start(getVal());
 				} else {
 					cef.start(getName());

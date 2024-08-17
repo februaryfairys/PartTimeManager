@@ -2,10 +2,10 @@ package dto;
 
 public class PartTimerVo {
 
-	private String name; // �̸�
-	private String pw; // ��й�ȣ
-	private String tel; // ����ó
-	private String role; // ����
+	private String name; // 이름
+	private String pw;   // 비밀번호
+	private String tel;  // 전화번호
+	private String role; // 역할
 
 	public PartTimerVo() {
 	}

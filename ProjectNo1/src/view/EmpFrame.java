@@ -21,9 +21,9 @@ public class EmpFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		b1 = new Button("���");
-		b2 = new Button("���");
-		b3 = new Button("�ݱ�");
+		b1 = new Button("출근");
+		b2 = new Button("퇴근");
+		b3 = new Button("닫기");
 		b1.setSize(160, 60);
 		b2.setSize(160, 60);
 		b3.setSize(160, 60);

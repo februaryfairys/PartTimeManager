@@ -29,8 +29,8 @@ public class CompleteJoinFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		l1 = new Label("����߽��ϴ�.", Label.CENTER);
-		l2 = new Label(getName() + "�� �ݰ����ϴ�.", Label.CENTER);
+		l1 = new Label("출근했습니다.", Label.CENTER);
+		l2 = new Label(getName() + "님 반갑습니다.", Label.CENTER);
 		l1.setSize(250, 20);
 		l2.setSize(250, 20);
 		l1.setLocation(0, 50);

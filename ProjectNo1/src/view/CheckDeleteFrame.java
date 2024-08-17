@@ -28,16 +28,16 @@ public class CheckDeleteFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		l1 = new Label("���� �۾��� �ǵ��� �� �����ϴ�.��", Label.CENTER);
-		l2 = new Label("���� ������ ���������� �����ұ��?", Label.CENTER);
+		l1 = new Label("※이 작업은 되돌릴 수 없습니다.※", Label.CENTER);
+		l2 = new Label("선택한 직원 정보를 삭제할까요?", Label.CENTER);
 		l1.setForeground(Color.red);
 		l1.setSize(250, 20);
 		l2.setSize(250, 20);
 		l1.setLocation(0, 50);
 		l2.setLocation(0, 80);
 
-		b1 = new Button("��");
-		b2 = new Button("�ƴϿ�");
+		b1 = new Button("네");
+		b2 = new Button("아니오");
 		b1.setSize(50, 30);
 		b2.setSize(50, 30);
 		b1.setLocation(75, 110);

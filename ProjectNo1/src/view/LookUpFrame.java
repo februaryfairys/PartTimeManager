@@ -45,11 +45,11 @@ public class LookUpFrame extends AFrame {
 			}
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
-		b1 = new Button("��ȸ");
-		b2 = new Button("���� ���� ��ȸ");
-		b3 = new Button("���� ���� ����");
-		b4 = new Button("���� ���� ����");
-		b5 = new Button("�ٹ� �ð� ��ȸ");
+		b1 = new Button("조회");
+		b2 = new Button("직원 정보 조회");
+		b3 = new Button("직원 정보 수정");
+		b4 = new Button("직원 정보 삭제");
+		b5 = new Button("근무 시간 조회");
 		b1.setSize(40, 20);
 		b2.setSize(160, 40);
 		b3.setSize(160, 40);
@@ -79,7 +79,7 @@ public class LookUpFrame extends AFrame {
 					String pw = data.getPw();
 					String tel = data.getTel();
 					String role = data.getRole();
-					String info = name + " " + role + "\n������ȣ : " + pw + "\n����ó : " + tel;
+					String info = name + " " + role + "\n직원번호 : " + pw + "\n연락처 : " + tel;
 					ta.setText(info);
 				}
 			}
@@ -119,9 +119,9 @@ public class LookUpFrame extends AFrame {
 			}
 		});
 
-		p = new PopupMenu("����");
-		pi1 = new MenuItem("��Ͽ��� ����");
-		pi2 = new MenuItem("��� ����");
+		p = new PopupMenu("편집");
+		pi1 = new MenuItem("목록에서 삭제");
+		pi2 = new MenuItem("목록 비우기");
 		p.add(pi1);
 		p.add(pi2);
 

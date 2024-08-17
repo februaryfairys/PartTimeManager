@@ -11,9 +11,9 @@ public class CheckPasswordFrame extends AFrame {
 	public void start(int Key) {
 
 		if (Key == 1) {
-			s = "������ȣ ��ġ Ȯ���� ���ּ���.";
+			s = "직원번호 일치 확인을 해주세요.";
 		} else {
-			s = "�ùٸ� ��й�ȣ�� �Է��ϼ���.";
+			s = "올바른 비밀번호를 입력하세요.";
 		}
 		f = new Frame("Error");
 		f.setSize(250, 160);
@@ -29,7 +29,7 @@ public class CheckPasswordFrame extends AFrame {
 		l.setSize(250, 20);
 		l.setLocation(0, 65);
 
-		b = new Button("Ȯ��");
+		b = new Button("확인");
 		b.setSize(50, 30);
 		b.setLocation(100, 110);
 		b.addActionListener(this);

@@ -20,9 +20,9 @@ public class SettingsFrame2 extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		b1 = new Button("��й�ȣ ����");
-		b2 = new Button("���α׷� �ʱ�ȭ");
-		b3 = new Button("�ݱ�");
+		b1 = new Button("비밀번호 변경");
+		b2 = new Button("프로그램 초기화");
+		b3 = new Button("닫기");
 		b1.setSize(160, 60);
 		b2.setSize(160, 60);
 		b3.setSize(160, 60);

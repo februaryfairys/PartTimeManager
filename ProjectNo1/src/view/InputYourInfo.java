@@ -13,13 +13,13 @@ public class InputYourInfo extends AFrame {
 		s = "";
 
 		if (S == "name") {
-			s = "������ �Է��ϼ���.";
+			s = "성명을 입력하세요.";
 		}
 		if (S == "password") {
-			s = "������ȣ�� �Է��ϼ���.";
+			s = "직원번호를 입력하세요.";
 		}
 		if (S == "tel") {
-			s = "����ó�� �Է��ϼ���.";
+			s = "연락처를 입력하세요.";
 		}
 		f = new Frame("Error");
 		f.setSize(250, 160);

@@ -45,13 +45,13 @@ public class WorkTimeFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		l1 = new Label(name + "���� �ٹ��ð��� ��ȸ�մϴ�.", Label.CENTER);
-		l2 = new Label("�Ʒ� �ٹ��Ϻ���");
-		l3 = new Label("�Ʒ� �ٹ��ϱ��� ��ȸ�մϴ�.");
-		l4 = new Label(name + "���� �޿��� ����մϴ�.", Label.CENTER);
-		l5 = new Label("å���� �ñ��� ���ΰ���?");
-		l6 = new Label("��", Label.CENTER);
-		l7 = new Label(name + "���� ������ �����ΰ���?");
+		l1 = new Label(name + "님의 근무시간을 조회합니다.", Label.CENTER);
+		l2 = new Label("아래 근무일부터");
+		l3 = new Label("아래 근무일까지 조회합니다.");
+		l4 = new Label(name + "님의 급여를 계산합니다.", Label.CENTER);
+		l5 = new Label("책정된 시급은 얼마인가요?");
+		l6 = new Label("원", Label.CENTER);
+		l7 = new Label(name + "님의 역할은 무엇인가요?");
 
 		l1.setSize(270, 20);
 		l2.setSize(200, 20);
@@ -78,8 +78,8 @@ public class WorkTimeFrame extends AFrame {
 		c1.setLocation(35, 120);
 		c2.setLocation(35, 190);
 		c3.setLocation(305, 190);
-		c3.add("����");
-		c3.add("�Ŵ���");
+		c3.add("직원");
+		c3.add("매니저");
 
 		for (int i = 0; i < list.size(); i++) {
 			VOWorkTime data = list.get(i);
@@ -102,18 +102,18 @@ public class WorkTimeFrame extends AFrame {
 		tf1.setSize(100, 20);
 		tf1.setLocation(305, 120);
 
-		b1 = new Button("��ȸ");
+		b1 = new Button("조회");
 		b1.setSize(160, 40);
 		b1.setLocation(55, 330);
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dao(opt1);
-				result = "�ش� �Ⱓ ������\n" + name + "���� �ٹ� �ð���\n" + WTH + "�ð� " + WTM + "���Դϴ�.";
+				result = "해당 기간 동안의\n" + name + "님의 근무 시간은\n" + WTH + "시간 " + WTM + "분입니다.";
 				ta1.setText(result);
 
 			}
 		});
-		b2 = new Button("�����ӱ�");
+		b2 = new Button("최저임금");
 		b2.setSize(65, 20);
 		b2.setLocation(440, 120);
 		b2.addActionListener(new ActionListener() {
@@ -123,14 +123,14 @@ public class WorkTimeFrame extends AFrame {
 			}
 		});
 
-		b3 = new Button("���");
+		b3 = new Button("계산");
 		b3.setSize(160, 40);
 		b3.setLocation(325, 330);
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int wage = Integer.parseInt(tf1.getText());
-				result = "�ش� �Ⱓ ������\n" + name + "���� �޿���\n" + "'" + wageCal(WTH, WTM, wage) + "'���Դϴ�.\n"
-						+ "(�� ���� �̸� ����)";
+				result = "해당 기간 동안의\n" + name + "님의 급여는\n" + "'" + wageCal(WTH, WTM, wage) + "'원입니다.\n"
+						+ "(원 단위 미만 절사)";
 				ta2.setText(result);
 			}
 		});
@@ -252,7 +252,7 @@ public class WorkTimeFrame extends AFrame {
 		int wageH = wage * WTH;
 		int wageM = wage / 60 * WTM;
 		int wageHM = wageH + wageM;
-		if (c3.getSelectedItem() == "�Ŵ���") {
+		if (c3.getSelectedItem() == "매니저") {
 			dao(opt2);
 			wageHM = wageHM * (100 + Integer.parseInt(ROLE)) / 100;
 		}

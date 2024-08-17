@@ -26,14 +26,14 @@ public class CompleteDeleteFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		l1 = new Label("�����Ǿ����ϴ�.", Label.CENTER);
-		l2 = new Label(getName() + "�� �����ϼ̽��ϴ�.", Label.CENTER);
+		l1 = new Label("삭제되었습니다.", Label.CENTER);
+		l2 = new Label(getName() + "님 수고하셨습니다.", Label.CENTER);
 		l1.setSize(250, 20);
 		l2.setSize(250, 20);
 		l1.setLocation(0, 50);
 		l2.setLocation(0, 80);
 
-		b = new Button("Ȯ��");
+		b = new Button("확인");
 		b.setSize(50, 30);
 		b.setLocation(100, 110);
 		b.addActionListener(new ActionListener() {

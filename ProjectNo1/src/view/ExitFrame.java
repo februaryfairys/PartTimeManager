@@ -40,20 +40,20 @@ public class ExitFrame extends AFrame {
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		if (ampm == Calendar.AM) {
-			strampm = "���� ";
+			strampm = "오전 ";
 		} else {
-			strampm = "���� ";
+			strampm = "오후 ";
 		}
 
-		l1 = new Label("���� �ð��� " + strampm + hour + " �� " + minute + "�� " + "�Դϴ�.", Label.CENTER);
-		l2 = new Label("���α׷��� �����ұ��?", Label.CENTER);
+		l1 = new Label("현재 시간은 " + strampm + hour + " 시 " + minute + "분 " + "입니다.", Label.CENTER);
+		l2 = new Label("프로그램을 종료할까요?", Label.CENTER);
 		l1.setSize(250, 20);
 		l2.setSize(250, 20);
 		l1.setLocation(0, 50);
 		l2.setLocation(0, 80);
 
-		b1 = new Button("��");
-		b2 = new Button("�ƴϿ�");
+		b1 = new Button("네");
+		b2 = new Button("아니요");
 		b1.setSize(50, 30);
 		b2.setSize(50, 30);
 		b1.setLocation(75, 110);

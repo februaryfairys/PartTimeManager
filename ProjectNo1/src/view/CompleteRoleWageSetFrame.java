@@ -19,11 +19,11 @@ public class CompleteRoleWageSetFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		l = new Label("���ҿ� ���� �ӱ� ������ �Ϸ�Ǿ����ϴ�.", Label.CENTER);
+		l = new Label("역할에 따른 임금 설정이 완료되었습니다.", Label.CENTER);
 		l.setSize(250, 20);
 		l.setLocation(0, 65);
 
-		b = new Button("Ȯ��");
+		b = new Button("확인");
 		b.setSize(50, 30);
 		b.setLocation(100, 110);
 		b.addActionListener(new ActionListener() {

@@ -1,8 +1,14 @@
 package view;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Button;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
-import Project1.dao.DAO;
+import dao.DAO;
 
 public class InputPasswordFrame extends AFrame {
 	private Frame f;
@@ -24,17 +30,17 @@ public class InputPasswordFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		lpw = new Label("��й�ȣ�� �Է��ϼ���.", Label.CENTER);
+		lpw = new Label("비밀번호를 입력하세요.", Label.CENTER);
 		lpw.setSize(250, 20);
 		lpw.setLocation(0, 50);
 
 		tf1 = new TextField("");
 		tf1.setSize(100, 20);
 		tf1.setLocation(75, 80);
-		tf1.setEchoChar('��');
+		tf1.setEchoChar('●');
 
-		b1 = new Button("Ȯ��");
-		b2 = new Button("���");
+		b1 = new Button("확인");
+		b2 = new Button("취소");
 		b1.setSize(50, 30);
 		b2.setSize(50, 30);
 		b1.setLocation(75, 110);

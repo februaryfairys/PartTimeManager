@@ -18,11 +18,11 @@ public class CheckNameOrPassword extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		l = new Label("���� �Ǵ� ������ȣ�� Ȯ���ϼ���.", Label.CENTER);
+		l = new Label("성명 또는 직원번호를 확인하세요.", Label.CENTER);
 		l.setSize(250, 20);
 		l.setLocation(0, 65);
 
-		b = new Button("Ȯ��");
+		b = new Button("확인");
 		b.setSize(50, 30);
 		b.setLocation(100, 110);
 		b.addActionListener(this);

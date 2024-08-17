@@ -27,8 +27,8 @@ public class CompleteOutFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		l1 = new Label("����߽��ϴ�.", Label.CENTER);
-		l2 = new Label(getName() + "�� �����ϼ̽��ϴ�.", Label.CENTER);
+		l1 = new Label("퇴근했습니다.", Label.CENTER);
+		l2 = new Label(getName() + "님 수고하셨습니다.", Label.CENTER);
 		l1.setSize(250, 20);
 		l2.setSize(250, 20);
 		l1.setLocation(0, 50);

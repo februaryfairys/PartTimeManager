@@ -18,11 +18,11 @@ public class AlreadyJoinedFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		l = new Label("�ش� ������ �̹� ����߽��ϴ�.", Label.CENTER);
+		l = new Label("해당 직원은 이미 출근했습니다.", Label.CENTER);
 		l.setSize(250, 20);
 		l.setLocation(0, 65);
 
-		b = new Button("Ȯ��");
+		b = new Button("확인");
 		b.setSize(50, 30);
 		b.setLocation(100, 110);
 		b.addActionListener(this);

@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import Project1.dao.JoinDAO;
-import Project1.dto.PartTimerVo;
+import dao.JoinDAO;
+import dto.PartTimerVo;
 
 public class OutFrame extends AFrame {
 	private Frame f, f2;
@@ -49,8 +49,8 @@ public class OutFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		lid = new Label("����");
-		lpw = new Label("������ȣ");
+		lid = new Label("성명");
+		lpw = new Label("직원번호");
 		lid.setSize(50, 20);
 		lpw.setSize(50, 20);
 		lid.setLocation(35, 40);
@@ -62,9 +62,9 @@ public class OutFrame extends AFrame {
 		tf2.setSize(190, 20);
 		tf1.setLocation(30, 65);
 		tf2.setLocation(30, 125);
-		tf2.setEchoChar('��');
+		tf2.setEchoChar('●');
 
-		b1 = new Button("����ϱ�");
+		b1 = new Button("퇴근하기");
 		b1.setSize(160, 50);
 		b1.setLocation(45, 160);
 		b1.addActionListener(new ActionListener() {
@@ -122,20 +122,20 @@ public class OutFrame extends AFrame {
 		f2.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		if (ampm == Calendar.AM) {
-			strampm = "���� ";
+			strampm = "오전 ";
 		} else {
-			strampm = "���� ";
+			strampm = "오후 ";
 		}
 
-		l1 = new Label("���� �ð��� " + strampm + hour + " �� " + minute + "�� " + "�Դϴ�.", Label.CENTER);
-		l2 = new Label("����ұ��?", Label.CENTER);
+		l1 = new Label("현재 시간은 " + strampm + hour + " 시 " + minute + "분 " + "입니다.", Label.CENTER);
+		l2 = new Label("퇴근할까요?", Label.CENTER);
 		l1.setSize(250, 20);
 		l2.setSize(250, 20);
 		l1.setLocation(0, 50);
 		l2.setLocation(0, 80);
 
-		b2 = new Button("��");
-		b3 = new Button("�ƴϿ�");
+		b2 = new Button("네");
+		b3 = new Button("아니요");
 		b2.setSize(50, 30);
 		b3.setSize(50, 30);
 		b2.setLocation(75, 110);

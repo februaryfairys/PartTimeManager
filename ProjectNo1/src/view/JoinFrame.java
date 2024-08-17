@@ -18,8 +18,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Project1.dao.JoinDAO;
-import Project1.dto.PartTimerVo;
+import dao.JoinDAO;
+import dto.PartTimerVo;
 
 public class JoinFrame extends AFrame {
 	private Frame f;
@@ -42,8 +42,8 @@ public class JoinFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		lid = new Label("����");
-		lpw = new Label("������ȣ");
+		lid = new Label("성명");
+		lpw = new Label("직원번호");
 		lid.setSize(50, 20);
 		lpw.setSize(50, 20);
 		lid.setLocation(35, 40);
@@ -55,9 +55,9 @@ public class JoinFrame extends AFrame {
 		tf2.setSize(190, 20);
 		tf1.setLocation(30, 65);
 		tf2.setLocation(30, 125);
-		tf2.setEchoChar('��');
+		tf2.setEchoChar('●');
 
-		b1 = new Button("����ϱ�");
+		b1 = new Button("출근하기");
 		b1.setSize(160, 50);
 		b1.setLocation(45, 160);
 		b1.addActionListener(new ActionListener() {

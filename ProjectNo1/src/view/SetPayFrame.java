@@ -31,8 +31,8 @@ public class SetPayFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		l1 = new Label("������ �����ӱ� (���� : ��)");
-		l2 = new Label("�Ŵ��� �μ�Ƽ�� (���� : %)");
+		l1 = new Label("올해의 최저임금 (단위 : ￦)");
+		l2 = new Label("매니저 인센티브 (단위 : %)");
 
 		l1.setSize(150, 20);
 		l2.setSize(150, 20);
@@ -46,9 +46,9 @@ public class SetPayFrame extends AFrame {
 		tf1.setLocation(30, 65);
 		tf2.setLocation(30, 125);
 
-		b1 = new Button("����");
-		b2 = new Button("����");
-		b3 = new Button("�ݱ�");
+		b1 = new Button("적용");
+		b2 = new Button("적용");
+		b3 = new Button("닫기");
 		b1.setSize(40, 20);
 		b2.setSize(40, 20);
 		b3.setSize(115, 40);

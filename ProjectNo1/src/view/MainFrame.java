@@ -51,16 +51,16 @@ public class MainFrame extends AFrame {
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
 		mb = new MenuBar();
-		Menu mParttimer = new Menu("����");
-		MenuItem miJoin = new MenuItem("���üũ");
-		MenuItem miOut = new MenuItem("���üũ");
-		Menu mManage = new Menu("����");
-		MenuItem miAdd = new MenuItem("���� ���");
-		MenuItem miEdit = new MenuItem("���� ��ȸ");
-		Menu mSetting = new Menu("����");
-		MenuItem miPw = new MenuItem("��й�ȣ ����");
-		MenuItem miExit = new MenuItem("���α׷� ����");
-		MenuItem miHelp = new MenuItem("����");
+		Menu mParttimer = new Menu("직원");
+		MenuItem miJoin = new MenuItem("출근");
+		MenuItem miOut = new MenuItem("퇴근");
+		Menu mManage = new Menu("관리");
+		MenuItem miAdd = new MenuItem("직원 등록");
+		MenuItem miEdit = new MenuItem("직원 조회");
+		Menu mSetting = new Menu("설정");
+		MenuItem miPw = new MenuItem("비밀번호 변경");
+		MenuItem miExit = new MenuItem("프로그램 종료");
+		MenuItem miHelp = new MenuItem("도움말");
 		mParttimer.add(miJoin);
 		mParttimer.add(miOut);
 		mManage.add(miAdd);
@@ -114,12 +114,12 @@ public class MainFrame extends AFrame {
 			}
 		});
 
-		b1 = new Button("�����޴�");
-		b2 = new Button("�����ڸ޴�");
-		b3 = new Button("����");
-		b4 = new Button("����");
-		b5 = new Button("���ΰ�ħ");
-		b6 = new Button("���ΰ�ħ");
+		b1 = new Button("직원메뉴");
+		b2 = new Button("관리자메뉴");
+		b3 = new Button("설정");
+		b4 = new Button("종료");
+		b5 = new Button("새로고침");
+		b6 = new Button("새로고침");
 		b1.setSize(160, 60);
 		b2.setSize(160, 60);
 		b3.setSize(160, 60);
@@ -167,8 +167,8 @@ public class MainFrame extends AFrame {
 			}
 		});
 		l1 = new Label("", Label.CENTER);
-		l2 = new Label("�ٹ���", Label.CENTER);
-		l3 = new Label("�������", Label.CENTER);
+		l2 = new Label("근무중", Label.CENTER);
+		l3 = new Label("모든직원", Label.CENTER);
 		l1.setSize(610, 20);
 		l2.setSize(160, 20);
 		l3.setSize(160, 20);
@@ -202,10 +202,11 @@ public class MainFrame extends AFrame {
 
 	}
 
+	
 	public void time() {
 		for (;;) {
 			Date now = new Date();
-			SimpleDateFormat timeLabel = new SimpleDateFormat("yyyy�� MM�� dd�� E���� a HH�� mm���Դϴ�.");
+			SimpleDateFormat timeLabel = new SimpleDateFormat("yyyy년 MM월 dd일 E요일 a HH시 mm분입니다.");
 			String time;
 			time = timeLabel.format(now);
 			l1.setText(time);

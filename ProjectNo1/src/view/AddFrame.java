@@ -27,13 +27,13 @@ public class AddFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		lid = new Label("����");
+		lid = new Label("성명");
 		lid2 = new Label("");
-		lpw = new Label("������ȣ");
-		lpw2 = new Label("������ȣ Ȯ��");
-		ltel = new Label("����ó");
+		lpw = new Label("직원번호");
+		lpw2 = new Label("직원번호 확인");
+		ltel = new Label("연락처");
 		ltel2 = new Label("");
-		lchpw = new Label("������ȣ�� �Է��ϼ���.");
+		lchpw = new Label("직원번호를 입력하세요.");
 		lid2.setForeground(Color.red);
 		ltel2.setForeground(Color.RED);
 		lid.setSize(30, 20);
@@ -53,7 +53,7 @@ public class AddFrame extends AFrame {
 		ltel2.setLocation(40, 310);
 
 		tf1 = new TextField();
-		tf2 = new TextField("��ư�� ���� ��ȣ�� �߱޹�������.");
+		tf2 = new TextField("버튼을 눌러 번호를 발급받으세요.");
 		tf3 = new TextField();
 		tf4 = new TextField();
 		tf1.setSize(200, 20);
@@ -66,9 +66,9 @@ public class AddFrame extends AFrame {
 		tf4.setLocation(35, 285);
 		tf2.setEditable(false);
 
-		b1 = new Button("���");
-		b2 = new Button("��ġ Ȯ��");
-		bRd = new Button("��ȣ �߱�");
+		b1 = new Button("등록");
+		b2 = new Button("일치 확인");
+		bRd = new Button("번호 발급");
 		b1.setSize(200, 50);
 		b2.setSize(60, 25);
 		bRd.setSize(60, 25);
@@ -80,7 +80,7 @@ public class AddFrame extends AFrame {
 				if (tf1.getText().equals("")) {
 					iyi.start("name");
 				} else if (!(tf1.getText().length() >= 2)) {
-					lid2.setText("�� ���� �̻� �Է��ϼ���.");
+					lid2.setText("두 글자 이상 입력하세요.");
 				} else if (tf3.getText().equals("")) {
 					iyi.start("password");
 				} else if (c != true) {
@@ -92,7 +92,7 @@ public class AddFrame extends AFrame {
 					iyi.start("tel");
 					;
 				} else if (tf4.getText().length() > 11 || tf4.getText().length() < 10) {
-					ltel2.setText("�ùٸ� ����ó�� �Է��ϼ���.");
+					ltel2.setText("올바른 연락처를 입력하세요.");
 				} else {
 					if (tf1.getText().length() >= 2 && tf2.getText().equals(tf3.getText()) && c == true
 							&& tf4.getText().length() >= 10 && tf4.getText().length() <= 11) {
@@ -118,9 +118,9 @@ public class AddFrame extends AFrame {
 				}
 
 				if (c == true) {
-					lchpw.setText("������ȣ�� ��ġ�մϴ�.");
+					lchpw.setText("직원번호가 일치합니다.");
 				} else {
-					lchpw.setText("������ȣ�� ��ġ���� �ʽ��ϴ�.");
+					lchpw.setText("직원번호가 일치하지 않습니다.");
 				}
 			}
 		});
@@ -140,8 +140,8 @@ public class AddFrame extends AFrame {
 			}
 		});
 		r = new Choice();
-		r.add("����");
-		r.add("�Ŵ���");
+		r.add("직원");
+		r.add("매니저");
 		r.setSize(100, 100);
 		r.setLocation(35, 345);
 

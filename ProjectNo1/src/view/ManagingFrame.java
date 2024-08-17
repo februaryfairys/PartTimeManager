@@ -25,9 +25,9 @@ public class ManagingFrame extends AFrame {
 		});
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
 
-		b1 = new Button("�������");
-		b2 = new Button("������ȸ");
-		b3 = new Button("�ݱ�");
+		b1 = new Button("직원등록");
+		b2 = new Button("직원조회");
+		b3 = new Button("닫기");
 		b1.setSize(160, 60);
 		b2.setSize(160, 60);
 		b3.setSize(160, 60);

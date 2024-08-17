@@ -1,6 +1,13 @@
 package view;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -19,7 +26,7 @@ public class SetPasswordFrame extends AFrame {
 	CompletePasswordChangeFrame cpcf = new CompletePasswordChangeFrame();
 
 	public void start() {
-		f = new Frame("��й�ȣ �缳��");
+		f = new Frame("비밀번호 재설정");
 		f.setSize(250, 330);
 		f.setLayout(null);
 		f.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
@@ -29,10 +36,10 @@ public class SetPasswordFrame extends AFrame {
 			}
 		});
 
-		l1 = new Label("<�ʱ� ��й�ȣ�� 0000�Դϴ�.>", Label.CENTER);
-		l2 = new Label("���� ��й�ȣ�� �Է����ּ���.", Label.CENTER);
-		l3 = new Label("���ο� ��й�ȣ�� �Է����ּ���.", Label.CENTER);
-		l4 = new Label("���ο� ��й�ȣ�� �ٽ� �Է����ּ���.", Label.CENTER);
+		l1 = new Label("<초기 비밀번호는 0000입니다.>", Label.CENTER);
+		l2 = new Label("현재 비밀번호를 입력해주세요.", Label.CENTER);
+		l3 = new Label("새로운 비밀번호를 입력해주세요.", Label.CENTER);
+		l4 = new Label("새로운 비밀번호를 다시 입력해주세요.", Label.CENTER);
 		l5 = new Label("", Label.CENTER);
 		l1.setSize(250, 20);
 		l2.setSize(250, 20);
@@ -55,12 +62,12 @@ public class SetPasswordFrame extends AFrame {
 		tf1.setLocation(30, 100);
 		tf2.setLocation(30, 160);
 		tf3.setLocation(30, 220);
-		tf1.setEchoChar('��');
-		tf2.setEchoChar('��');
-		tf3.setEchoChar('��');
+		tf1.setEchoChar('●');
+		tf2.setEchoChar('●');
+		tf3.setEchoChar('●');
 
-		b1 = new Button("Ȯ��");
-		b2 = new Button("���");
+		b1 = new Button("확인");
+		b2 = new Button("취소");
 		b1.setSize(50, 30);
 		b2.setSize(50, 30);
 		b1.setLocation(75, 280);
@@ -73,14 +80,14 @@ public class SetPasswordFrame extends AFrame {
 					iyi.start("password");
 				} else if (tf2.getText().length() != 4 || tf3.getText().length() != 4) {
 					chpf.start(0);
-					l5.setText("<��й�ȣ�� 4�ڸ��� �������ּ���.>");
+					l5.setText("<비밀번호는 4자리로 설정해주세요.>");
 				} else {
 					if (tf2.getText().equals(tf3.getText())) {
 						joinDAO();
 						CheckChangePasswordFrame();
 					} else if (tf2.getText() != tf3.getText()) {
 						chpf.start(0);
-						l5.setText("<���ο� ��й�ȣ�� ��ġ���� �ʽ��ϴ�.>");
+						l5.setText("<새로운 비밀번호가 일치하지 않습니다.>");
 					}
 				}
 			}
@@ -106,7 +113,7 @@ public class SetPasswordFrame extends AFrame {
 	}
 
 	public void CheckChangePasswordFrame() {
-		f2 = new Frame("�缳�� Ȯ��");
+		f2 = new Frame("재설정 확인");
 		f2.setSize(250, 160);
 		f2.setLayout(null);
 		f2.setLocation(screenSize.width / 2 - 300, screenSize.height / 2 - 200);
@@ -115,15 +122,15 @@ public class SetPasswordFrame extends AFrame {
 				f2.dispose();
 			}
 		});
-		ccpfL1 = new Label("������ ��й�ȣ�� " + tf2.getText() + "�Դϴ�.", Label.CENTER);
-		ccpfL2 = new Label("��й�ȣ�� �����ұ��?", Label.CENTER);
+		ccpfL1 = new Label("변경할 비밀번호는 " + tf2.getText() + "입니다.", Label.CENTER);
+		ccpfL2 = new Label("비밀번호를 변경할까요?", Label.CENTER);
 		ccpfL1.setSize(250, 20);
 		ccpfL2.setSize(250, 20);
 		ccpfL1.setLocation(0, 50);
 		ccpfL2.setLocation(0, 80);
 
-		ccpfB1 = new Button("��");
-		ccpfB2 = new Button("�ƴϿ�");
+		ccpfB1 = new Button("네");
+		ccpfB2 = new Button("아니요");
 		ccpfB1.setSize(50, 30);
 		ccpfB2.setSize(50, 30);
 		ccpfB1.setLocation(75, 110);
@@ -137,7 +144,7 @@ public class SetPasswordFrame extends AFrame {
 					cpcf.start();
 				} else {
 					chpf.start(0);
-					l5.setText("<���� ��й�ȣ�� ��ġ���� �ʽ��ϴ�.>");
+					l5.setText("<현재 비밀번호가 일치하지 않습니다.>");
 				}
 			}
 		});
